@@ -211,6 +211,37 @@
   });
 
   /* ----------------------------------------------------------
+     Theme switch (light / dark / system) — footer control.
+     "System" clears the explicit override and lets the
+     prefers-color-scheme media query in styles.css decide.
+     ---------------------------------------------------------- */
+  var themeOptions = document.querySelectorAll(".theme-switch__option");
+  function applyTheme(choice) {
+    if (choice === "light" || choice === "dark") {
+      root.setAttribute("data-theme", choice);
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    themeOptions.forEach(function (btn) {
+      btn.setAttribute("aria-checked", String(btn.dataset.themeChoice === choice));
+    });
+    try { localStorage.setItem("okp-theme", choice); } catch (e) {}
+  }
+  themeOptions.forEach(function (btn) {
+    btn.addEventListener("click", function () { applyTheme(btn.dataset.themeChoice); });
+  });
+  // Reflect whatever a11y-init.js already applied pre-paint (or the
+  // "system" default if nothing was ever stored).
+  (function syncThemeFromStoredState() {
+    var stored = null;
+    try { stored = localStorage.getItem("okp-theme"); } catch (e) {}
+    var current = (stored === "light" || stored === "dark") ? stored : "system";
+    themeOptions.forEach(function (btn) {
+      btn.setAttribute("aria-checked", String(btn.dataset.themeChoice === current));
+    });
+  })();
+
+  /* ----------------------------------------------------------
      Directory live search / filter
      ---------------------------------------------------------- */
   var searchInput = document.getElementById("directorySearchInput");
