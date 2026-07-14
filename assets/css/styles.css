@@ -972,6 +972,22 @@ html.a11y-contrast .hero__blob { display: none; }
   padding: 0.6rem;
 }
 
+.auspice-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 0.9rem 1.3rem;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.auspice-badge img {
+  width: 140px;
+  height: auto;
+}
+
 /* ============================================================
    10. CTA BAND
    ============================================================ */
