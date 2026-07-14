@@ -774,6 +774,39 @@ html.a11y-contrast .hero__blob { display: none; }
 .section__head h2 { font-size: var(--fs-600); margin-top: 0.7rem; }
 .section__head p { color: var(--ink-soft); max-width: 50ch; margin-top: 0.6rem; }
 
+/* Subpage banner — the top-of-page intro used on every dedicated
+   nav-tab page (directory/news/community/about), in place of the
+   full photo hero which stays specific to the homepage. */
+.page-header {
+  padding-block: 3.4rem 3rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.page-header h1 {
+  font-size: var(--fs-600);
+  margin-top: 0.7rem;
+}
+.page-header p {
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin-top: 0.7rem;
+  font-size: var(--fs-300);
+}
+
+/* Current-page indicator in nav — aria-current="page" is set on
+   whichever tab matches the page you're on. */
+.primary-nav__link[aria-current="page"] {
+  background: var(--surface);
+  color: var(--ink);
+}
+.nav-sheet__link[aria-current="page"] {
+  color: var(--accent-deep);
+}
+.footer-col a[aria-current="page"] {
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
 /* ============================================================
    8. DIRECTORY SEARCH + GRID
    ============================================================ */

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Πρωτότυπο προσβάσιμης αρχιτεκτονικής για την πλατφόρμα Ο Κόσμος του Πάρη — κόμβος στήριξης οικογενειών, νευροδιαφορετικών ατόμων και ειδικών επαγγελματιών.">
+  <title>Αναζήτηση Υπηρεσιών — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Αναζητήστε επαγγελματίες, δομές και υπηρεσίες υποστήριξης ανά κατηγορία στον Κόσμο του Πάρη.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
 
       <nav class="primary-nav" aria-label="Κύρια πλοήγηση">
         <ul class="primary-nav__list">
-          <li><a class="primary-nav__link" href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
+          <li><a class="primary-nav__link" href="directory.html" aria-current="page">Αναζήτηση Υπηρεσιών</a></li>
           <li><a class="primary-nav__link" href="news.html">Ενημέρωση &amp; Νέα</a></li>
           <li><a class="primary-nav__link" href="community.html">Η Κοινότητά Μας</a></li>
           <li><a class="primary-nav__link" href="about.html">Ποιοι Είμαστε</a></li>
@@ -49,82 +49,24 @@
       </button>
     </div>
     <ul class="nav-sheet__list">
-      <li><a class="nav-sheet__link" href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
+      <li><a class="nav-sheet__link" href="directory.html" aria-current="page">Αναζήτηση Υπηρεσιών</a></li>
       <li><a class="nav-sheet__link" href="news.html">Ενημέρωση &amp; Νέα</a></li>
       <li><a class="nav-sheet__link" href="community.html">Η Κοινότητά Μας</a></li>
       <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
     </ul>
     <div class="nav-sheet__footer">
-      <a class="btn btn--primary" href="#directory">Χρειάζομαι Υποστήριξη</a>
-      <a class="btn btn--secondary" href="#directory">Εγγραφή Επαγγελματία</a>
+      <a class="btn btn--primary" href="directory.html">Χρειάζομαι Υποστήριξη</a>
+      <a class="btn btn--secondary" href="about.html">Εγγραφή Επαγγελματία</a>
     </div>
   </div>
 
   <main id="main-content">
 
-    <!-- ============================================================
-         HERO
-         ============================================================ -->
-    <section class="hero" id="top">
-      <figure class="hero__portrait reveal">
-        <img src="paris.jpg" alt="Ο Πάρης χαμογελαστός, χαλαρωμένος σε πουφ καθιστικού — η έμπνευση πίσω από την πλατφόρμα." width="1920" height="840" class="hero__portrait-img">
-        <div class="hero__portrait-scrim" aria-hidden="true"></div>
-        <div class="hero__portrait-content">
-          <span class="eyebrow eyebrow--on-photo">Ένας κόσμος καλύτερος για όλους</span>
-          <h1>Φτάσε μέχρι εκεί που δεν μπορείς.</h1>
-        </div>
-      </figure>
-
-      <div class="hero__content">
-        <div class="hero__blob hero__blob--one" aria-hidden="true"></div>
-        <div class="hero__blob hero__blob--two" aria-hidden="true"></div>
-        <div class="container hero__grid">
-        <div class="hero__intro reveal">
-          <p><b>«Ο Κόσμος του Πάρη»</b> είναι μια πρωτοβουλία εμπνευσμένη από ένα αγόρι με νοητική στέρηση ο οποίος καθημερινά μας δίνει μαθήματα και μας υπενθυμίζει πόσο σημαντικό είναι να εκτιμούμε τις μικρές καθημερινές στιγμές, βλέποντας τον κόσμο μέσα από τα δικά του μάτια.
-Η επιθυμία μας είναι μέσω αυτής της πλατφόρμας, να παρέχουμε όλες τις πληροφορίες και τα εργαλεία για να διευκολύνουμε τις επιλογές και την καθημερινότητα των ατόμων με μαθησιακές δυσκολίες, αυτισμό, αναπηρίες και ψυχικές διαταραχές όπως και όσων τους φροντίζουν .
-Γνωρίζουμε πως όλοι χρειαζόμαστε βοήθεια, καθοδήγηση και την ανάγκη να νιώθουμε μέρος μιας μεγαλύτερης κοινότητας που μοιράζεται ανησυχίες, ερωτήματα, αλλά και όνειρα.
-Καλούμε, λοιπόν όλους εσάς να πλοηγηθείτε στον κόσμο μας και να απολαύσετε το ταξίδι που συνεχώς θα αναπτύσσεται.</p>
-          <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
-            <a href="#directory" class="btn btn--primary">Ξεκινήστε την αναζήτηση</a>
-            <a href="#about" class="btn btn--secondary">Μάθετε για εμάς</a>
-          </div>
-
-          <div class="hero__stats">
-            <div class="hero__stat">
-              <strong>420+</strong>
-              <span>Εγγεγραμμένοι επαγγελματίες</span>
-            </div>
-            <div class="hero__stat">
-              <strong>3.000+</strong>
-              <span>Μέλη κοινότητας</span>
-            </div>
-            <div class="hero__stat">
-              <strong>13</strong>
-              <span>Περιφέρειες της Ελλάδας</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="persona-stack reveal">
-          <a href="#directory" class="persona-card persona-card--primary">
-            <span class="persona-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg>
-            </span>
-            <span class="persona-card__title">Χρειάζομαι Υποστήριξη / Αναζήτηση Βοήθειας</span>
-            <span class="persona-card__desc">Βρείτε γιατρούς, θεραπευτές, σχολεία και δραστηριότητες κοντά σας — οργανωμένα ανά ειδικότητα, όχι ανά χάος.</span>
-            <span class="btn--ghost" style="margin-top:0.4rem;">Δείτε τις κατηγορίες <span class="arrow" aria-hidden="true">→</span></span>
-          </a>
-
-          <a href="#directory" class="persona-card persona-card--secondary">
-            <span class="persona-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </span>
-            <span class="persona-card__title">Θέλω να Προσφέρω / Εγγραφή Επαγγελματιών</span>
-            <span class="persona-card__desc">Εγγραφείτε στον κατάλογο, μοιραστείτε την τεχνογνωσία σας ή στηρίξτε το έργο μας ως δωρητής.</span>
-            <span class="btn--ghost" style="margin-top:0.4rem;">Εγγραφή τώρα <span class="arrow" aria-hidden="true">→</span></span>
-          </a>
-        </div>
-        </div>
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Αναζήτηση Υπηρεσιών</span>
+        <h1>Βρείτε την κατηγορία που χρειάζεστε</h1>
+        <p>Οκτώ σαφείς κατηγορίες, μία αναζήτηση. Καμία σελίδα δεν κρύβει αυτό που ψάχνετε.</p>
       </div>
     </section>
 
@@ -133,13 +75,6 @@
          ============================================================ -->
     <section class="section" id="directory">
       <div class="container">
-        <div class="section__head reveal">
-          <div>
-            <span class="eyebrow">Αναζήτηση Υπηρεσιών</span>
-            <h2>Βρείτε την κατηγορία που χρειάζεστε</h2>
-            <p>Οκτώ σαφείς κατηγορίες, μία αναζήτηση. Καμία σελίδα δεν κρύβει αυτό που ψάχνετε.</p>
-          </div>
-        </div>
 
         <div class="directory-search reveal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg>
@@ -224,127 +159,7 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         EDITORIAL "RULE OF THREE"
-         ============================================================ -->
-    <section class="section section--tint" id="news">
-      <div class="container">
-        <div class="section__head reveal">
-          <div>
-            <span class="eyebrow">Ενημέρωση &amp; Νέα</span>
-            <h2>Πρόσφατα Νέα &amp; Δράσεις</h2>
-          </div>
-        </div>
-
-        <div class="editorial-grid">
-          <article class="editorial-card reveal">
-            <div class="editorial-card__media" aria-hidden="true"></div>
-            <div class="editorial-card__body">
-              <div class="editorial-card__meta">
-                <span class="editorial-card__tag">Πρόγραμμα</span>
-                <span>8 Ιουλίου 2026</span>
-              </div>
-              <h3 class="editorial-card__title">Νέο πρόγραμμα δωρεάν λογοθεραπείας ξεκινά τον Σεπτέμβριο</h3>
-              <p class="editorial-card__desc">Σε συνεργασία με πιστοποιημένους λογοθεραπευτές, ανοίγουμε 40 δωρεάν θέσεις για οικογένειες που βρίσκονται σε λίστα αναμονής.</p>
-              <a href="#" class="editorial-card__link">Διαβάστε Περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="editorial-card reveal">
-            <div class="editorial-card__media" aria-hidden="true"></div>
-            <div class="editorial-card__body">
-              <div class="editorial-card__meta">
-                <span class="editorial-card__tag">Σεμινάριο</span>
-                <span>1 Ιουλίου 2026</span>
-              </div>
-              <h3 class="editorial-card__title">Σεμινάριο για γονείς: «Πρώτα Βήματα μετά τη Διάγνωση»</h3>
-              <p class="editorial-card__desc">Ένα διαδικτυακό σεμινάριο με ειδικούς αναπτυξιακής παιδιατρικής, με έμφαση στα πρακτικά επόμενα βήματα και τα δικαιώματα της οικογένειας.</p>
-              <a href="#" class="editorial-card__link">Διαβάστε Περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="editorial-card reveal">
-            <div class="editorial-card__media" aria-hidden="true"></div>
-            <div class="editorial-card__body">
-              <div class="editorial-card__meta">
-                <span class="editorial-card__tag">Κοινότητα</span>
-                <span>24 Ιουνίου 2026</span>
-              </div>
-              <h3 class="editorial-card__title">Η κοινότητά μας ξεπέρασε τα 3.000 μέλη — ευχαριστούμε</h3>
-              <p class="editorial-card__desc">Ένας σταθμός που ανήκει σε κάθε γονέα, επαγγελματία και εθελοντή που εμπιστεύτηκε τον Κόσμο του Πάρη από την πρώτη μέρα.</p>
-              <a href="#" class="editorial-card__link">Διαβάστε Περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </article>
-        </div>
-
-        <div class="editorial-footer reveal">
-          <a href="#" class="btn btn--secondary">Δείτε όλα τα νέα και τις δράσεις</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         COMMUNITY / ABOUT ANCHORS (kept lean — supports header nav)
-         ============================================================ -->
-    <section class="section" id="community">
-      <div class="container">
-        <div class="section__head reveal">
-          <div>
-            <span class="eyebrow">Η Κοινότητά Μας</span>
-            <h2>Ενεργές πρωτοβουλίες &amp; αγγελίες εργασίας</h2>
-            <p>Ομάδες γονέων, εθελοντικές δράσεις και θέσεις εργασίας από φορείς και κέντρα του δικτύου μας — σε ένα μέρος, χωρίς σκόρπιες αναρτήσεις.</p>
-          </div>
-          <a href="#" class="btn btn--secondary">Δείτε τις πρωτοβουλίες <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         CTA BAND
-         ============================================================ -->
-    <section class="section" id="about" style="padding-top:0;">
-      <div class="container">
-        <div class="cta-band reveal">
-          <div>
-            <h2>Θέλετε να μαθαίνετε πρώτοι τα νέα μας;</h2>
-            <p>Ένα σύντομο ενημερωτικό email τον μήνα — προγράμματα, σεμινάρια και νέες εγγραφές επαγγελματιών.</p>
-            <p class="cta-confirm" id="ctaConfirm" role="status" aria-live="polite" hidden>Ευχαριστούμε! Θα λαμβάνετε ενημερώσεις στο email σας.</p>
-          </div>
-          <form class="cta-form" id="ctaForm" novalidate>
-            <label for="ctaEmail" class="sr-only">Διεύθυνση email</label>
-            <input type="email" id="ctaEmail" name="email" placeholder="Το email σας" required autocomplete="email">
-            <button type="submit" class="btn btn--primary">Εγγραφή</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
   </main>
-
-  <!-- ============================================================
-       SUPPORTERS — logo grid, slots left empty until confirmed.
-       To add a supporter, replace a <li class="supporter-slot">
-       with: <li class="supporter-slot"><img src="…" alt="Λογότυπο [Όνομα Φορέα]"></li>
-       ============================================================ -->
-  <section class="section section--tint" id="supporters">
-    <div class="container">
-      <div class="section__head reveal">
-        <div>
-          <span class="eyebrow">Ευχαριστούμε</span>
-          <h2>Οι υποστηρικτές μας</h2>
-          <p>Οργανισμοί και φορείς που στηρίζουν το έργο μας.</p>
-        </div>
-      </div>
-      <ul class="supporters-grid reveal" aria-hidden="true">
-        <li class="supporter-slot"></li>
-        <li class="supporter-slot"></li>
-        <li class="supporter-slot"></li>
-        <li class="supporter-slot"></li>
-        <li class="supporter-slot"></li>
-        <li class="supporter-slot"></li>
-      </ul>
-    </div>
-  </section>
 
   <!-- ============================================================
        FOOTER
@@ -364,7 +179,7 @@
         <nav class="footer-col" aria-label="Πλοήγηση υποσέλιδου">
           <h3>Πλοήγηση</h3>
           <ul>
-            <li><a href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
+            <li><a href="directory.html" aria-current="page">Αναζήτηση Υπηρεσιών</a></li>
             <li><a href="news.html">Ενημέρωση &amp; Νέα</a></li>
             <li><a href="community.html">Η Κοινότητά Μας</a></li>
             <li><a href="about.html">Ποιοι Είμαστε</a></li>

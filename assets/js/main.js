@@ -242,46 +242,53 @@
   })();
 
   /* ----------------------------------------------------------
-     Directory live search / filter
+     Directory live search / filter — only present on pages that
+     ship the directory grid (currently index.html, directory.html).
      ---------------------------------------------------------- */
   var searchInput = document.getElementById("directorySearchInput");
-  var cards = Array.prototype.slice.call(document.querySelectorAll(".directory-card"));
-  var resultsEl = document.getElementById("directoryResults");
-  var emptyEl = document.getElementById("directoryEmpty");
+  if (searchInput) {
+    var cards = Array.prototype.slice.call(document.querySelectorAll(".directory-card"));
+    var resultsEl = document.getElementById("directoryResults");
+    var emptyEl = document.getElementById("directoryEmpty");
 
-  searchInput.addEventListener("input", function () {
-    var query = searchInput.value.trim().toLowerCase();
-    var visibleCount = 0;
-    cards.forEach(function (card) {
-      var haystack = (card.dataset.search + " " + card.querySelector(".directory-card__title").textContent).toLowerCase();
-      var match = query === "" || haystack.indexOf(query) !== -1;
-      card.hidden = !match;
-      if (match) visibleCount += 1;
+    searchInput.addEventListener("input", function () {
+      var query = searchInput.value.trim().toLowerCase();
+      var visibleCount = 0;
+      cards.forEach(function (card) {
+        var haystack = (card.dataset.search + " " + card.querySelector(".directory-card__title").textContent).toLowerCase();
+        var match = query === "" || haystack.indexOf(query) !== -1;
+        card.hidden = !match;
+        if (match) visibleCount += 1;
+      });
+      if (query === "") {
+        resultsEl.hidden = false;
+        resultsEl.textContent = "Εμφανίζονται και οι 8 κατηγορίες";
+        emptyEl.hidden = true;
+      } else if (visibleCount === 0) {
+        resultsEl.hidden = true;
+        emptyEl.hidden = false;
+      } else {
+        resultsEl.hidden = false;
+        emptyEl.hidden = true;
+        resultsEl.textContent = visibleCount + " από 8 κατηγορίες ταιριάζουν με «" + searchInput.value.trim() + "»";
+      }
     });
-    if (query === "") {
-      resultsEl.hidden = false;
-      resultsEl.textContent = "Εμφανίζονται και οι 8 κατηγορίες";
-      emptyEl.hidden = true;
-    } else if (visibleCount === 0) {
-      resultsEl.hidden = true;
-      emptyEl.hidden = false;
-    } else {
-      resultsEl.hidden = false;
-      emptyEl.hidden = true;
-      resultsEl.textContent = visibleCount + " από 8 κατηγορίες ταιριάζουν με «" + searchInput.value.trim() + "»";
-    }
-  });
+  }
 
   /* ----------------------------------------------------------
-     Newsletter form — demo-only, no network call
+     Newsletter form — demo-only, no network call. Only present
+     on pages that ship the CTA band (currently index.html,
+     about.html).
      ---------------------------------------------------------- */
   var ctaForm = document.getElementById("ctaForm");
-  var ctaConfirm = document.getElementById("ctaConfirm");
-  ctaForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    ctaConfirm.hidden = false;
-    ctaForm.reset();
-  });
+  if (ctaForm) {
+    var ctaConfirm = document.getElementById("ctaConfirm");
+    ctaForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      ctaConfirm.hidden = false;
+      ctaForm.reset();
+    });
+  }
 
   /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under
