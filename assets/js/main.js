@@ -422,9 +422,7 @@
 
     var link = document.createElement("a");
     link.className = "editorial-card__link";
-    link.href = post.link;
-    link.target = "_blank";
-    link.rel = "noopener";
+    link.href = "article.html?slug=" + post.slug;
     link.appendChild(document.createTextNode("Διαβάστε Περισσότερα "));
     var arrow = document.createElement("span");
     arrow.className = "arrow";
@@ -520,6 +518,110 @@
 
   initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
   initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
+
+  /* ----------------------------------------------------------
+     Single article page (article.html) — fetches one post by
+     ?slug= from the same live WP REST API and renders it on our
+     own page, so "Διαβάστε Περισσότερα" never leaves the site.
+     ---------------------------------------------------------- */
+  function wpSanitizeContent(html) {
+    var doc = new DOMParser().parseFromString(html || "", "text/html");
+    var unsafe = doc.body.querySelectorAll("script, style, iframe, object, embed, link, meta, form");
+    unsafe.forEach(function (el) { el.remove(); });
+    var all = doc.body.querySelectorAll("*");
+    all.forEach(function (el) {
+      Array.prototype.slice.call(el.attributes).forEach(function (attr) {
+        var name = attr.name.toLowerCase();
+        if (name.indexOf("on") === 0) el.removeAttribute(attr.name);
+      });
+      if (el.tagName === "A") {
+        var href = el.getAttribute("href") || "";
+        if (href.trim().toLowerCase().indexOf("javascript:") === 0) {
+          el.removeAttribute("href");
+        } else {
+          el.setAttribute("target", "_blank");
+          el.setAttribute("rel", "noopener");
+        }
+      }
+      if (el.tagName === "IMG") {
+        el.setAttribute("loading", "lazy");
+      }
+    });
+    var firstChild = doc.body.firstElementChild;
+    if (firstChild && firstChild.tagName === "H1") firstChild.remove();
+    return doc.body.innerHTML;
+  }
+
+  function initWpArticlePage() {
+    var body = document.getElementById("articleBody");
+    if (!body) return;
+    var titleEl = document.getElementById("articleTitle");
+    var eyebrowEl = document.getElementById("articleEyebrow");
+    var metaEl = document.getElementById("articleMeta");
+    var featuredEl = document.getElementById("articleFeaturedImage");
+    var backLinkEl = document.getElementById("articleBackLink");
+    var backLabelEl = document.getElementById("articleBackLabel");
+
+    var slug = new URLSearchParams(window.location.search).get("slug");
+    if (!slug) {
+      body.innerHTML = "";
+      titleEl.textContent = "Δεν βρέθηκε άρθρο";
+      var noSlugMsg = document.createElement("p");
+      noSlugMsg.className = "editorial-status";
+      noSlugMsg.textContent = "Δεν ορίστηκε άρθρο προς εμφάνιση.";
+      body.appendChild(noSlugMsg);
+      return;
+    }
+
+    fetch(WP_API_POSTS + "?slug=" + slug + "&_embed")
+      .then(function (res) {
+        if (!res.ok) throw new Error("wp-fetch-failed");
+        return res.json();
+      })
+      .then(function (posts) {
+        var post = posts && posts[0];
+        if (!post) throw new Error("wp-post-not-found");
+
+        var title = wpHtmlToText(post.title.rendered);
+        document.title = title + " — Ο Κόσμος του Πάρη";
+        titleEl.textContent = title;
+
+        var isNews = post.categories && post.categories.indexOf(WP_CATEGORY_NEWS) !== -1;
+        eyebrowEl.textContent = wpCategoryLabel(post, isNews ? "Νέα" : "Άρθρο");
+        backLinkEl.href = isNews ? "news.html" : "articles.html";
+        backLabelEl.textContent = isNews ? "Πίσω στα Νέα" : "Πίσω στα Άρθρα";
+
+        metaEl.textContent = wpFormatDate(post.date);
+
+        var imageUrl = wpFeaturedImageUrl(post);
+        if (imageUrl) {
+          var img = document.createElement("img");
+          img.className = "article-featured-image";
+          img.src = imageUrl;
+          img.alt = "";
+          featuredEl.appendChild(img);
+        }
+
+        body.innerHTML = wpSanitizeContent(post.content.rendered);
+      })
+      .catch(function () {
+        titleEl.textContent = "Δεν ήταν δυνατή η φόρτωση του άρθρου";
+        metaEl.textContent = "";
+        body.innerHTML = "";
+        var errStatus = document.createElement("p");
+        errStatus.className = "editorial-status";
+        errStatus.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση αυτού του άρθρου αυτή τη στιγμή. Δείτε το απευθείας στο "));
+        var siteLink = document.createElement("a");
+        siteLink.href = "https://okosmostoupari.gr";
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener";
+        siteLink.textContent = "okosmostoupari.gr";
+        errStatus.appendChild(siteLink);
+        errStatus.appendChild(document.createTextNode("."));
+        body.appendChild(errStatus);
+      });
+  }
+  initWpArticlePage();
 
   /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under

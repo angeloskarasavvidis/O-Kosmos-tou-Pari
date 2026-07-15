@@ -1075,6 +1075,71 @@ html.a11y-contrast .hero__blob { display: none; }
 .editorial-status a { color: var(--accent-deep); font-weight: 700; }
 
 /* ============================================================
+   9c. SINGLE ARTICLE (article.html)
+   ============================================================ */
+.container--article { width: min(760px, 100% - 3rem); }
+
+.article-featured-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: 2.2rem;
+}
+
+.article-body { font-size: var(--fs-200); color: var(--ink); }
+.article-body h1,
+.article-body h2,
+.article-body h3,
+.article-body h4 { margin-top: 2rem; margin-bottom: 0.9rem; }
+.article-body h1 { font-size: var(--fs-500); }
+.article-body h2 { font-size: var(--fs-400); }
+.article-body h3 { font-size: var(--fs-300); }
+.article-body p { margin-bottom: 1.1rem; color: var(--ink-soft); }
+.article-body strong { color: var(--ink); }
+.article-body a { color: var(--accent-deep); text-decoration: underline; }
+.article-body ul,
+.article-body ol {
+  list-style: disc;
+  padding-left: 1.4rem;
+  margin-bottom: 1.1rem;
+  color: var(--ink-soft);
+}
+.article-body ol { list-style: decimal; }
+.article-body li { margin-bottom: 0.4rem; }
+.article-body blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.2rem;
+  margin: 1.6rem 0;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.article-body img {
+  border-radius: var(--radius-md);
+  margin-block: 1.2rem;
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.1rem;
+  font-size: var(--fs-100);
+}
+.article-body th,
+.article-body td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+.article-body figure { margin: 1.6rem 0; }
+.article-body figcaption {
+  font-size: var(--fs-100);
+  color: var(--ink-faint);
+  margin-top: 0.4rem;
+}
+
+.article-back { margin-top: 2.6rem; }
+
+/* ============================================================
    9b. SUPPORTERS
    ============================================================ */
 .supporters-grid {
