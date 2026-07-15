@@ -140,6 +140,7 @@ html.a11y-contrast {
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 html.a11y-font-2 { font-size: 125%; }
 html.a11y-font-3 { font-size: 150%; }
@@ -151,6 +152,7 @@ body {
   font-size: var(--fs-200);
   line-height: 1.65;
   letter-spacing: -0.01em;
+  overflow-x: hidden;
   transition: background var(--dur-med) var(--ease-soft), color var(--dur-med) var(--ease-soft);
 }
 
@@ -1657,7 +1659,15 @@ html.a11y-contrast .hero__blob { display: none; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .persona-card--primary, .persona-card--secondary { margin: 0; }
   .hero { padding-block: 3rem 3.5rem; }
-  .hero__portrait { aspect-ratio: 4 / 3; }
+  /* Taller crop + smaller/tighter heading so the (now multi-line)
+     title and subtitle never reach down into the portrait's face,
+     no matter how narrow the screen. Phones get an even taller
+     crop below, since that's where the heading wraps to the most
+     lines and needs the most extra headroom. */
+  .hero__portrait { aspect-ratio: 1 / 1; }
+  .hero__portrait-content { padding-top: 2.2rem; }
+  .hero__portrait-content h1 { font-size: clamp(2.1rem, 1.6rem + 3.5vw, 2.8rem); max-width: 15ch; }
+  .hero__subtitle { font-size: 0.95rem; max-width: 32ch; }
   .supporters-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-bottom { justify-content: center; text-align: center; }
   .theme-switch__option span {
@@ -1670,4 +1680,8 @@ html.a11y-contrast .hero__blob { display: none; }
     border: 0;
   }
   .theme-switch__option { padding: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .hero__portrait { aspect-ratio: 3 / 4; }
 }
