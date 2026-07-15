@@ -1208,6 +1208,12 @@ html.a11y-contrast .hero__blob { display: none; }
   margin-bottom: 1rem;
 }
 .professional-filters .directory-search { margin-bottom: 0; flex: 1 1 320px; }
+/* .directory-results normally sits directly under a bare .directory-search
+   and uses a negative margin-top to pull in close to it. Here it follows
+   .professional-filters instead (search + category select side by side),
+   which doesn't carry that same bottom spacing — so the negative margin
+   needs to be neutralized, or the results line overlaps the filters row. */
+.professional-filters + .directory-results { margin-top: 0; }
 
 .professional-category-select { flex: 0 1 280px; min-width: 220px; }
 .professional-category-select select {

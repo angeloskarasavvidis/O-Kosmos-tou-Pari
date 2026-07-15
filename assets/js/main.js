@@ -439,10 +439,11 @@
     return article;
   }
 
-  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback, showImage) {
+  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback, showImage, pageSize) {
     var grid = document.getElementById(gridId);
     if (!grid) return;
-    var loadMoreBtn = document.getElementById(loadMoreId);
+    var loadMoreBtn = loadMoreId ? document.getElementById(loadMoreId) : null;
+    var perPage = pageSize || WP_PAGE_SIZE;
     var page = 1;
     var totalPages = 1;
     var loading = false;
@@ -463,7 +464,7 @@
         loadMoreBtn.disabled = true;
         loadMoreBtn.textContent = "Φόρτωση…";
       }
-      var url = WP_API_POSTS + "?_embed&categories=" + categoryId + "&per_page=" + WP_PAGE_SIZE + "&page=" + page;
+      var url = WP_API_POSTS + "?_embed&categories=" + categoryId + "&per_page=" + perPage + "&page=" + page;
       fetch(url)
         .then(function (res) {
           if (!res.ok) throw new Error("wp-fetch-failed");
@@ -516,6 +517,7 @@
     loadPage();
   }
 
+  initWpFeed("homeNewsGrid", null, WP_CATEGORY_NEWS, true, "Νέα", false, 3);
   initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
   initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
 
