@@ -747,6 +747,219 @@
   initSchoolsMap();
 
   /* ----------------------------------------------------------
+     Doctors grid (category-doctors.html) — live-fetches the same
+     "Εξειδικευμένοι Ιατροί" listing grid (id 1691) the WordPress
+     site itself renders via its WP Ultimate Post Grid plugin, then
+     parses the returned item markup into cards with a category
+     filter built from whichever specialties actually show up in
+     the data. This REST endpoint sends CORS headers (unlike the
+     store-locator's admin-ajax.php), so — unlike the schools map —
+     no local snapshot is needed; this reads the live WP data.
+     ---------------------------------------------------------- */
+  var WPUPG_ENDPOINT = "https://okosmostoupari.gr/wp-json/wp-ultimate-post-grid/v1/items";
+  var WPUPG_GRID_DOCTORS = "1691";
+
+  function initDoctorsGrid() {
+    var gridEl = document.getElementById("doctorsGrid");
+    if (!gridEl) return;
+
+    var countEl = document.getElementById("doctorsResultsCount");
+    var searchInput = document.getElementById("doctorsSearchInput");
+    var categorySelect = document.getElementById("doctorsCategorySelect");
+    var entries = [];
+
+    function parseProfessionals(htmlString) {
+      var doc = new DOMParser().parseFromString(htmlString, "text/html");
+      var items = doc.body.querySelectorAll("a.wpupg-item");
+      var results = [];
+      items.forEach(function (item) {
+        var fields = item.querySelectorAll(".wpupg-item-custom-field");
+        var nameField = fields[0];
+        var areaField = null;
+        for (var i = 0; i < fields.length; i++) {
+          if (fields[i].querySelector("img")) { areaField = fields[i]; break; }
+        }
+        var terms = Array.prototype.map.call(item.querySelectorAll(".wpupg-item-term"), function (t) {
+          return t.textContent.trim();
+        });
+        var imgs = item.querySelectorAll("img");
+        var photo = null;
+        for (var j = 0; j < imgs.length; j++) {
+          if (imgs[j].src.indexOf("location.png") === -1) { photo = imgs[j].src; break; }
+        }
+        results.push({
+          name: nameField ? nameField.textContent.trim() : "",
+          area: areaField ? areaField.textContent.replace(/\s+/g, " ").trim() : "",
+          terms: terms,
+          link: item.href,
+          photo: photo
+        });
+      });
+      return results;
+    }
+
+    function buildCard(data) {
+      var card = document.createElement("article");
+      card.className = "professional-card";
+
+      var media = document.createElement("div");
+      media.className = "professional-card__media";
+      media.setAttribute("aria-hidden", "true");
+      if (data.photo) {
+        var img = document.createElement("img");
+        img.src = data.photo;
+        img.alt = "";
+        img.loading = "lazy";
+        media.appendChild(img);
+      } else {
+        media.classList.add("professional-card__media--placeholder");
+        media.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>';
+      }
+
+      var body = document.createElement("div");
+      body.className = "professional-card__body";
+
+      var name = document.createElement("h3");
+      name.className = "professional-card__name";
+      name.textContent = data.name;
+
+      var tags = document.createElement("div");
+      tags.className = "professional-card__tags";
+      var shown = data.terms.slice(0, 3);
+      shown.forEach(function (t) {
+        var tag = document.createElement("span");
+        tag.className = "professional-card__tag";
+        tag.textContent = t;
+        tags.appendChild(tag);
+      });
+      if (data.terms.length > shown.length) {
+        var more = document.createElement("span");
+        more.className = "professional-card__tag professional-card__tag--more";
+        more.textContent = "+" + (data.terms.length - shown.length);
+        tags.appendChild(more);
+      }
+
+      body.appendChild(name);
+      body.appendChild(tags);
+
+      if (data.area) {
+        var area = document.createElement("div");
+        area.className = "professional-card__area";
+        area.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+        area.appendChild(document.createTextNode(data.area));
+        body.appendChild(area);
+      }
+
+      var link = document.createElement("a");
+      link.className = "professional-card__link";
+      link.href = data.link;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.appendChild(document.createTextNode("Προβολή προφίλ "));
+      var arrow = document.createElement("span");
+      arrow.className = "arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+      link.appendChild(arrow);
+      body.appendChild(link);
+
+      card.appendChild(media);
+      card.appendChild(body);
+      return card;
+    }
+
+    function populateCategorySelect(items) {
+      var counts = {};
+      items.forEach(function (it) {
+        it.terms.forEach(function (t) {
+          counts[t] = (counts[t] || 0) + 1;
+        });
+      });
+      Object.keys(counts).sort(function (a, b) {
+        return counts[b] - counts[a] || a.localeCompare(b, "el");
+      }).forEach(function (term) {
+        var opt = document.createElement("option");
+        opt.value = term;
+        opt.textContent = term + " (" + counts[term] + ")";
+        categorySelect.appendChild(opt);
+      });
+    }
+
+    function updateCount(visible, total) {
+      if (!countEl) return;
+      countEl.textContent = visible === total
+        ? "Εμφανίζονται και οι " + total + " δομές"
+        : visible + " από " + total + " δομές ταιριάζουν με τα φίλτρα σας";
+    }
+
+    function applyFilter() {
+      var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+      var category = categorySelect ? categorySelect.value : "";
+      var visible = 0;
+      entries.forEach(function (entry) {
+        var matchesCategory = !category || entry.data.terms.indexOf(category) !== -1;
+        var matchesQuery = !query || entry.haystack.indexOf(query) !== -1;
+        var match = matchesCategory && matchesQuery;
+        entry.el.hidden = !match;
+        if (match) visible += 1;
+      });
+      updateCount(visible, entries.length);
+    }
+
+    gridEl.innerHTML = '<p class="editorial-status" role="status">Φόρτωση δομών…</p>';
+
+    fetch(WPUPG_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: WPUPG_GRID_DOCTORS, args: {} })
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("wpupg-fetch-failed");
+        return res.json();
+      })
+      .then(function (data) {
+        var professionals = data && data.items && data.items.html ? parseProfessionals(data.items.html) : [];
+        gridEl.innerHTML = "";
+        if (!professionals.length) {
+          gridEl.innerHTML = '<p class="editorial-status" role="status">Δεν βρέθηκαν δομές αυτή τη στιγμή.</p>';
+          if (countEl) countEl.textContent = "";
+          return;
+        }
+        professionals.forEach(function (prof) {
+          var card = buildCard(prof);
+          gridEl.appendChild(card);
+          entries.push({
+            data: prof,
+            el: card,
+            haystack: (prof.name + " " + prof.area).toLowerCase()
+          });
+        });
+        if (categorySelect) populateCategorySelect(professionals);
+        applyFilter();
+      })
+      .catch(function () {
+        gridEl.innerHTML = "";
+        var status = document.createElement("p");
+        status.className = "editorial-status";
+        status.setAttribute("role", "status");
+        status.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση των δομών αυτή τη στιγμή. Δείτε τις απευθείας στο "));
+        var siteLink = document.createElement("a");
+        siteLink.href = "https://okosmostoupari.gr";
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener";
+        siteLink.textContent = "okosmostoupari.gr";
+        status.appendChild(siteLink);
+        status.appendChild(document.createTextNode("."));
+        gridEl.appendChild(status);
+        if (countEl) countEl.textContent = "";
+      });
+
+    if (searchInput) searchInput.addEventListener("input", applyFilter);
+    if (categorySelect) categorySelect.addEventListener("change", applyFilter);
+  }
+  initDoctorsGrid();
+
+  /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under
      prefers-reduced-motion, per the guardrail in styles.css)
      ---------------------------------------------------------- */
