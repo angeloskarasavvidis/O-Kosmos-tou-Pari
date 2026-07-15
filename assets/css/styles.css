@@ -1060,6 +1060,13 @@ html.a11y-contrast .hero__blob { display: none; }
   justify-content: center;
   margin-top: 2.6rem;
 }
+.editorial-status {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 2.4rem 0;
+}
+.editorial-status a { color: var(--accent-deep); font-weight: 700; }
 
 /* ============================================================
    9b. SUPPORTERS

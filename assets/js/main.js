@@ -341,6 +341,169 @@
   }
 
   /* ----------------------------------------------------------
+     WordPress feed — powers the "Νέα" and "Άρθρα" grids from the
+     live okosmostoupari.gr REST API (categories 267 and 78).
+     Only runs on pages that ship one of the two grid containers.
+     ---------------------------------------------------------- */
+  var WP_API_POSTS = "https://okosmostoupari.gr/wp-json/wp/v2/posts";
+  var WP_CATEGORY_NEWS = 267;
+  var WP_CATEGORY_ARTICLES = 78;
+  var WP_PAGE_SIZE = 9;
+
+  function wpHtmlToText(html) {
+    var doc = new DOMParser().parseFromString(html || "", "text/html");
+    return (doc.body.textContent || "").replace(/\s+/g, " ").trim();
+  }
+
+  function wpFormatDate(iso) {
+    return new Date(iso).toLocaleDateString("el-GR", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  function wpCategoryLabel(post, fallback) {
+    var terms = post._embedded && post._embedded["wp:term"] && post._embedded["wp:term"][0];
+    if (terms) {
+      for (var i = 0; i < terms.length; i++) {
+        if (terms[i].taxonomy === "category" && terms[i].slug !== "uncategorized") {
+          return terms[i].name;
+        }
+      }
+    }
+    return fallback;
+  }
+
+  function wpBuildCard(post, showDate, tagFallback) {
+    var article = document.createElement("article");
+    article.className = "editorial-card";
+
+    var media = document.createElement("div");
+    media.className = "editorial-card__media";
+    media.setAttribute("aria-hidden", "true");
+
+    var body = document.createElement("div");
+    body.className = "editorial-card__body";
+
+    var meta = document.createElement("div");
+    meta.className = "editorial-card__meta";
+    var tag = document.createElement("span");
+    tag.className = "editorial-card__tag";
+    tag.textContent = wpCategoryLabel(post, tagFallback);
+    meta.appendChild(tag);
+    if (showDate) {
+      var dateSpan = document.createElement("span");
+      dateSpan.textContent = wpFormatDate(post.date);
+      meta.appendChild(dateSpan);
+    }
+
+    var title = document.createElement("h3");
+    title.className = "editorial-card__title";
+    title.textContent = wpHtmlToText(post.title.rendered);
+
+    var desc = document.createElement("p");
+    desc.className = "editorial-card__desc";
+    desc.textContent = wpHtmlToText(post.excerpt.rendered);
+
+    var link = document.createElement("a");
+    link.className = "editorial-card__link";
+    link.href = post.link;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.appendChild(document.createTextNode("Διαβάστε Περισσότερα "));
+    var arrow = document.createElement("span");
+    arrow.className = "arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "→";
+    link.appendChild(arrow);
+
+    body.appendChild(meta);
+    body.appendChild(title);
+    body.appendChild(desc);
+    body.appendChild(link);
+    article.appendChild(media);
+    article.appendChild(body);
+    return article;
+  }
+
+  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback) {
+    var grid = document.getElementById(gridId);
+    if (!grid) return;
+    var loadMoreBtn = document.getElementById(loadMoreId);
+    var page = 1;
+    var totalPages = 1;
+    var loading = false;
+
+    function showStatus(message) {
+      grid.innerHTML = "";
+      var status = document.createElement("p");
+      status.className = "editorial-status";
+      status.setAttribute("role", "status");
+      status.textContent = message;
+      grid.appendChild(status);
+    }
+
+    function loadPage() {
+      if (loading) return;
+      loading = true;
+      if (loadMoreBtn) {
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.textContent = "Φόρτωση…";
+      }
+      var url = WP_API_POSTS + "?_embed&categories=" + categoryId + "&per_page=" + WP_PAGE_SIZE + "&page=" + page;
+      fetch(url)
+        .then(function (res) {
+          if (!res.ok) throw new Error("wp-fetch-failed");
+          totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "1", 10);
+          return res.json();
+        })
+        .then(function (posts) {
+          if (page === 1) grid.innerHTML = "";
+          if (page === 1 && !posts.length) {
+            showStatus("Δεν υπάρχουν διαθέσιμες αναρτήσεις αυτή τη στιγμή.");
+          } else {
+            posts.forEach(function (post) {
+              grid.appendChild(wpBuildCard(post, showDate, tagFallback));
+            });
+          }
+          loading = false;
+          if (loadMoreBtn) {
+            loadMoreBtn.disabled = false;
+            loadMoreBtn.textContent = "Φόρτωση περισσότερων";
+            loadMoreBtn.hidden = page >= totalPages;
+          }
+        })
+        .catch(function () {
+          loading = false;
+          if (page === 1) {
+            grid.innerHTML = "";
+            var status = document.createElement("p");
+            status.className = "editorial-status";
+            status.setAttribute("role", "status");
+            status.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση του περιεχομένου αυτή τη στιγμή. Δείτε το απευθείας στο "));
+            var siteLink = document.createElement("a");
+            siteLink.href = "https://okosmostoupari.gr";
+            siteLink.target = "_blank";
+            siteLink.rel = "noopener";
+            siteLink.textContent = "okosmostoupari.gr";
+            status.appendChild(siteLink);
+            status.appendChild(document.createTextNode("."));
+            grid.appendChild(status);
+          }
+          if (loadMoreBtn) loadMoreBtn.hidden = true;
+        });
+    }
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener("click", function () {
+        page += 1;
+        loadPage();
+      });
+    }
+    loadPage();
+  }
+
+  initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα");
+  initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο");
+
+  /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under
      prefers-reduced-motion, per the guardrail in styles.css)
      ---------------------------------------------------------- */
