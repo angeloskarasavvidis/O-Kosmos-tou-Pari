@@ -747,25 +747,51 @@
   initSchoolsMap();
 
   /* ----------------------------------------------------------
-     Doctors grid (category-doctors.html) — live-fetches the same
-     "Εξειδικευμένοι Ιατροί" listing grid (id 1691) the WordPress
-     site itself renders via its WP Ultimate Post Grid plugin, then
-     parses the returned item markup into cards with a category
-     filter built from whichever specialties actually show up in
-     the data. This REST endpoint sends CORS headers (unlike the
-     store-locator's admin-ajax.php), so — unlike the schools map —
-     no local snapshot is needed; this reads the live WP data.
+     Professional grids (category-doctors.html + the other
+     "Υπηρεσίες" category pages) — each live-fetches the same
+     listing grid the WordPress site itself renders on its matching
+     page via the WP Ultimate Post Grid plugin, then parses the
+     returned item markup into cards with a category filter built
+     from whichever specialties actually show up in that grid's
+     data. This REST endpoint sends CORS headers (unlike the
+     store-locator's admin-ajax.php used for the schools map), so no
+     local snapshot is needed here — this reads the live WP data.
+
+     Quirk worth documenting: some grids' JSON responses contain
+     literal, unescaped newline bytes inside string values (a
+     server-side encoding bug in that WP plugin, not ours) — the
+     raw grid the doctors page uses happens not to trigger it, but
+     others do, and it breaks both strict JSON parsers and the
+     browser's native response.json(). Fetched as text and escaped
+     before parsing to work around it everywhere.
      ---------------------------------------------------------- */
   var WPUPG_ENDPOINT = "https://okosmostoupari.gr/wp-json/wp-ultimate-post-grid/v1/items";
-  var WPUPG_GRID_DOCTORS = "1691";
 
-  function initDoctorsGrid() {
-    var gridEl = document.getElementById("doctorsGrid");
+  function wpupgFetchGrid(gridId) {
+    return fetch(WPUPG_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: gridId, args: {} })
+    }).then(function (res) {
+      if (!res.ok) throw new Error("wpupg-fetch-failed");
+      return res.text();
+    }).then(function (text) {
+      var sanitized = text.trim().replace(/[\n\r\t]/g, function (ch) {
+        if (ch === "\n") return "\\n";
+        if (ch === "\r") return "\\r";
+        return "\\t";
+      });
+      return JSON.parse(sanitized);
+    });
+  }
+
+  function initProfessionalGrid(idPrefix, wpupgGridId) {
+    var gridEl = document.getElementById(idPrefix + "Grid");
     if (!gridEl) return;
 
-    var countEl = document.getElementById("doctorsResultsCount");
-    var searchInput = document.getElementById("doctorsSearchInput");
-    var categorySelect = document.getElementById("doctorsCategorySelect");
+    var countEl = document.getElementById(idPrefix + "ResultsCount");
+    var searchInput = document.getElementById(idPrefix + "SearchInput");
+    var categorySelect = document.getElementById(idPrefix + "CategorySelect");
     var entries = [];
 
     function parseProfessionals(htmlString) {
@@ -908,15 +934,7 @@
 
     gridEl.innerHTML = '<p class="editorial-status" role="status">Φόρτωση δομών…</p>';
 
-    fetch(WPUPG_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: WPUPG_GRID_DOCTORS, args: {} })
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error("wpupg-fetch-failed");
-        return res.json();
-      })
+    wpupgFetchGrid(wpupgGridId)
       .then(function (data) {
         var professionals = data && data.items && data.items.html ? parseProfessionals(data.items.html) : [];
         gridEl.innerHTML = "";
@@ -957,7 +975,13 @@
     if (searchInput) searchInput.addEventListener("input", applyFilter);
     if (categorySelect) categorySelect.addEventListener("change", applyFilter);
   }
-  initDoctorsGrid();
+  initProfessionalGrid("doctors", "1691");
+  initProfessionalGrid("filoxenia", "1735");
+  initProfessionalGrid("therapeutes", "1694");
+  initProfessionalGrid("drastiriotites", "1716");
+  initProfessionalGrid("ekpaideutes", "1705");
+  initProfessionalGrid("kentra", "1700");
+  initProfessionalGrid("syllogoi", "1740");
 
   /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under

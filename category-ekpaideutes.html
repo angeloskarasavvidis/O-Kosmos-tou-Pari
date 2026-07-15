@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ρώτα τον Ειδικό — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Στείλτε την ερώτησή σας στην ομάδα ειδικών του Κόσμου του Πάρη και λάβετε προσωπική απάντηση.">
+  <title>Εκπαιδευτές – Φύλαξη — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Εξειδικευμένοι εκπαιδευτές, φύλαξη και υποστήριξη στην καθημερινότητα.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
         <a class="nav-dropdown__item" href="category-filoxenia.html">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</a>
         <a class="nav-dropdown__item" href="category-therapeutes.html">Θεραπευτές – Σύμβουλοι</a>
         <a class="nav-dropdown__item" href="category-drastiriotites.html">Δραστηριότητες &amp; Κοινωνικοποίηση</a>
-        <a class="nav-dropdown__item" href="category-ekpaideutes.html">Εκπαιδευτές – Φύλαξη</a>
+        <a class="nav-dropdown__item" href="category-ekpaideutes.html" aria-current="page">Εκπαιδευτές – Φύλαξη</a>
         <a class="nav-dropdown__item" href="category-kentra.html">Εξειδικευμένα Κέντρα Θεραπειών</a>
         <a class="nav-dropdown__item" href="category-syllogoi.html">Σύλλογοι &amp; Σωματεία</a>
         <a class="nav-dropdown__item" href="category-schools.html">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a>
@@ -82,34 +82,32 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Ρώτα τον Ειδικό</span>
-        <h1>Έχετε μια απορία; Ρωτήστε μας.</h1>
-        <p>Η ομάδα ειδικών του Κόσμου του Πάρη απαντά προσωπικά σε ερωτήσεις για ανάπτυξη, εκπαίδευση και καθημερινότητα. Δεν δημοσιεύουμε το όνομά σας πουθενά.</p>
+        <span class="eyebrow">Υπηρεσίες</span>
+        <h1>Εκπαιδευτές – Φύλαξη</h1>
+        <p>Εξειδικευμένοι εκπαιδευτές και υπηρεσίες φύλαξης για παιδιά και ενήλικες με αναπηρία. Δείτε τις υπόλοιπες κατηγορίες στην <a href="directory.html">Αναζήτηση Υπηρεσιών</a>.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <form class="simple-form reveal" id="askExpertForm" novalidate>
-          <div class="form-field">
-            <label for="askName">Ονοματεπώνυμο</label>
-            <input type="text" id="askName" name="name" autocomplete="name" required>
+
+        <div class="professional-filters">
+          <div class="directory-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <label class="sr-only" for="ekpaideutesSearchInput">Αναζήτηση με όνομα ή περιοχή</label>
+            <input type="text" id="ekpaideutesSearchInput" placeholder="Αναζήτηση με όνομα ή περιοχή…" autocomplete="off">
           </div>
-          <div class="form-field">
-            <label for="askEmail">Email</label>
-            <input type="email" id="askEmail" name="email" autocomplete="email" required>
+          <div class="professional-category-select">
+            <label class="sr-only" for="ekpaideutesCategorySelect">Κατηγορία ειδικότητας</label>
+            <select id="ekpaideutesCategorySelect">
+              <option value="">Όλες οι κατηγορίες</option>
+            </select>
           </div>
-          <div class="form-field">
-            <label for="askQuestion">Η ερώτησή σας</label>
-            <textarea id="askQuestion" name="question" required></textarea>
-          </div>
-          <div class="form-checkbox-row">
-            <input type="checkbox" id="askTerms" name="terms" required>
-            <label for="askTerms">Αποδέχομαι την επεξεργασία των στοιχείων μου σύμφωνα με την Πολιτική Απορρήτου.</label>
-          </div>
-          <button type="submit" class="btn btn--primary">Αποστολή Ερώτησης</button>
-          <p class="form-confirm" id="askExpertConfirm" role="status" aria-live="polite" hidden>Ευχαριστούμε! Η ερώτησή σας στάλθηκε και θα λάβετε απάντηση στο email σας.</p>
-        </form>
+        </div>
+        <p class="directory-results" id="ekpaideutesResultsCount" aria-live="polite">Φόρτωση δομών…</p>
+
+        <div class="professional-grid" id="ekpaideutesGrid"></div>
+
       </div>
     </section>
 
