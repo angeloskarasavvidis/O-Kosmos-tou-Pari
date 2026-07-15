@@ -371,13 +371,31 @@
     return fallback;
   }
 
-  function wpBuildCard(post, showDate, tagFallback) {
+  function wpFeaturedImageUrl(post) {
+    var media = post._embedded && post._embedded["wp:featuredmedia"] && post._embedded["wp:featuredmedia"][0];
+    if (!media) return null;
+    var sizes = media.media_details && media.media_details.sizes;
+    if (sizes) {
+      if (sizes.medium_large) return sizes.medium_large.source_url;
+      if (sizes.medium) return sizes.medium.source_url;
+    }
+    return media.source_url || null;
+  }
+
+  function wpBuildCard(post, showDate, tagFallback, showImage) {
     var article = document.createElement("article");
     article.className = "editorial-card";
 
     var media = document.createElement("div");
     media.className = "editorial-card__media";
     media.setAttribute("aria-hidden", "true");
+    if (showImage) {
+      var imageUrl = wpFeaturedImageUrl(post);
+      if (imageUrl) {
+        media.classList.add("editorial-card__media--photo");
+        media.style.backgroundImage = "url('" + imageUrl + "')";
+      }
+    }
 
     var body = document.createElement("div");
     body.className = "editorial-card__body";
@@ -423,7 +441,7 @@
     return article;
   }
 
-  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback) {
+  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback, showImage) {
     var grid = document.getElementById(gridId);
     if (!grid) return;
     var loadMoreBtn = document.getElementById(loadMoreId);
@@ -460,7 +478,7 @@
             showStatus("Δεν υπάρχουν διαθέσιμες αναρτήσεις αυτή τη στιγμή.");
           } else {
             posts.forEach(function (post) {
-              grid.appendChild(wpBuildCard(post, showDate, tagFallback));
+              grid.appendChild(wpBuildCard(post, showDate, tagFallback, showImage));
             });
           }
           loading = false;
@@ -500,8 +518,8 @@
     loadPage();
   }
 
-  initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα");
-  initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο");
+  initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
+  initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
 
   /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under

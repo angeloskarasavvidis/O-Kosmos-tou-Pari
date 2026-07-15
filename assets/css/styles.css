@@ -1020,6 +1020,12 @@ html.a11y-contrast .hero__blob { display: none; }
   height: 8px;
   background: linear-gradient(90deg, var(--accent), var(--periwinkle));
 }
+.editorial-card__media--photo {
+  height: 170px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface);
+}
 .editorial-card__body { padding: 1.8rem; display: flex; flex-direction: column; gap: 0.9rem; flex: 1; }
 .editorial-card__meta {
   display: flex;
