@@ -75,6 +75,42 @@
   });
 
   /* ----------------------------------------------------------
+     "Αναζήτηση Υπηρεσιών" nav dropdown — desktop only (the
+     dropdown trigger doesn't exist in the mobile sheet, which
+     links straight to directory.html instead).
+     ---------------------------------------------------------- */
+  var servicesDropdownTrigger = document.getElementById("servicesDropdownTrigger");
+  var servicesDropdown = document.getElementById("servicesDropdown");
+  if (servicesDropdownTrigger && servicesDropdown) {
+    var servicesDropdownCleanup = null;
+
+    function openServicesDropdown() {
+      servicesDropdown.classList.add("is-open");
+      servicesDropdownTrigger.setAttribute("aria-expanded", "true");
+      servicesDropdownCleanup = trapFocus(servicesDropdown, closeServicesDropdown);
+    }
+    function closeServicesDropdown() {
+      servicesDropdown.classList.remove("is-open");
+      servicesDropdownTrigger.setAttribute("aria-expanded", "false");
+      if (servicesDropdownCleanup) servicesDropdownCleanup();
+    }
+    servicesDropdownTrigger.addEventListener("click", function () {
+      if (servicesDropdown.classList.contains("is-open")) closeServicesDropdown();
+      else openServicesDropdown();
+    });
+    document.addEventListener("click", function (e) {
+      if (
+        servicesDropdown.classList.contains("is-open") &&
+        !servicesDropdown.contains(e.target) &&
+        e.target !== servicesDropdownTrigger &&
+        !servicesDropdownTrigger.contains(e.target)
+      ) {
+        closeServicesDropdown();
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
      Accessibility widget
      ---------------------------------------------------------- */
   var a11yToggle = document.getElementById("a11yToggle");
@@ -287,6 +323,20 @@
       e.preventDefault();
       ctaConfirm.hidden = false;
       ctaForm.reset();
+    });
+  }
+
+  /* ----------------------------------------------------------
+     "Ρώτα τον Ειδικό" form — demo-only, no network call. Only
+     present on ask-expert.html.
+     ---------------------------------------------------------- */
+  var askExpertForm = document.getElementById("askExpertForm");
+  if (askExpertForm) {
+    var askExpertConfirm = document.getElementById("askExpertConfirm");
+    askExpertForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      askExpertConfirm.hidden = false;
+      askExpertForm.reset();
     });
   }
 

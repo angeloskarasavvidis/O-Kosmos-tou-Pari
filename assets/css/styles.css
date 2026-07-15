@@ -15,14 +15,14 @@
   --surface: #f6efe1;
   --surface-raised: #ffffff;
   --border: #e3dccb;
-  --accent: #e8973f;
-  --accent-deep: #a8641a;
+  --accent: #2a9d8f;
+  --accent-deep: #1e7469;
   --accent-ink: #1a365d;
   --sage: #5f7d5c;
   --sage-bg: #e7ede4;
   --periwinkle: #5b68ab;
   --periwinkle-bg: #eaecf7;
-  --focus-ring: #a8641a;
+  --focus-ring: #1e7469;
   --shadow-color: 220 45% 24%;
 
   /* Typography */
@@ -62,14 +62,14 @@
     --surface: #182238;
     --surface-raised: #1d2941;
     --border: #2c3a56;
-    --accent: #f0a94e;
-    --accent-deep: #f5bd75;
+    --accent: #4fbcac;
+    --accent-deep: #7fd0c3;
     --accent-ink: #10182b;
     --sage: #93b48d;
     --sage-bg: #1d2c22;
     --periwinkle: #a3addd;
     --periwinkle-bg: #1f2440;
-    --focus-ring: #f0a94e;
+    --focus-ring: #4fbcac;
     color-scheme: dark;
   }
 }
@@ -82,14 +82,14 @@
   --surface: #182238;
   --surface-raised: #1d2941;
   --border: #2c3a56;
-  --accent: #f0a94e;
-  --accent-deep: #f5bd75;
+  --accent: #4fbcac;
+  --accent-deep: #7fd0c3;
   --accent-ink: #10182b;
   --sage: #93b48d;
   --sage-bg: #1d2c22;
   --periwinkle: #a3addd;
   --periwinkle-bg: #1f2440;
-  --focus-ring: #f0a94e;
+  --focus-ring: #4fbcac;
   color-scheme: dark;
 }
 
@@ -101,14 +101,14 @@
   --surface: #f6efe1;
   --surface-raised: #ffffff;
   --border: #e3dccb;
-  --accent: #e8973f;
-  --accent-deep: #a8641a;
+  --accent: #2a9d8f;
+  --accent-deep: #1e7469;
   --accent-ink: #1a365d;
   --sage: #5f7d5c;
   --sage-bg: #e7ede4;
   --periwinkle: #5b68ab;
   --periwinkle-bg: #eaecf7;
-  --focus-ring: #a8641a;
+  --focus-ring: #1e7469;
   color-scheme: light;
 }
 
@@ -364,6 +364,80 @@ p { text-wrap: pretty; }
 .primary-nav__link:hover {
   background: var(--surface);
   color: var(--ink);
+}
+
+/* Services dropdown — the "Αναζήτηση Υπηρεσιών" nav item opens a
+   panel of the 8 categories instead of linking straight through, so
+   they stay one click away from anywhere on the site. */
+.primary-nav__item--dropdown {
+  position: relative;
+}
+.primary-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+.primary-nav__chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--dur-fast) var(--ease-soft);
+}
+.primary-nav__trigger[aria-expanded="true"] .primary-nav__chevron {
+  transform: rotate(180deg);
+}
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 0;
+  z-index: 250;
+  width: 300px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 60px -20px hsl(var(--shadow-color) / 0.35);
+  padding: 0.6rem;
+  transform-origin: top left;
+  transform: translateY(6px) scale(0.98);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform var(--dur-med) var(--ease-soft), opacity var(--dur-med) var(--ease-soft), visibility 0s linear var(--dur-med);
+}
+.nav-dropdown.is-open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  transition: transform var(--dur-med) var(--ease-soft), opacity var(--dur-med) var(--ease-soft), visibility 0s;
+}
+.nav-dropdown__item {
+  display: block;
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft);
+}
+.nav-dropdown__item:hover {
+  background: var(--surface);
+  color: var(--accent-deep);
+}
+.nav-dropdown__viewall {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+  padding: 0.7rem 0.8rem;
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--accent-deep);
+  text-decoration: none;
 }
 
 .header-actions {
@@ -658,18 +732,24 @@ html.a11y-contrast .hero__blob { display: none; }
   top: 0;
   padding: 3.4rem min(6vw, 3.2rem) 0;
 }
-.hero__portrait-content .eyebrow--on-photo {
-  color: var(--accent);
-}
-.hero__portrait-content .eyebrow--on-photo::before {
-  background: var(--accent);
-}
 .hero__portrait-content h1 {
   font-weight: 800;
   color: #ffffff;
   font-size: clamp(2.8rem, 1.9rem + 3.9vw, 4.75rem);
-  margin-top: 0.9rem;
   max-width: 18ch;
+}
+.hero__subtitle {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 42ch;
+  margin-top: 0.9rem;
+}
+
+/* Standalone kicker, sitting below the photo instead of overlaid on it. */
+.hero__lead {
+  max-width: 60ch;
+  margin-bottom: 2.2rem;
 }
 
 .hero__grid {
@@ -879,6 +959,36 @@ html.a11y-contrast .hero__blob { display: none; }
 
 .directory-card[hidden] { display: none; }
 
+/* Compact horizontal variant — used for the homepage teaser so the
+   category list reads as a quick scroll-past strip instead of a tall
+   stacked grid. The dedicated directory page keeps the full grid. */
+.directory-grid--compact {
+  display: flex;
+  grid-template-columns: none;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+.directory-grid--compact .directory-card {
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 1.15rem 0.6rem 0.6rem;
+  white-space: nowrap;
+  scroll-snap-align: start;
+}
+.directory-grid--compact .directory-card__icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.directory-grid--compact .directory-card__icon svg { width: 18px; height: 18px; }
+.directory-grid--compact .directory-card__title { font-size: 0.88rem; }
+.directory-grid--compact .directory-card__desc { display: none; }
+
 .directory-viewall {
   display: flex;
   justify-content: center;
@@ -989,6 +1099,77 @@ html.a11y-contrast .hero__blob { display: none; }
 }
 
 /* ============================================================
+   9c. PROGRAM LIST — recurring lessons/programs, deliberately a
+   quick-scan row list rather than a card grid, to read as
+   distinct from one-off "Δράσεις" events.
+   ============================================================ */
+.program-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.program-row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.1rem 1.4rem;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  flex-wrap: wrap;
+  transition: border-color var(--dur-fast) var(--ease-soft);
+}
+.program-row:hover { border-color: var(--accent-deep); }
+.program-row__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--sage-bg);
+  color: var(--sage);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.program-row__icon svg { width: 21px; height: 21px; }
+.program-row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 220px;
+}
+.program-row__title { font-weight: 700; font-size: 0.98rem; }
+.program-row__meta { font-size: 0.85rem; color: var(--ink-soft); }
+
+/* ============================================================
+   9d. ASK THE EXPERT BANNER
+   ============================================================ */
+.ask-expert-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.2rem;
+}
+.ask-expert-banner__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-raised));
+  color: var(--accent-deep);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.ask-expert-banner__icon svg { width: 26px; height: 26px; }
+.ask-expert-banner__text { flex: 1; min-width: 220px; }
+.ask-expert-banner__text h2 { font-size: var(--fs-500); margin-top: 0.4rem; }
+.ask-expert-banner__text p { color: var(--ink-soft); margin-top: 0.4rem; max-width: 56ch; }
+
+/* ============================================================
    10. CTA BAND
    ============================================================ */
 .cta-band {
@@ -1028,6 +1209,56 @@ html.a11y-contrast .hero__blob { display: none; }
   color: var(--accent);
   font-weight: 600;
   margin-top: 0.7rem;
+}
+
+/* ============================================================
+   10b. GENERIC FORM FIELDS — full-page forms (e.g. Ρώτα τον Ειδικό)
+   ============================================================ */
+.simple-form {
+  max-width: 560px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+.form-field label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.form-field input,
+.form-field textarea {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: inherit;
+}
+.form-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent-deep);
+}
+.form-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.form-checkbox-row input { margin-top: 0.2rem; }
+.form-confirm {
+  font-size: 0.9rem;
+  color: var(--sage);
+  font-weight: 600;
+  margin-top: 1rem;
 }
 
 /* ============================================================
