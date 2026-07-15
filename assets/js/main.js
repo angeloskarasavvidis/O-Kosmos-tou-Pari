@@ -624,6 +624,129 @@
   initWpArticlePage();
 
   /* ----------------------------------------------------------
+     Schools map (category-schools.html) — renders a Leaflet map
+     and matching list from a local snapshot of the "Ειδικά
+     Σχολεία – ΚΕΔΑΣΥ" locations (assets/data/schools.json). The
+     live WP Store Locator's admin-ajax.php endpoint that holds
+     these coordinates doesn't send CORS headers, so it can't be
+     fetched cross-origin from the browser at request time — the
+     snapshot was captured from that same read-only endpoint and
+     checked in as static data instead.
+     ---------------------------------------------------------- */
+  function initSchoolsMap() {
+    var mapEl = document.getElementById("schoolsMap");
+    if (!mapEl || typeof L === "undefined") return;
+
+    var listEl = document.getElementById("schoolsList");
+    var countEl = document.getElementById("schoolsResultsCount");
+    var searchInput = document.getElementById("schoolsSearchInput");
+
+    if (L.Icon && L.Icon.Default) {
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
+      });
+    }
+
+    var map = L.map(mapEl).setView([38.6, 23.7], 7);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener\">OpenStreetMap</a> συνεισφέροντες"
+    }).addTo(map);
+
+    var clusterGroup = L.markerClusterGroup ? L.markerClusterGroup() : L.layerGroup();
+    map.addLayer(clusterGroup);
+
+    var entries = [];
+
+    function escapeHtml(str) {
+      var div = document.createElement("div");
+      div.textContent = str == null ? "" : String(str);
+      return div.innerHTML;
+    }
+
+    function popupHtml(school) {
+      var lines = [];
+      lines.push('<div class="schools-popup__title">' + escapeHtml(school.name) + "</div>");
+      lines.push('<div class="schools-popup__line">' + escapeHtml(school.address) + ", " + escapeHtml(school.city) + " " + escapeHtml(school.zip) + "</div>");
+      if (school.phone) lines.push('<div class="schools-popup__line">' + escapeHtml(school.phone) + "</div>");
+      if (school.email) lines.push('<div class="schools-popup__line"><a href="mailto:' + encodeURIComponent(school.email) + '">' + escapeHtml(school.email) + "</a></div>");
+      return lines.join("");
+    }
+
+    function updateCount(visible, total) {
+      if (!countEl) return;
+      countEl.textContent = visible === total
+        ? "Εμφανίζονται και οι " + total + " δομές"
+        : visible + " από " + total + " δομές ταιριάζουν με την αναζήτησή σας";
+    }
+
+    function applyFilter() {
+      var query = (searchInput ? searchInput.value.trim().toLowerCase() : "");
+      var visible = 0;
+      clusterGroup.clearLayers();
+      entries.forEach(function (entry) {
+        var match = query === "" || entry.haystack.indexOf(query) !== -1;
+        entry.listEl.hidden = !match;
+        if (match) {
+          clusterGroup.addLayer(entry.marker);
+          visible += 1;
+        }
+      });
+      updateCount(visible, entries.length);
+    }
+
+    function focusSchool(entry) {
+      map.setView(entry.marker.getLatLng(), 15);
+      entry.marker.openPopup();
+      entries.forEach(function (e) { e.listEl.classList.remove("is-active"); });
+      entry.listEl.classList.add("is-active");
+    }
+
+    fetch("assets/data/schools.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("schools-fetch-failed");
+        return res.json();
+      })
+      .then(function (schools) {
+        if (countEl) countEl.textContent = "";
+        schools.forEach(function (school) {
+          var marker = L.marker([school.lat, school.lng]).bindPopup(popupHtml(school));
+
+          var item = document.createElement("button");
+          item.type = "button";
+          item.className = "schools-list-item";
+          var title = document.createElement("div");
+          title.className = "schools-list-item__title";
+          title.textContent = school.name;
+          var line = document.createElement("div");
+          line.className = "schools-list-item__line";
+          line.textContent = school.address + ", " + school.city;
+          item.appendChild(title);
+          item.appendChild(line);
+          if (listEl) listEl.appendChild(item);
+
+          var entry = {
+            marker: marker,
+            listEl: item,
+            haystack: (school.name + " " + school.city + " " + school.zip + " " + school.address).toLowerCase()
+          };
+          item.addEventListener("click", function () { focusSchool(entry); });
+          entries.push(entry);
+        });
+        applyFilter();
+      })
+      .catch(function () {
+        if (countEl) countEl.textContent = "Δεν ήταν δυνατή η φόρτωση των δομών αυτή τη στιγμή.";
+      });
+
+    if (searchInput) searchInput.addEventListener("input", applyFilter);
+  }
+  initSchoolsMap();
+
+  /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under
      prefers-reduced-motion, per the guardrail in styles.css)
      ---------------------------------------------------------- */

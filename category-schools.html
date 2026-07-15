@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Άρθρα — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Άρθρα σε βάθος για γονείς και φροντιστές από τον Κόσμο του Πάρη.">
+  <title>Ειδικά Σχολεία – ΚΕΔΑΣΥ — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Χάρτης με ειδικά σχολεία και ΚΕΔΑΣΥ σε όλη την Ελλάδα.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="">
   <link rel="stylesheet" href="assets/css/styles.css?v=6">
   <script src="assets/js/a11y-init.js?v=2"></script>
 </head>
@@ -38,12 +41,12 @@
         <a class="nav-dropdown__item" href="directory.html#cat-ekpaideutes">Εκπαιδευτές – Φύλαξη</a>
         <a class="nav-dropdown__item" href="directory.html#cat-kentra">Εξειδικευμένα Κέντρα Θεραπειών</a>
         <a class="nav-dropdown__item" href="directory.html#cat-syllogoi">Σύλλογοι &amp; Σωματεία</a>
-        <a class="nav-dropdown__item" href="category-schools.html">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a>
+        <a class="nav-dropdown__item" href="category-schools.html" aria-current="page">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a>
         <a class="nav-dropdown__viewall" href="directory.html">Όλοι οι επαγγελματίες <span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </li>
           <li><a class="primary-nav__link" href="news.html">Νέα</a></li>
-          <li><a class="primary-nav__link" href="articles.html" aria-current="page">Άρθρα</a></li>
+          <li><a class="primary-nav__link" href="articles.html">Άρθρα</a></li>
           <li><a class="primary-nav__link" href="community.html">Η Κοινότητά Μας</a></li>
           <li><a class="primary-nav__link" href="about.html">Ποιοι Είμαστε</a></li>
         </ul>
@@ -68,7 +71,7 @@
     <ul class="nav-sheet__list">
       <li><a class="nav-sheet__link" href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
       <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
-      <li><a class="nav-sheet__link" href="articles.html" aria-current="page">Άρθρα</a></li>
+      <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
       <li><a class="nav-sheet__link" href="community.html">Η Κοινότητά Μας</a></li>
       <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
     </ul>
@@ -82,24 +85,25 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Άρθρα</span>
-        <h1>Οδηγοί σε Βάθος</h1>
-        <p>Πιο εκτενή κείμενα για γονείς και φροντιστές — χωρίς ημερομηνία λήξης, για να τα ξαναδιαβάζετε όποτε τα χρειάζεστε. Για επίκαιρες ενημερώσεις, δείτε τα <a href="news.html">Νέα</a> μας.</p>
+        <span class="eyebrow">Υπηρεσίες</span>
+        <h1>Ειδικά Σχολεία – ΚΕΔΑΣΥ</h1>
+        <p>Δομές ειδικής αγωγής, ΚΕΔΑΣΥ και εργαστήρια ειδικής επαγγελματικής εκπαίδευσης σε όλη την Ελλάδα. Δείτε τις υπόλοιπες κατηγορίες στην <a href="directory.html">Αναζήτηση Υπηρεσιών</a>.</p>
       </div>
     </section>
 
-    <!-- ============================================================
-         ΑΡΘΡΑ
-         ============================================================ -->
-    <section class="section" id="articles">
+    <section class="section">
       <div class="container">
 
-        <div class="editorial-grid" id="articlesGrid" aria-live="polite">
-          <p class="editorial-status" role="status">Φόρτωση άρθρων…</p>
+        <div class="directory-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <label class="sr-only" for="schoolsSearchInput">Αναζήτηση σχολείου ή περιοχής</label>
+          <input type="text" id="schoolsSearchInput" placeholder="Αναζήτηση με όνομα, πόλη ή ΤΚ…" autocomplete="off">
         </div>
+        <p class="directory-results" id="schoolsResultsCount" aria-live="polite">Φόρτωση δομών…</p>
 
-        <div class="editorial-footer">
-          <button type="button" class="btn btn--secondary" id="articlesLoadMore" hidden>Φόρτωση περισσότερων</button>
+        <div class="schools-layout">
+          <div class="schools-map" id="schoolsMap" role="region" aria-label="Χάρτης με τοποθεσίες ειδικών σχολείων και ΚΕΔΑΣΥ — η ίδια λίστα δομών είναι διαθέσιμη δίπλα σε προσβάσιμη μορφή"></div>
+          <div class="schools-list" id="schoolsList"></div>
         </div>
 
       </div>
@@ -127,7 +131,7 @@
           <ul>
             <li><a href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
             <li><a href="news.html">Νέα</a></li>
-            <li><a href="articles.html" aria-current="page">Άρθρα</a></li>
+            <li><a href="articles.html">Άρθρα</a></li>
             <li><a href="community.html">Η Κοινότητά Μας</a></li>
             <li><a href="about.html">Ποιοι Είμαστε</a></li>
           </ul>
@@ -229,6 +233,8 @@
     </button>
   </div>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="" defer></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="" defer></script>
   <script src="assets/js/main.js?v=6" defer></script>
 </body>
 </html>

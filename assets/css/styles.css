@@ -1140,6 +1140,65 @@ html.a11y-contrast .hero__blob { display: none; }
 .article-back { margin-top: 2.6rem; }
 
 /* ============================================================
+   9d. SCHOOLS MAP (category-schools.html)
+   ============================================================ */
+.schools-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.6rem;
+  align-items: start;
+}
+.schools-map {
+  height: 560px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  background: var(--surface);
+}
+.schools-map .leaflet-popup-content-wrapper {
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--ink);
+}
+.schools-map .leaflet-popup-tip { background: var(--surface-raised); }
+.schools-popup__title { font-weight: 700; margin-bottom: 0.3rem; }
+.schools-popup__line { font-size: 0.85rem; color: var(--ink-soft); }
+.schools-popup__line a { color: var(--accent-deep); }
+
+.schools-list {
+  height: 560px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-right: 0.3rem;
+}
+.schools-list-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.9rem 1.1rem;
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-soft), background var(--dur-fast) var(--ease-soft);
+}
+.schools-list-item:hover,
+.schools-list-item.is-active {
+  border-color: var(--accent-deep);
+  background: var(--surface);
+}
+.schools-list-item__title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.25rem; }
+.schools-list-item__line { font-size: 0.82rem; color: var(--ink-soft); }
+
+@media (max-width: 860px) {
+  .schools-layout { grid-template-columns: 1fr; }
+  .schools-map { height: 400px; }
+  .schools-list { height: 400px; }
+}
+
+/* ============================================================
    9b. SUPPORTERS
    ============================================================ */
 .supporters-grid {
