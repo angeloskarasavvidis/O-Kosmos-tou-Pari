@@ -643,6 +643,257 @@
   initWpArticlePage();
 
   /* ----------------------------------------------------------
+     Single professional profile (professional.html) — renders one
+     entry from the local professional-profile snapshot
+     (assets/data/professionals/<id>.json). The live profile pages
+     (okosmostoupari.gr/professional/<slug>/) don't send CORS
+     headers and their content (bio, services, contact details,
+     ratings) isn't exposed by the wp/v2/professional REST API at
+     all — it's rendered straight into the page template. So, same
+     approach as the schools map: a one-time server-side scrape of
+     the rendered HTML, checked in as static per-profile JSON.
+     ---------------------------------------------------------- */
+  var PROFESSIONAL_CATEGORY_META = {
+    doctors: { label: "Εξειδικευμένοι Ιατροί", href: "category-doctors.html" },
+    filoxenia: { label: "Χώροι Φιλοξενίας Παιδιών & Ενηλίκων", href: "category-filoxenia.html" },
+    therapeutes: { label: "Θεραπευτές – Σύμβουλοι", href: "category-therapeutes.html" },
+    drastiriotites: { label: "Δραστηριότητες & Κοινωνικοποίηση", href: "category-drastiriotites.html" },
+    ekpaideutes: { label: "Εκπαιδευτές – Φύλαξη", href: "category-ekpaideutes.html" },
+    kentra: { label: "Εξειδικευμένα Κέντρα Θεραπειών", href: "category-kentra.html" },
+    syllogoi: { label: "Σύλλογοι & Σωματεία", href: "category-syllogoi.html" }
+  };
+
+  var ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L7.9 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.8 2.1z"/></svg>';
+  var ICON_MAIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M22 6l-10 7L2 6"/></svg>';
+  var ICON_GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
+  var ICON_FACEBOOK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>';
+
+  function buildProfessionalStars(value) {
+    var wrap = document.createElement("div");
+    wrap.className = "professional-stars";
+    wrap.setAttribute("aria-hidden", "true");
+    var rounded = Math.round(value);
+    for (var i = 1; i <= 5; i++) {
+      var star = document.createElement("span");
+      star.className = "professional-stars__star" + (i <= rounded ? " is-filled" : "");
+      star.textContent = "★";
+      wrap.appendChild(star);
+    }
+    return wrap;
+  }
+
+  function buildProfessionalContactRow(iconSvg, href, label, isExternal) {
+    var row = document.createElement("p");
+    row.className = "professional-contact-card__row";
+    var icon = document.createElement("span");
+    icon.className = "professional-contact-card__icon";
+    icon.innerHTML = iconSvg;
+    row.appendChild(icon);
+    if (href) {
+      var a = document.createElement("a");
+      a.href = href;
+      if (isExternal) { a.target = "_blank"; a.rel = "noopener"; }
+      a.textContent = label;
+      row.appendChild(a);
+    } else {
+      var span = document.createElement("span");
+      span.textContent = label;
+      row.appendChild(span);
+    }
+    return row;
+  }
+
+  function initProfessionalProfilePage() {
+    var body = document.getElementById("profBody");
+    if (!body) return;
+    var titleEl = document.getElementById("profTitle");
+    var eyebrowEl = document.getElementById("profEyebrow");
+    var tagsEl = document.getElementById("profTags");
+    var photoWrap = document.getElementById("profPhotoWrap");
+    var sideEl = document.getElementById("profSide");
+    var contactCard = document.getElementById("profContactCard");
+    var ratingsEl = document.getElementById("profRatings");
+    var ratingsSummaryEl = document.getElementById("profRatingsSummary");
+    var ratingsListEl = document.getElementById("profRatingsList");
+    var backLinkEl = document.getElementById("profBackLink");
+    var backLabelEl = document.getElementById("profBackLabel");
+
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get("id");
+    var from = params.get("from");
+
+    var catMeta = PROFESSIONAL_CATEGORY_META[from];
+    if (catMeta) {
+      backLinkEl.href = catMeta.href;
+      backLabelEl.textContent = "Πίσω στο: " + catMeta.label;
+      eyebrowEl.textContent = catMeta.label;
+    }
+
+    if (!id) {
+      titleEl.textContent = "Δεν βρέθηκε προφίλ";
+      body.innerHTML = "";
+      var noIdMsg = document.createElement("p");
+      noIdMsg.className = "editorial-status";
+      noIdMsg.textContent = "Δεν ορίστηκε προφίλ προς εμφάνιση.";
+      body.appendChild(noIdMsg);
+      return;
+    }
+
+    fetch("assets/data/professionals/" + encodeURIComponent(id) + ".json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("profile-fetch-failed");
+        return res.json();
+      })
+      .then(function (prof) {
+        document.title = prof.title + " — Ο Κόσμος του Πάρη";
+        titleEl.textContent = prof.title;
+        if (!catMeta) eyebrowEl.textContent = (prof.categories && prof.categories[0]) || "Επαγγελματίας";
+
+        (prof.categories || []).forEach(function (cat) {
+          var chip = document.createElement("span");
+          chip.className = "professional-card__tag";
+          chip.textContent = cat;
+          tagsEl.appendChild(chip);
+        });
+
+        if (prof.photo) {
+          var img = document.createElement("img");
+          img.className = "professional-profile-photo";
+          img.src = prof.photo;
+          img.alt = "";
+          img.loading = "lazy";
+          photoWrap.appendChild(img);
+        }
+
+        if (prof.contentHtml) {
+          body.innerHTML = wpSanitizeContent(prof.contentHtml);
+        } else {
+          body.innerHTML = "";
+          var noContent = document.createElement("p");
+          noContent.className = "editorial-status";
+          noContent.textContent = "Δεν υπάρχει διαθέσιμη περιγραφή για αυτή τη δομή.";
+          body.appendChild(noContent);
+        }
+
+        var hasContact = prof.address || prof.phone || prof.email || prof.website || prof.facebook || prof.hours;
+        if (hasContact) {
+          sideEl.hidden = false;
+
+          if (prof.address) {
+            var locBlock = document.createElement("div");
+            locBlock.className = "professional-contact-card__section";
+            var locTitle = document.createElement("h3");
+            locTitle.textContent = "Διεύθυνση";
+            locBlock.appendChild(locTitle);
+            var locText = document.createElement("p");
+            locText.textContent = prof.address;
+            locBlock.appendChild(locText);
+            var mapLink = document.createElement("a");
+            mapLink.className = "professional-contact-card__map-link";
+            mapLink.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(prof.address);
+            mapLink.target = "_blank";
+            mapLink.rel = "noopener";
+            mapLink.appendChild(document.createTextNode("Δείτε στον χάρτη "));
+            var mapArrow = document.createElement("span");
+            mapArrow.className = "arrow";
+            mapArrow.setAttribute("aria-hidden", "true");
+            mapArrow.textContent = "→";
+            mapLink.appendChild(mapArrow);
+            locBlock.appendChild(mapLink);
+            contactCard.appendChild(locBlock);
+          }
+
+          if (prof.phone || prof.email || prof.website || prof.facebook) {
+            var contactBlock = document.createElement("div");
+            contactBlock.className = "professional-contact-card__section";
+            var contactTitle = document.createElement("h3");
+            contactTitle.textContent = "Στοιχεία Επικοινωνίας";
+            contactBlock.appendChild(contactTitle);
+            if (prof.phone) contactBlock.appendChild(buildProfessionalContactRow(ICON_PHONE, "tel:" + prof.phone.replace(/\s+/g, ""), prof.phone, false));
+            if (prof.email) contactBlock.appendChild(buildProfessionalContactRow(ICON_MAIL, "mailto:" + prof.email, prof.email, false));
+            if (prof.website) contactBlock.appendChild(buildProfessionalContactRow(ICON_GLOBE, prof.website, "Ιστότοπος", true));
+            if (prof.facebook) contactBlock.appendChild(buildProfessionalContactRow(ICON_FACEBOOK, prof.facebook, "Facebook", true));
+            contactCard.appendChild(contactBlock);
+          }
+
+          if (prof.hours) {
+            var hoursBlock = document.createElement("div");
+            hoursBlock.className = "professional-contact-card__section";
+            var hoursTitle = document.createElement("h3");
+            hoursTitle.textContent = "Ώρες Λειτουργίας";
+            hoursBlock.appendChild(hoursTitle);
+            var hoursText = document.createElement("p");
+            hoursText.textContent = prof.hours;
+            hoursBlock.appendChild(hoursText);
+            contactCard.appendChild(hoursBlock);
+          }
+        }
+
+        if (prof.rating && prof.rating.count > 0) {
+          ratingsEl.hidden = false;
+
+          var summary = document.createElement("div");
+          summary.className = "professional-ratings__score";
+          summary.appendChild(buildProfessionalStars(prof.rating.average));
+          var scoreText = document.createElement("span");
+          scoreText.textContent = String(prof.rating.average).replace(".", ",") + " από 5 (" + prof.rating.count + (prof.rating.count === 1 ? " αξιολόγηση" : " αξιολογήσεις") + ")";
+          summary.appendChild(scoreText);
+          ratingsSummaryEl.appendChild(summary);
+
+          (prof.reviews || []).forEach(function (review) {
+            var card = document.createElement("article");
+            card.className = "professional-review";
+
+            var head = document.createElement("div");
+            head.className = "professional-review__head";
+            head.appendChild(buildProfessionalStars(review.rating));
+            if (review.date) {
+              var dateSpan = document.createElement("span");
+              dateSpan.className = "professional-review__date";
+              dateSpan.textContent = review.date;
+              head.appendChild(dateSpan);
+            }
+            card.appendChild(head);
+
+            if (review.title) {
+              var reviewTitle = document.createElement("h4");
+              reviewTitle.textContent = review.title;
+              card.appendChild(reviewTitle);
+            }
+            if (review.content) {
+              var content = document.createElement("p");
+              content.textContent = review.content;
+              card.appendChild(content);
+            }
+            if (review.author) {
+              var author = document.createElement("p");
+              author.className = "professional-review__author";
+              author.textContent = "— " + review.author;
+              card.appendChild(author);
+            }
+            ratingsListEl.appendChild(card);
+          });
+        }
+      })
+      .catch(function () {
+        titleEl.textContent = "Δεν ήταν δυνατή η φόρτωση του προφίλ";
+        body.innerHTML = "";
+        var errStatus = document.createElement("p");
+        errStatus.className = "editorial-status";
+        errStatus.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση αυτού του προφίλ αυτή τη στιγμή. Δείτε το απευθείας στο "));
+        var siteLink = document.createElement("a");
+        siteLink.href = "https://okosmostoupari.gr";
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener";
+        siteLink.textContent = "okosmostoupari.gr";
+        errStatus.appendChild(siteLink);
+        errStatus.appendChild(document.createTextNode("."));
+        body.appendChild(errStatus);
+      });
+  }
+  initProfessionalProfilePage();
+
+  /* ----------------------------------------------------------
      Schools map (category-schools.html) — renders a Leaflet map
      and matching list from a local snapshot of the "Ειδικά
      Σχολεία – ΚΕΔΑΣΥ" locations (assets/data/schools.json). The
@@ -786,6 +1037,24 @@
      ---------------------------------------------------------- */
   var WPUPG_ENDPOINT = "https://okosmostoupari.gr/wp-json/wp-ultimate-post-grid/v1/items";
 
+  /* slug -> numeric id lookup for the local professional-profile
+     snapshot (assets/data/professionals/<id>.json). Built once
+     from wp/v2/professional and shared by every category grid, so
+     each grid loads it exactly once regardless of how many run on
+     the page (only directory.html-style pages could run several). */
+  var professionalsIndexPromise = null;
+  function getProfessionalsIndex() {
+    if (!professionalsIndexPromise) {
+      professionalsIndexPromise = fetch("assets/data/professionals-index.json")
+        .then(function (res) {
+          if (!res.ok) throw new Error("professionals-index-fetch-failed");
+          return res.json();
+        })
+        .catch(function () { return {}; });
+    }
+    return professionalsIndexPromise;
+  }
+
   function wpupgFetchGrid(gridId) {
     return fetch(WPUPG_ENDPOINT, {
       method: "POST",
@@ -832,12 +1101,19 @@
         for (var j = 0; j < imgs.length; j++) {
           if (imgs[j].src.indexOf("location.png") === -1) { photo = imgs[j].src; break; }
         }
+        var slug = null;
+        try {
+          var pathSegments = new URL(item.href).pathname.split("/").filter(Boolean);
+          var lastSegment = pathSegments[pathSegments.length - 1];
+          slug = lastSegment ? decodeURIComponent(lastSegment) : null;
+        } catch (e) { slug = null; }
         results.push({
           name: nameField ? nameField.textContent.trim() : "",
           area: areaField ? areaField.textContent.replace(/\s+/g, " ").trim() : "",
           terms: terms,
           link: item.href,
-          photo: photo
+          photo: photo,
+          slug: slug
         });
       });
       return results;
@@ -897,9 +1173,13 @@
 
       var link = document.createElement("a");
       link.className = "professional-card__link";
-      link.href = data.link;
-      link.target = "_blank";
-      link.rel = "noopener";
+      if (data.internalId) {
+        link.href = "professional.html?id=" + data.internalId + "&from=" + idPrefix;
+      } else {
+        link.href = data.link;
+        link.target = "_blank";
+        link.rel = "noopener";
+      }
       link.appendChild(document.createTextNode("Προβολή προφίλ "));
       var arrow = document.createElement("span");
       arrow.className = "arrow";
@@ -953,8 +1233,10 @@
 
     gridEl.innerHTML = '<p class="editorial-status" role="status">Φόρτωση δομών…</p>';
 
-    wpupgFetchGrid(wpupgGridId)
-      .then(function (data) {
+    Promise.all([wpupgFetchGrid(wpupgGridId), getProfessionalsIndex()])
+      .then(function (results) {
+        var data = results[0];
+        var index = results[1];
         var professionals = data && data.items && data.items.html ? parseProfessionals(data.items.html) : [];
         gridEl.innerHTML = "";
         if (!professionals.length) {
@@ -963,6 +1245,7 @@
           return;
         }
         professionals.forEach(function (prof) {
+          prof.internalId = prof.slug && index[prof.slug] ? index[prof.slug] : null;
           var card = buildCard(prof);
           gridEl.appendChild(card);
           entries.push({

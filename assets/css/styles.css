@@ -1143,6 +1143,100 @@ html.a11y-contrast .hero__blob { display: none; }
 .article-back { margin-top: 2.6rem; }
 
 /* ============================================================
+   9d2. PROFESSIONAL PROFILE (professional.html)
+   ============================================================ */
+.container--profile { width: min(1040px, 100% - 3rem); }
+
+.professional-profile-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.1rem; }
+
+.professional-profile {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.2rem;
+  align-items: start;
+}
+.professional-profile__side { position: sticky; top: 100px; min-width: 0; }
+.professional-profile__main { min-width: 0; }
+
+.professional-profile-photo {
+  display: block;
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  margin-bottom: 1.6rem;
+  background: var(--surface-raised);
+  object-fit: contain;
+  padding: 0.8rem;
+  box-sizing: border-box;
+}
+
+.professional-contact-card {
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.professional-contact-card__section h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
+}
+.professional-contact-card__section p { color: var(--ink-soft); margin-bottom: 0.4rem; }
+.professional-contact-card__map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+.professional-contact-card__map-link:hover { text-decoration: underline; }
+.professional-contact-card__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.professional-contact-card__row:last-child { margin-bottom: 0; }
+.professional-contact-card__row a { color: var(--accent-deep); text-decoration: none; font-weight: 600; }
+.professional-contact-card__row a:hover { text-decoration: underline; }
+.professional-contact-card__icon { display: inline-flex; width: 18px; height: 18px; flex-shrink: 0; color: var(--ink-faint); }
+.professional-contact-card__icon svg { width: 100%; height: 100%; }
+
+.professional-ratings { margin-top: 2.6rem; border-top: 1.5px solid var(--border); padding-top: 2rem; }
+.professional-ratings h2 { font-size: var(--fs-400); margin-bottom: 1.2rem; }
+.professional-ratings__score { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.6rem; font-weight: 700; color: var(--ink); }
+.professional-stars { display: inline-flex; gap: 0.1rem; font-size: 1.15rem; line-height: 1; color: var(--border); }
+.professional-stars__star.is-filled { color: #e0a828; }
+.professional-ratings__list { display: flex; flex-direction: column; gap: 1.2rem; }
+.professional-review {
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.4rem;
+}
+.professional-review__head { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 0.5rem; }
+.professional-review__date { font-size: 0.8rem; color: var(--ink-faint); }
+.professional-review h4 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--ink); }
+.professional-review p { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 0.4rem; }
+.professional-review__author { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; }
+
+@media (max-width: 860px) {
+  .professional-profile { grid-template-columns: 1fr; }
+  .professional-profile__side { position: static; }
+}
+
+/* ============================================================
    9d. SCHOOLS MAP (category-schools.html)
    ============================================================ */
 .schools-layout {
