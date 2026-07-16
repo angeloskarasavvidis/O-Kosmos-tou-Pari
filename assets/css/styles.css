@@ -1344,6 +1344,12 @@ html.a11y-contrast .hero__blob { display: none; }
   align-items: center;
   gap: 0.9rem;
   text-align: center;
+  /* Grid items default to min-width: auto, which floors each column at
+     its content's min-content size — the fixed-width badge image below
+     would otherwise force every column to stay ~180px+ wide even when
+     the grid collapses to 2 columns on narrow screens, overflowing the
+     viewport. This lets the column actually shrink. */
+  min-width: 0;
 }
 .auspice-item__text {
   font-size: 0.88rem;
@@ -1374,6 +1380,10 @@ html.a11y-contrast .hero__blob { display: none; }
 
 @media (max-width: 760px) {
   .auspice-grid { grid-template-columns: repeat(2, 1fr); }
+  .auspice-badge img { width: 110px; }
+}
+@media (max-width: 480px) {
+  .auspice-grid { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
