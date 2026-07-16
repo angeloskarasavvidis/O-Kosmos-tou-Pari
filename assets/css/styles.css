@@ -140,7 +140,6 @@ html.a11y-contrast {
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 html.a11y-font-2 { font-size: 125%; }
 html.a11y-font-3 { font-size: 150%; }
@@ -1334,6 +1333,29 @@ html.a11y-contrast .hero__blob { display: none; }
   padding: 0.6rem;
 }
 
+.auspice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+}
+.auspice-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+.auspice-item__text {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.auspice-item__meta {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
 .auspice-badge {
   display: flex;
   justify-content: center;
@@ -1348,6 +1370,10 @@ html.a11y-contrast .hero__blob { display: none; }
 .auspice-badge img {
   width: 140px;
   height: auto;
+}
+
+@media (max-width: 760px) {
+  .auspice-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ============================================================
