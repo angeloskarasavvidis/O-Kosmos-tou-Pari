@@ -348,6 +348,7 @@
   var WP_API_POSTS = "https://okosmostoupari.gr/wp-json/wp/v2/posts";
   var WP_CATEGORY_NEWS = 267;
   var WP_CATEGORY_ARTICLES = 78;
+  var WP_CATEGORY_DRASEIS = 312;
   var WP_PAGE_SIZE = 9;
 
   function wpHtmlToText(html) {
@@ -520,6 +521,8 @@
   initWpFeed("homeNewsGrid", null, WP_CATEGORY_NEWS, true, "Νέα", false, 3);
   initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
   initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
+  initWpFeed("communityDrasseisGrid", "communityDrasseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true);
+  initWpFeed("draseisGrid", "draseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true);
 
   /* ----------------------------------------------------------
      Single article page (article.html) — fetches one post by
@@ -588,10 +591,24 @@
         document.title = title + " — Ο Κόσμος του Πάρη";
         titleEl.textContent = title;
 
-        var isNews = post.categories && post.categories.indexOf(WP_CATEGORY_NEWS) !== -1;
-        eyebrowEl.textContent = wpCategoryLabel(post, isNews ? "Νέα" : "Άρθρο");
-        backLinkEl.href = isNews ? "news.html" : "articles.html";
-        backLabelEl.textContent = isNews ? "Πίσω στα Νέα" : "Πίσω στα Άρθρα";
+        var cats = post.categories || [];
+        var isNews = cats.indexOf(WP_CATEGORY_NEWS) !== -1;
+        var isDraseis = cats.indexOf(WP_CATEGORY_DRASEIS) !== -1;
+        var backHref = "articles.html";
+        var backLabel = "Πίσω στα Άρθρα";
+        var eyebrowFallback = "Άρθρο";
+        if (isNews) {
+          backHref = "news.html";
+          backLabel = "Πίσω στα Νέα";
+          eyebrowFallback = "Νέα";
+        } else if (isDraseis) {
+          backHref = "community.html";
+          backLabel = "Πίσω στην Κοινότητα";
+          eyebrowFallback = "Δράση";
+        }
+        eyebrowEl.textContent = wpCategoryLabel(post, eyebrowFallback);
+        backLinkEl.href = backHref;
+        backLabelEl.textContent = backLabel;
 
         metaEl.textContent = wpFormatDate(post.date);
 

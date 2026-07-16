@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=13">
+  <link rel="stylesheet" href="assets/css/styles.css?v=14">
   <script src="assets/js/a11y-init.js?v=2"></script>
 </head>
 <body>
@@ -101,45 +101,13 @@
           </div>
         </div>
 
-        <div class="editorial-grid">
-          <article class="editorial-card reveal">
-            <div class="editorial-card__media" aria-hidden="true"></div>
-            <div class="editorial-card__body">
-              <div class="editorial-card__meta">
-                <span class="editorial-card__tag">Πρόγραμμα</span>
-                <span>15 Ιουλίου 2026 · Βούλα</span>
-              </div>
-              <h3 class="editorial-card__title">Καλοκαιρινό πρόγραμμα δημιουργικής απασχόλησης</h3>
-              <p class="editorial-card__desc">Δύο εβδομάδες παιχνιδιού, τέχνης και κοινωνικοποίησης για παιδιά 6–12 ετών, με εξειδικευμένη ομάδα συνοδών.</p>
-              <a href="#" class="editorial-card__link">Μάθετε περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </article>
+        <div class="editorial-grid" id="communityDrasseisGrid" aria-live="polite">
+          <p class="editorial-status" role="status">Φόρτωση δράσεων…</p>
+        </div>
 
-          <article class="editorial-card reveal">
-            <div class="editorial-card__media" aria-hidden="true"></div>
-            <div class="editorial-card__body">
-              <div class="editorial-card__meta">
-                <span class="editorial-card__tag">Ημερίδα</span>
-                <span>22 Ιουλίου 2026 · Online</span>
-              </div>
-              <h3 class="editorial-card__title">Ημερίδα για γονείς: Δικαιώματα και Παροχές</h3>
-              <p class="editorial-card__desc">Νομικοί και κοινωνικοί λειτουργοί εξηγούν επιδόματα, φοροαπαλλαγές και διαδικασίες σε απλή γλώσσα.</p>
-              <a href="#" class="editorial-card__link">Μάθετε περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="editorial-card reveal">
-            <div class="editorial-card__media" aria-hidden="true"></div>
-            <div class="editorial-card__body">
-              <div class="editorial-card__meta">
-                <span class="editorial-card__tag">Εκδήλωση</span>
-                <span>5 Σεπτεμβρίου 2026 · Βουλιαγμένη</span>
-              </div>
-              <h3 class="editorial-card__title">Φιλανθρωπικός Περίπατος για τον Κόσμο του Πάρη</h3>
-              <p class="editorial-card__desc">Ένας περίπατος 5 χλμ. στην παραλιακή, ανοιχτός σε όλη την οικογένεια, με τα έσοδα να στηρίζουν τα προγράμματά μας.</p>
-              <a href="#" class="editorial-card__link">Μάθετε περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
-            </div>
-          </article>
+        <div class="editorial-footer">
+          <button type="button" class="btn btn--secondary" id="communityDrasseisLoadMore" hidden>Φόρτωση περισσότερων</button>
+          <a href="draseis.html" class="btn btn--secondary">Όλες οι Δράσεις μας <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -334,6 +302,6 @@
     </button>
   </div>
 
-  <script src="assets/js/main.js?v=11" defer></script>
+  <script src="assets/js/main.js?v=15" defer></script>
 </body>
 </html>
