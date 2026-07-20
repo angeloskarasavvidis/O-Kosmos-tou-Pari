@@ -75,40 +75,46 @@
   });
 
   /* ----------------------------------------------------------
-     "Αναζήτηση Υπηρεσιών" nav dropdown — desktop only (the
-     dropdown trigger doesn't exist in the mobile sheet, which
-     links straight to directory.html instead).
+     Primary nav dropdowns ("Υπηρεσίες", "Η Κοινότητά μας") —
+     desktop only (neither exists in the mobile sheet, which lists
+     their destinations as flat links instead).
+     Open on hover or keyboard focus, close on mouse-leave, blur,
+     or Escape — no click-to-toggle, so a stray click never leaves
+     one stuck open.
      ---------------------------------------------------------- */
-  var servicesDropdownTrigger = document.getElementById("servicesDropdownTrigger");
-  var servicesDropdown = document.getElementById("servicesDropdown");
-  if (servicesDropdownTrigger && servicesDropdown) {
-    var servicesDropdownCleanup = null;
+  document.querySelectorAll(".primary-nav__item--dropdown").forEach(function (item) {
+    var trigger = item.querySelector(".primary-nav__trigger");
+    var dropdown = item.querySelector(".nav-dropdown");
+    if (!trigger || !dropdown) return;
+    var closeTimer = null;
 
-    function openServicesDropdown() {
-      servicesDropdown.classList.add("is-open");
-      servicesDropdownTrigger.setAttribute("aria-expanded", "true");
-      servicesDropdownCleanup = trapFocus(servicesDropdown, closeServicesDropdown);
+    function open() {
+      clearTimeout(closeTimer);
+      dropdown.classList.add("is-open");
+      trigger.setAttribute("aria-expanded", "true");
     }
-    function closeServicesDropdown() {
-      servicesDropdown.classList.remove("is-open");
-      servicesDropdownTrigger.setAttribute("aria-expanded", "false");
-      if (servicesDropdownCleanup) servicesDropdownCleanup();
+    function close() {
+      dropdown.classList.remove("is-open");
+      trigger.setAttribute("aria-expanded", "false");
     }
-    servicesDropdownTrigger.addEventListener("click", function () {
-      if (servicesDropdown.classList.contains("is-open")) closeServicesDropdown();
-      else openServicesDropdown();
+    function scheduleClose() {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(close, 150);
+    }
+
+    item.addEventListener("mouseenter", open);
+    item.addEventListener("mouseleave", scheduleClose);
+    item.addEventListener("focusin", open);
+    item.addEventListener("focusout", function (e) {
+      if (!item.contains(e.relatedTarget)) close();
     });
-    document.addEventListener("click", function (e) {
-      if (
-        servicesDropdown.classList.contains("is-open") &&
-        !servicesDropdown.contains(e.target) &&
-        e.target !== servicesDropdownTrigger &&
-        !servicesDropdownTrigger.contains(e.target)
-      ) {
-        closeServicesDropdown();
+    item.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        close();
+        trigger.focus();
       }
     });
-  }
+  });
 
   /* ----------------------------------------------------------
      Accessibility widget

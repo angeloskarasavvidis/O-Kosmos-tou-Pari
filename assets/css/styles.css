@@ -320,6 +320,19 @@ p { text-wrap: pretty; }
   gap: 1.5rem;
   padding-block: 0.55rem;
 }
+/* The nav now carries a lot of tabs and wraps onto multiple lines on
+   narrower desktop widths — it must be the item that shrinks/wraps,
+   never the logo or the header actions (a plain flex item without
+   flex-shrink:0 shrinks its box below its content's natural size
+   once siblings compete for space, which overflows a fixed-size
+   child like the logo image instead of visibly resizing it). */
+.site-header__bar > .brand,
+.site-header__bar > .header-actions {
+  flex-shrink: 0;
+}
+.primary-nav {
+  min-width: 0;
+}
 
 .brand {
   display: flex;
@@ -350,7 +363,8 @@ p { text-wrap: pretty; }
 .primary-nav__list {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.3rem;
 }
 .primary-nav__link {
   display: inline-block;
@@ -445,6 +459,12 @@ p { text-wrap: pretty; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+.header-support-btn {
+  padding: 0.55rem 1.1rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .icon-btn {
@@ -1740,7 +1760,7 @@ html.a11y-contrast .hero__blob { display: none; }
 }
 
 @media (max-width: 760px) {
-  .primary-nav, .header-actions .icon-btn--search-desktop { display: none; }
+  .primary-nav, .header-actions .icon-btn--search-desktop, .header-support-btn { display: none; }
   .hamburger { display: grid; }
   .directory-grid { grid-template-columns: 1fr; }
   .section__head { flex-direction: column; align-items: flex-start; }
