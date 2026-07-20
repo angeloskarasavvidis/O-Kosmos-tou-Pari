@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ρώτα τον Ειδικό — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Στείλτε την ερώτησή σας στην ομάδα ειδικών του Κόσμου του Πάρη και λάβετε προσωπική απάντηση.">
+  <title>Πιστεύουν σε εμάς — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Οι Χρυσοί Υποστηρικτές, οι Μεγάλοι Υποστηρικτές και οι Υποστηρικτές που στηρίζουν το έργο του Κόσμου του Πάρη.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -52,10 +52,10 @@
             </button>
             <div class="nav-dropdown" id="communityDropdown">
         <a class="nav-dropdown__item" href="#">Διάδραση</a>
-        <a class="nav-dropdown__item" href="ask-expert.html" aria-current="page">Ρώτα τον Ειδικό</a>
+        <a class="nav-dropdown__item" href="ask-expert.html">Ρώτα τον Ειδικό</a>
         <a class="nav-dropdown__item" href="aggelies.html">Αγγελίες</a>
         <a class="nav-dropdown__item" href="about.html">Ποιοι Είμαστε</a>
-        <a class="nav-dropdown__item" href="supporters.html">Πιστεύουν σε εμάς</a>
+        <a class="nav-dropdown__item" href="supporters.html" aria-current="page">Πιστεύουν σε εμάς</a>
         <a class="nav-dropdown__item" href="professional-signup.html">Εγγραφή στον Κατάλογο</a>
             </div>
           </li>
@@ -85,10 +85,10 @@
       <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
       <li><a class="nav-sheet__link" href="draseis.html">Δράσεις</a></li>
       <li><a class="nav-sheet__link" href="#">Διάδραση</a></li>
-      <li><a class="nav-sheet__link" href="ask-expert.html" aria-current="page">Ρώτα τον Ειδικό</a></li>
+      <li><a class="nav-sheet__link" href="ask-expert.html">Ρώτα τον Ειδικό</a></li>
       <li><a class="nav-sheet__link" href="aggelies.html">Αγγελίες</a></li>
       <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
-      <li><a class="nav-sheet__link" href="supporters.html">Πιστεύουν σε εμάς</a></li>
+      <li><a class="nav-sheet__link" href="supporters.html" aria-current="page">Πιστεύουν σε εμάς</a></li>
       <li><a class="nav-sheet__link" href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
     </ul>
     <div class="nav-sheet__footer">
@@ -102,35 +102,193 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Ρώτα τον Ειδικό</span>
-        <h1>Έχετε μια απορία; Ρωτήστε μας.</h1>
-        <p>Η ομάδα ειδικών του Κόσμου του Πάρη απαντά προσωπικά σε ερωτήσεις για ανάπτυξη, εκπαίδευση και καθημερινότητα. Δεν δημοσιεύουμε το όνομά σας πουθενά.</p>
+        <span class="eyebrow">Η Κοινότητά μας</span>
+        <h1>Πιστεύουν σε εμάς</h1>
+        <p>Ευχαριστούμε θερμά τους οργανισμούς, τις επιχειρήσεις και τους ανθρώπους που στηρίζουν με κάθε τρόπο το έργο του Κόσμου του Πάρη.</p>
       </div>
     </section>
 
-    <section class="section">
+    <!-- ============================================================
+         ΧΡΥΣΟΙ ΥΠΟΣΤΗΡΙΚΤΕΣ
+         ============================================================ -->
+    <section class="section" id="gold">
       <div class="container">
-        <form class="simple-form reveal" id="askExpertForm">
-          <div class="form-field">
-            <label for="askName">Ονοματεπώνυμο</label>
-            <input type="text" id="askName" name="name" autocomplete="name" required>
+        <div class="section__head reveal">
+          <div>
+            <span class="eyebrow">Ευχαριστούμε</span>
+            <h2>Χρυσοί Υποστηρικτές</h2>
           </div>
-          <div class="form-field">
-            <label for="askEmail">Email</label>
-            <input type="email" id="askEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="supporter-tier-grid reveal">
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Σκλαβενίτης</span></div>
+            <p class="supporter-tier-item__text">Χορηγός του μπουφέ.</p>
           </div>
-          <div class="form-field">
-            <label for="askQuestion">Η ερώτησή σας</label>
-            <textarea id="askQuestion" name="question" required></textarea>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">ITeQ</span></div>
+            <p class="supporter-tier-item__text">Ο σύμβουλος τεχνολογιών του κόσμου μας.</p>
           </div>
-          <div class="form-checkbox-row">
-            <input type="checkbox" id="askTerms" name="terms" required>
-            <label for="askTerms">Αποδέχομαι την επεξεργασία των στοιχείων μου σύμφωνα με την Πολιτική Απορρήτου.</label>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Νέοι Ορίζοντες</span></div>
+            <p class="supporter-tier-item__text">Χορηγός μας.</p>
           </div>
-          <button type="submit" class="btn btn--primary">Αποστολή Ερώτησης</button>
-          <p class="form-confirm" id="askExpertConfirm" role="status" aria-live="polite" hidden>Ευχαριστούμε! Η ερώτησή σας στάλθηκε και θα λάβετε απάντηση στο email σας.</p>
-          <p class="form-error" id="askExpertError" role="alert" hidden>Κάτι πήγε στραβά και η ερώτησή σας δεν στάλθηκε. Δοκιμάστε ξανά σε λίγο.</p>
-        </form>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Franco Compania Naviera S.A</span></div>
+            <p class="supporter-tier-item__text">Προσφορά εξοπλισμού για διεξαγωγή σεμιναρίων.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">LelosGroup</span></div>
+            <p class="supporter-tier-item__text">Χορηγία σακιδίων για την Αθλητική ημέρα «Ναι στη Δράση, Ναι στη Ζωή».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">dunlopillo</span></div>
+            <p class="supporter-tier-item__text">Χορηγία των μπλουζών για την αθλητική μέρα «Ναι στη Δράση, Ναι στη Ζωή».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Best Travel</span></div>
+            <p class="supporter-tier-item__text">Χορηγία ποτών (νερά / αναψυκτικά) για την εκδήλωση «Ζήσε στον Κόσμο του Αυτισμού».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">ProNews</span></div>
+            <p class="supporter-tier-item__text">Χορηγός Επικοινωνίας.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Star.gr</span></div>
+            <p class="supporter-tier-item__text">Χορηγός Επικοινωνίας.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Amea Friendly</span></div>
+            <p class="supporter-tier-item__text">Χορηγία Photobooth στην εκδήλωση Λάλατο.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Ortholife</span></div>
+            <p class="supporter-tier-item__text">Κάλυψη ηχοσυστήματος στην εκδήλωση Λάλατο.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Manos Candles</span></div>
+            <p class="supporter-tier-item__text">Προσφορά λαμπάδων.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ΜΕΓΑΛΟΙ ΥΠΟΣΤΗΡΙΚΤΕΣ
+         ============================================================ -->
+    <section class="section section--tint" id="big">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <span class="eyebrow">Ευχαριστούμε</span>
+            <h2>Μεγάλοι Υποστηρικτές</h2>
+          </div>
+        </div>
+        <div class="supporter-tier-grid reveal">
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Γυάλινο Μουσικό Θέατρο</span></div>
+            <p class="supporter-tier-item__text">Παραχώρηση εισιτηρίων.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Μέγαρο Μουσικής</span></div>
+            <p class="supporter-tier-item__text">Προσφορά εισιτηρίων.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Blue Star Ferries</span></div>
+            <p class="supporter-tier-item__text">Προσφορά εισιτηρίων για Κυκλάδες στην εκδήλωση κοπής της πίτας.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Εκδοτικός Οίκος Μίνωας</span></div>
+            <p class="supporter-tier-item__text">Προσφορά δωροεπιταγής ως δώρο στην κοπή της πρωτοχρονιάτικης πίτας.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Φωτοτυπικό Κέντρο «Αλεξανδρής»</span></div>
+            <p class="supporter-tier-item__text">Προσφορά του διαφημιστικού banner.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Ελληνικός Κόσμος</span></div>
+            <p class="supporter-tier-item__text">Προσφορά εισιτηρίων.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Το Περιβολάκι — Ελληνικό Κέντρο για την Ψυχική Υγεία και Θεραπεία του Παιδιού και της Οικογένειας</span></div>
+            <p class="supporter-tier-item__text">Χορηγία των μεταλλίων για την αθλητική μέρα «Ναι στη Δράση, Ναι στη Ζωή».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Βίκος</span></div>
+            <p class="supporter-tier-item__text">Χορηγία νερών και πορτοκαλάδων για την Αθλητική ημέρα «Ναι στη Δράση, Ναι στη Ζωή».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Όλυμπος</span></div>
+            <p class="supporter-tier-item__text">Χορηγία τσαγιού για την Αθλητική ημέρα «Ναι στη Δράση, Ναι στη Ζωή».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Ένωση Συλλόγων Γονέων και Κηδεμόνων Δήμου Βάρης Βούλας Βουλιαγμένης</span></div>
+            <p class="supporter-tier-item__text">Χορηγία ηχοσυστήματος και το μπουφέ στην εκδήλωση Λάλατο.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ΥΠΟΣΤΗΡΙΚΤΕΣ
+         ============================================================ -->
+    <section class="section" id="regular">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <span class="eyebrow">Ευχαριστούμε</span>
+            <h2>Υποστηρικτές</h2>
+          </div>
+        </div>
+        <div class="supporter-tier-grid reveal">
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Anthi Manoli</span></div>
+            <p class="supporter-tier-item__text">Η καλλιτεχνική μας σύμβουλος.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Photostudio Tselikis Giannis</span></div>
+            <p class="supporter-tier-item__text">Ο αγαπημένος μας φωτογράφος!</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Frou-Frou Σκόπελος</span></div>
+            <p class="supporter-tier-item__text">Χορηγός μας — κατάστημα στη Σκόπελο με προϊόντα ομορφιάς, σουβενίρ, χειροποίητα σαπούνια και άλλα.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Εκδόσεις Γλαρόλυκοι</span></div>
+            <p class="supporter-tier-item__text">Δωροεπιταγή.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Sweet KiSSmet</span></div>
+            <p class="supporter-tier-item__text">Προσφορά βασιλόπιτας.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">City Status</span></div>
+            <p class="supporter-tier-item__text">Χορηγός Επικοινωνίας.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Artisti — Προζύμι</span></div>
+            <p class="supporter-tier-item__text">Προσφορά σάντουιτς.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Bill Pettas Photography Studio</span></div>
+            <p class="supporter-tier-item__text">Κάλυψη εκδήλωσης με βίντεο.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Αττικό Ζωολογικό Πάρκο</span></div>
+            <p class="supporter-tier-item__text">Προσφορά εισιτηρίων.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Θέατρο Παλλάς</span></div>
+            <p class="supporter-tier-item__text">Προσφορά εισιτηρίων.</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">ΒιοΆγρος</span></div>
+            <p class="supporter-tier-item__text">Χορηγία energy snacks για την Αθλητική ημέρα «Ναι στη Δράση, Ναι στη Ζωή».</p>
+          </div>
+          <div class="supporter-tier-item">
+            <div class="supporter-tier-badge"><span class="supporter-tier-badge__name">Πυξίδες — Κέντρο Ειδικών Θεραπειών</span></div>
+            <p class="supporter-tier-item__text">Χορηγία στην εκδήλωση Λάλατο.</p>
+          </div>
+        </div>
       </div>
     </section>
 
