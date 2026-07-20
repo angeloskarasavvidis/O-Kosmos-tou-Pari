@@ -23,6 +23,7 @@
   --periwinkle: #5b68ab;
   --periwinkle-bg: #eaecf7;
   --focus-ring: #1e7469;
+  --danger: #b3261e;
   --shadow-color: 220 45% 24%;
 
   /* Typography */
@@ -70,6 +71,7 @@
     --periwinkle: #a3addd;
     --periwinkle-bg: #1f2440;
     --focus-ring: #4fbcac;
+    --danger: #ff8a75;
     color-scheme: dark;
   }
 }
@@ -90,6 +92,7 @@
   --periwinkle: #a3addd;
   --periwinkle-bg: #1f2440;
   --focus-ring: #4fbcac;
+  --danger: #ff8a75;
   color-scheme: dark;
 }
 
@@ -109,6 +112,7 @@
   --periwinkle: #5b68ab;
   --periwinkle-bg: #eaecf7;
   --focus-ring: #1e7469;
+  --danger: #b3261e;
   color-scheme: light;
 }
 
@@ -492,6 +496,8 @@ p { text-wrap: pretty; }
   display: flex;
   flex-direction: column;
   padding: 1.4rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   transform: translateX(100%);
   visibility: hidden;
   transition: transform var(--dur-slow) var(--ease-soft), visibility 0s linear var(--dur-slow);
@@ -1616,6 +1622,12 @@ html.a11y-contrast .hero__blob { display: none; }
 .form-confirm {
   font-size: 0.9rem;
   color: var(--sage);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+.form-error {
+  font-size: 0.9rem;
+  color: var(--danger);
   font-weight: 600;
   margin-top: 1rem;
 }

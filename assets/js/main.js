@@ -333,16 +333,96 @@
   }
 
   /* ----------------------------------------------------------
-     "Ρώτα τον Ειδικό" form — demo-only, no network call. Only
-     present on ask-expert.html.
+     "Ρώτα τον Ειδικό" form — submits to the real WPForms form
+     (id 1164, on page id 1229) that already lives on
+     okosmostoupari.gr. WPForms doesn't expose a public REST API
+     for entries, so this replicates its own client-side submit
+     contract instead: pull a fresh anti-spam token from the
+     public "wpforms_get_token" ajax action, then POST the field
+     values as multipart form data to admin-ajax.php's
+     "wpforms_submit" action — the same two calls WPForms' own
+     frontend JS makes when the form is embedded on a WP page.
+     Only works when this site is served from the same origin as
+     the WordPress install (admin-ajax.php sends no CORS headers),
+     so it will fail under a local/dev server on a different origin.
      ---------------------------------------------------------- */
   var askExpertForm = document.getElementById("askExpertForm");
   if (askExpertForm) {
     var askExpertConfirm = document.getElementById("askExpertConfirm");
+    var askExpertError = document.getElementById("askExpertError");
+    var askExpertSubmitBtn = askExpertForm.querySelector('button[type="submit"]');
+    var askExpertSubmitLabel = askExpertSubmitBtn.textContent;
+    var askExpertStartTime = Math.floor(Date.now() / 1000);
+
+    var WPFORMS_AJAX_URL = "https://okosmostoupari.gr/wp-admin/admin-ajax.php";
+    var WPFORMS_FORM_ID = "1164";
+    var WPFORMS_PAGE_ID = "1229";
+    var WPFORMS_PAGE_TITLE = "Ρώτα τον ειδικό";
+    var WPFORMS_PAGE_URL = "https://okosmostoupari.gr/ρώτα-τον-ειδικό/";
+    var WPFORMS_TERMS_CHOICE = "Έχω διαβάσει και αποδέχομαι τους όρους χρήσης και την πολιτική απορρήτου.";
+
+    function getWpFormsToken() {
+      var body = new URLSearchParams();
+      body.set("action", "wpforms_get_token");
+      body.set("formId", WPFORMS_FORM_ID);
+      return fetch(WPFORMS_AJAX_URL, { method: "POST", body: body })
+        .then(function (res) {
+          if (!res.ok) throw new Error("wpforms-token-http-" + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          if (!data || !data.success || !data.data || !data.data.token) {
+            throw new Error("wpforms-token-failed");
+          }
+          return data.data.token;
+        });
+    }
+
     askExpertForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      askExpertConfirm.hidden = false;
-      askExpertForm.reset();
+      askExpertConfirm.hidden = true;
+      askExpertError.hidden = true;
+      askExpertSubmitBtn.disabled = true;
+      askExpertSubmitBtn.textContent = "Αποστολή…";
+
+      getWpFormsToken()
+        .then(function (token) {
+          var fd = new FormData();
+          fd.append("action", "wpforms_submit");
+          fd.append("wpforms[id]", WPFORMS_FORM_ID);
+          fd.append("wpforms[fields][0]", askExpertForm.elements.name.value);
+          fd.append("wpforms[fields][1]", askExpertForm.elements.email.value);
+          fd.append("wpforms[fields][2]", askExpertForm.elements.question.value);
+          if (askExpertForm.elements.terms.checked) {
+            fd.append("wpforms[fields][5][]", WPFORMS_TERMS_CHOICE);
+          }
+          fd.append("wpforms[token]", token);
+          fd.append("wpforms[post_id]", WPFORMS_PAGE_ID);
+          fd.append("page_id", WPFORMS_PAGE_ID);
+          fd.append("page_title", WPFORMS_PAGE_TITLE);
+          fd.append("page_url", WPFORMS_PAGE_URL);
+          fd.append("url_referer", window.location.href);
+          fd.append("start_timestamp", String(askExpertStartTime));
+          fd.append("end_timestamp", String(Math.floor(Date.now() / 1000)));
+
+          return fetch(WPFORMS_AJAX_URL, { method: "POST", body: fd });
+        })
+        .then(function (res) {
+          if (!res.ok) throw new Error("wpforms-submit-http-" + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          if (!data || !data.success) throw new Error("wpforms-submit-failed");
+          askExpertConfirm.hidden = false;
+          askExpertForm.reset();
+        })
+        .catch(function () {
+          askExpertError.hidden = false;
+        })
+        .then(function () {
+          askExpertSubmitBtn.disabled = false;
+          askExpertSubmitBtn.textContent = askExpertSubmitLabel;
+        });
     });
   }
 
