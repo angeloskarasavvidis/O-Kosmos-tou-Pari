@@ -521,7 +521,7 @@
   initWpFeed("homeNewsGrid", null, WP_CATEGORY_NEWS, true, "Νέα", false, 3);
   initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
   initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
-  initWpFeed("communityDrasseisGrid", "communityDrasseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true);
+  initWpFeed("communityDrasseisGrid", "communityDrasseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true, 3);
   initWpFeed("draseisGrid", "draseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true);
 
   /* ----------------------------------------------------------
@@ -977,10 +977,21 @@
     return card;
   }
 
-  function initAggeliesGrid(gridId, limit) {
+  function initAggeliesGrid(gridId, pageSize, loadMoreId) {
     var grid = document.getElementById(gridId);
     if (!grid) return;
+    var loadMoreBtn = loadMoreId ? document.getElementById(loadMoreId) : null;
+    var shown = 0;
     grid.innerHTML = '<p class="editorial-status" role="status">Φόρτωση αγγελιών…</p>';
+
+    function renderMore(items) {
+      var next = pageSize ? items.slice(shown, shown + pageSize) : items;
+      next.forEach(function (item) {
+        grid.appendChild(buildAggeliaCard(item));
+      });
+      shown += next.length;
+      if (loadMoreBtn) loadMoreBtn.hidden = shown >= items.length;
+    }
 
     getAggeliesData()
       .then(function (items) {
@@ -989,10 +1000,12 @@
           grid.innerHTML = '<p class="editorial-status" role="status">Δεν υπάρχουν διαθέσιμες αγγελίες αυτή τη στιγμή.</p>';
           return;
         }
-        var list = limit ? items.slice(0, limit) : items;
-        list.forEach(function (item) {
-          grid.appendChild(buildAggeliaCard(item));
-        });
+        renderMore(items);
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener("click", function () {
+            renderMore(items);
+          });
+        }
       })
       .catch(function () {
         grid.innerHTML = "";
@@ -1008,9 +1021,10 @@
         status.appendChild(siteLink);
         status.appendChild(document.createTextNode("."));
         grid.appendChild(status);
+        if (loadMoreBtn) loadMoreBtn.hidden = true;
       });
   }
-  initAggeliesGrid("communityAggeliesGrid", 4);
+  initAggeliesGrid("communityAggeliesGrid", 3, "communityAggeliesLoadMore");
   initAggeliesGrid("aggeliesGrid", null);
 
   function initAggeliaPage() {

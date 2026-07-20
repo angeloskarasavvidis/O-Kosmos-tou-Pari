@@ -1481,49 +1481,6 @@ html.a11y-contrast .hero__blob { display: none; }
 }
 
 /* ============================================================
-   9c. PROGRAM LIST — recurring lessons/programs, deliberately a
-   quick-scan row list rather than a card grid, to read as
-   distinct from one-off "Δράσεις" events.
-   ============================================================ */
-.program-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-}
-.program-row {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  padding: 1.1rem 1.4rem;
-  background: var(--surface-raised);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-md);
-  flex-wrap: wrap;
-  transition: border-color var(--dur-fast) var(--ease-soft);
-}
-.program-row:hover { border-color: var(--accent-deep); }
-.program-row__icon {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-sm);
-  background: var(--sage-bg);
-  color: var(--sage);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-.program-row__icon svg { width: 21px; height: 21px; }
-.program-row__text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  flex: 1;
-  min-width: 220px;
-}
-.program-row__title { font-weight: 700; font-size: 0.98rem; }
-.program-row__meta { font-size: 0.85rem; color: var(--ink-soft); }
-
-/* ============================================================
    9d. ASK THE EXPERT BANNER
    ============================================================ */
 .ask-expert-banner {
