@@ -473,6 +473,7 @@
   var WP_CATEGORY_NEWS = 267;
   var WP_CATEGORY_ARTICLES = 78;
   var WP_CATEGORY_DRASEIS = 312;
+  var WP_CATEGORY_BOOKS = 77;
   var WP_PAGE_SIZE = 9;
 
   function wpHtmlToText(html) {
@@ -647,6 +648,7 @@
   initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
   initWpFeed("communityDrasseisGrid", "communityDrasseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true, 3);
   initWpFeed("draseisGrid", "draseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true);
+  initWpFeed("booksGrid", "booksLoadMore", WP_CATEGORY_BOOKS, false, "Βιβλίο", true);
 
   /* ----------------------------------------------------------
      Single article page (article.html) — fetches one post by
@@ -718,6 +720,7 @@
         var cats = post.categories || [];
         var isNews = cats.indexOf(WP_CATEGORY_NEWS) !== -1;
         var isDraseis = cats.indexOf(WP_CATEGORY_DRASEIS) !== -1;
+        var isBooks = cats.indexOf(WP_CATEGORY_BOOKS) !== -1;
         var backHref = "articles.html";
         var backLabel = "Πίσω στα Άρθρα";
         var eyebrowFallback = "Άρθρο";
@@ -729,6 +732,10 @@
           backHref = "community.html";
           backLabel = "Πίσω στην Κοινότητα";
           eyebrowFallback = "Δράση";
+        } else if (isBooks) {
+          backHref = "books.html";
+          backLabel = "Πίσω στα Βιβλία";
+          eyebrowFallback = "Βιβλίο";
         }
         eyebrowEl.textContent = wpCategoryLabel(post, eyebrowFallback);
         backLinkEl.href = backHref;

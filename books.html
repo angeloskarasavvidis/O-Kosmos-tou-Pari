@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Εξειδικευμένοι Ιατροί — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Βρείτε εξειδικευμένους ιατρούς, κέντρα και δομές υγείας ανά ειδικότητα.">
+  <title>Βιβλία — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Προτάσεις βιβλίων για νευροδιαφορετικότητα, αναπηρία και ειδική αγωγή από τον Κόσμο του Πάρη.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
               <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="nav-dropdown" id="servicesDropdown">
-        <a class="nav-dropdown__item" href="category-doctors.html" aria-current="page">Εξειδικευμένοι Ιατροί</a>
+        <a class="nav-dropdown__item" href="category-doctors.html">Εξειδικευμένοι Ιατροί</a>
         <a class="nav-dropdown__item" href="category-filoxenia.html">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</a>
         <a class="nav-dropdown__item" href="category-therapeutes.html">Θεραπευτές – Σύμβουλοι</a>
         <a class="nav-dropdown__item" href="category-drastiriotites.html">Δραστηριότητες &amp; Κοινωνικοποίηση</a>
@@ -51,7 +51,7 @@
               <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="nav-dropdown" id="infoDropdown">
-        <a class="nav-dropdown__item" href="books.html">Βιβλία</a>
+        <a class="nav-dropdown__item" href="books.html" aria-current="page">Βιβλία</a>
         <a class="nav-dropdown__item" href="#">Σεμινάρια</a>
         <a class="nav-dropdown__item" href="#">Videos</a>
         <a class="nav-dropdown__item" href="#">Διακοπές με αναπηρία</a>
@@ -100,7 +100,7 @@
       <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
       <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
       <li><a class="nav-sheet__link" href="draseis.html">Δράσεις</a></li>
-      <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
+      <li><a class="nav-sheet__link" href="books.html" aria-current="page">Βιβλία</a></li>
       <li><a class="nav-sheet__link" href="#">Σεμινάρια</a></li>
       <li><a class="nav-sheet__link" href="#">Videos</a></li>
       <li><a class="nav-sheet__link" href="#">Διακοπές με αναπηρία</a></li>
@@ -126,31 +126,25 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Υπηρεσίες</span>
-        <h1>Εξειδικευμένοι Ιατροί</h1>
-        <p>Γιατροί, κέντρα και δομές υγείας με εμπειρία σε αναπηρία και νευροδιαφορετικότητα. Δείτε τις υπόλοιπες κατηγορίες στην <a href="directory.html">Αναζήτηση Υπηρεσιών</a>.</p>
+        <span class="eyebrow">Πληροφορίες</span>
+        <h1>Βιβλία</h1>
+        <p>Προτάσεις βιβλίων για νευροδιαφορετικότητα, αναπηρία και ειδική αγωγή, από τη βιβλιοθήκη του Κόσμου του Πάρη.</p>
       </div>
     </section>
 
-    <section class="section">
+    <!-- ============================================================
+         ΒΙΒΛΙΑ
+         ============================================================ -->
+    <section class="section" id="books">
       <div class="container">
 
-        <div class="professional-filters">
-          <div class="directory-search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <label class="sr-only" for="doctorsSearchInput">Αναζήτηση με όνομα ή περιοχή</label>
-            <input type="text" id="doctorsSearchInput" placeholder="Αναζήτηση με όνομα ή περιοχή…" autocomplete="off">
-          </div>
-          <div class="professional-category-select">
-            <label class="sr-only" for="doctorsCategorySelect">Κατηγορία ειδικότητας</label>
-            <select id="doctorsCategorySelect">
-              <option value="">Όλες οι κατηγορίες</option>
-            </select>
-          </div>
+        <div class="editorial-grid" id="booksGrid" aria-live="polite">
+          <p class="editorial-status" role="status">Φόρτωση βιβλίων…</p>
         </div>
-        <p class="directory-results" id="doctorsResultsCount" aria-live="polite">Φόρτωση δομών…</p>
 
-        <div class="professional-grid" id="doctorsGrid"></div>
+        <div class="editorial-footer">
+          <button type="button" class="btn btn--secondary" id="booksLoadMore" hidden>Φόρτωση περισσότερων</button>
+        </div>
 
       </div>
     </section>
