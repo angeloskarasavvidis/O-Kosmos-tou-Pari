@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Δραστηριότητες &amp; Κοινωνικοποίηση — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Αθλητικά, καλλιτεχνικά και κοινωνικά προγράμματα για παιδιά, εφήβους και ενήλικες.">
+  <title>Videos — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Βίντεο, συνεντεύξεις και μαρτυρίες σχετικά με τη νευροδιαφορετικότητα και την αναπηρία, από τον Κόσμο του Πάρη.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
         <a class="nav-dropdown__item" href="category-doctors.html">Εξειδικευμένοι Ιατροί</a>
         <a class="nav-dropdown__item" href="category-filoxenia.html">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</a>
         <a class="nav-dropdown__item" href="category-therapeutes.html">Θεραπευτές – Σύμβουλοι</a>
-        <a class="nav-dropdown__item" href="category-drastiriotites.html" aria-current="page">Δραστηριότητες &amp; Κοινωνικοποίηση</a>
+        <a class="nav-dropdown__item" href="category-drastiriotites.html">Δραστηριότητες &amp; Κοινωνικοποίηση</a>
         <a class="nav-dropdown__item" href="category-ekpaideutes.html">Εκπαιδευτές – Φύλαξη</a>
         <a class="nav-dropdown__item" href="category-kentra.html">Εξειδικευμένα Κέντρα Θεραπειών</a>
         <a class="nav-dropdown__item" href="category-syllogoi.html">Σύλλογοι &amp; Σωματεία</a>
@@ -53,7 +53,7 @@
             <div class="nav-dropdown" id="infoDropdown">
         <a class="nav-dropdown__item" href="books.html">Βιβλία</a>
         <a class="nav-dropdown__item" href="seminaria.html">Σεμινάρια</a>
-        <a class="nav-dropdown__item" href="videos.html">Videos</a>
+        <a class="nav-dropdown__item" href="videos.html" aria-current="page">Videos</a>
         <a class="nav-dropdown__item" href="diakopes.html">Διακοπές με αναπηρία</a>
         <a class="nav-dropdown__item" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a>
         <a class="nav-dropdown__item" href="xrisimes-piges.html">Χρήσιμες πηγές</a>
@@ -102,7 +102,7 @@
       <li><a class="nav-sheet__link" href="draseis.html">Δράσεις</a></li>
       <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
       <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
-      <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
+      <li><a class="nav-sheet__link" href="videos.html" aria-current="page">Videos</a></li>
       <li><a class="nav-sheet__link" href="diakopes.html">Διακοπές με αναπηρία</a></li>
       <li><a class="nav-sheet__link" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a></li>
       <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
@@ -126,31 +126,21 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Υπηρεσίες</span>
-        <h1>Δραστηριότητες &amp; Κοινωνικοποίηση</h1>
-        <p>Αθλητικά, καλλιτεχνικά και κοινωνικά προγράμματα για παιδιά, εφήβους και ενήλικες με αναπηρία. Δείτε τις υπόλοιπες κατηγορίες στην <a href="directory.html">Αναζήτηση Υπηρεσιών</a>.</p>
+        <span class="eyebrow">Πληροφορίες</span>
+        <h1>Videos</h1>
+        <p>Μαρτυρίες, συνεντεύξεις και στιγμές από την κοινότητα του Κόσμου του Πάρη.</p>
       </div>
     </section>
 
-    <section class="section">
+    <!-- ============================================================
+         VIDEOS
+         ============================================================ -->
+    <section class="section" id="videos">
       <div class="container">
 
-        <div class="professional-filters">
-          <div class="directory-search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <label class="sr-only" for="drastiriotitesSearchInput">Αναζήτηση με όνομα ή περιοχή</label>
-            <input type="text" id="drastiriotitesSearchInput" placeholder="Αναζήτηση με όνομα ή περιοχή…" autocomplete="off">
-          </div>
-          <div class="professional-category-select">
-            <label class="sr-only" for="drastiriotitesCategorySelect">Κατηγορία ειδικότητας</label>
-            <select id="drastiriotitesCategorySelect">
-              <option value="">Όλες οι κατηγορίες</option>
-            </select>
-          </div>
+        <div class="video-grid" id="videosGrid" aria-live="polite">
+          <p class="editorial-status" role="status">Φόρτωση video…</p>
         </div>
-        <p class="directory-results" id="drastiriotitesResultsCount" aria-live="polite">Φόρτωση δομών…</p>
-
-        <div class="professional-grid" id="drastiriotitesGrid"></div>
 
       </div>
     </section>

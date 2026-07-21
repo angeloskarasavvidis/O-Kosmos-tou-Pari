@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Σεμινάρια — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Τρέχοντα σεμινάρια, επιμορφωτικά προγράμματα και φορείς εκπαίδευσης για την ειδική αγωγή, από τον Κόσμο του Πάρη.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=22">
+  <script src="assets/js/a11y-init.js?v=2"></script>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Πλοήγηση στο περιεχόμενο</a>
+
+  <header class="site-header">
+    <div class="container site-header__bar">
+      <a href="index.html" class="brand">
+        <span class="brand__logo-chip">
+          <img src="logo.png" alt="Ο Κόσμος του Πάρη" width="119" height="84" class="brand__logo-img">
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Κύρια πλοήγηση">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="servicesDropdownTrigger" aria-expanded="false" aria-controls="servicesDropdown">
+              Υπηρεσίες
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="servicesDropdown">
+        <a class="nav-dropdown__item" href="category-doctors.html">Εξειδικευμένοι Ιατροί</a>
+        <a class="nav-dropdown__item" href="category-filoxenia.html">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</a>
+        <a class="nav-dropdown__item" href="category-therapeutes.html">Θεραπευτές – Σύμβουλοι</a>
+        <a class="nav-dropdown__item" href="category-drastiriotites.html">Δραστηριότητες &amp; Κοινωνικοποίηση</a>
+        <a class="nav-dropdown__item" href="category-ekpaideutes.html">Εκπαιδευτές – Φύλαξη</a>
+        <a class="nav-dropdown__item" href="category-kentra.html">Εξειδικευμένα Κέντρα Θεραπειών</a>
+        <a class="nav-dropdown__item" href="category-syllogoi.html">Σύλλογοι &amp; Σωματεία</a>
+        <a class="nav-dropdown__item" href="category-schools.html">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a>
+        <a class="nav-dropdown__viewall" href="directory.html">Όλοι οι επαγγελματίες <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+          <li><a class="primary-nav__link" href="news.html">Νέα</a></li>
+          <li><a class="primary-nav__link" href="articles.html">Άρθρα</a></li>
+          <li><a class="primary-nav__link" href="draseis.html">Δράσεις</a></li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="infoDropdownTrigger" aria-expanded="false" aria-controls="infoDropdown">
+              Πληροφορίες
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="infoDropdown">
+        <a class="nav-dropdown__item" href="books.html">Βιβλία</a>
+        <a class="nav-dropdown__item" href="seminaria.html" aria-current="page">Σεμινάρια</a>
+        <a class="nav-dropdown__item" href="videos.html">Videos</a>
+        <a class="nav-dropdown__item" href="diakopes.html">Διακοπές με αναπηρία</a>
+        <a class="nav-dropdown__item" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a>
+        <a class="nav-dropdown__item" href="xrisimes-piges.html">Χρήσιμες πηγές</a>
+        <a class="nav-dropdown__item" href="eksoplismos.html">Εξοπλισμός</a>
+        <a class="nav-dropdown__item" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a>
+            </div>
+          </li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="communityDropdownTrigger" aria-expanded="false" aria-controls="communityDropdown">
+              Η Κοινότητά μας
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="communityDropdown">
+        <a class="nav-dropdown__item" href="#">Διάδραση</a>
+        <a class="nav-dropdown__item" href="ask-expert.html">Ρώτα τον Ειδικό</a>
+        <a class="nav-dropdown__item" href="aggelies.html">Αγγελίες</a>
+        <a class="nav-dropdown__item" href="about.html">Ποιοι Είμαστε</a>
+        <a class="nav-dropdown__item" href="supporters.html">Πιστεύουν σε εμάς</a>
+        <a class="nav-dropdown__item" href="professional-signup.html">Εγγραφή στον Κατάλογο</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--primary header-support-btn" href="support.html">Στηρίζω τον κόσμο του Πάρη</a>
+        <button class="icon-btn hamburger" id="menuToggle" type="button" aria-expanded="false" aria-controls="navSheet" aria-label="Άνοιγμα μενού πλοήγησης">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile navigation sheet -->
+  <div class="nav-sheet" id="navSheet" role="dialog" aria-modal="true" aria-label="Μενού πλοήγησης">
+    <div class="nav-sheet__top">
+      <span class="brand__name">Μενού</span>
+      <button class="icon-btn" id="navSheetClose" type="button" aria-label="Κλείσιμο μενού">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+    </div>
+    <ul class="nav-sheet__list">
+      <li><a class="nav-sheet__link" href="directory.html">Υπηρεσίες</a></li>
+      <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
+      <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
+      <li><a class="nav-sheet__link" href="draseis.html">Δράσεις</a></li>
+      <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
+      <li><a class="nav-sheet__link" href="seminaria.html" aria-current="page">Σεμινάρια</a></li>
+      <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
+      <li><a class="nav-sheet__link" href="diakopes.html">Διακοπές με αναπηρία</a></li>
+      <li><a class="nav-sheet__link" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a></li>
+      <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
+      <li><a class="nav-sheet__link" href="eksoplismos.html">Εξοπλισμός</a></li>
+      <li><a class="nav-sheet__link" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a></li>
+      <li><a class="nav-sheet__link" href="#">Διάδραση</a></li>
+      <li><a class="nav-sheet__link" href="ask-expert.html">Ρώτα τον Ειδικό</a></li>
+      <li><a class="nav-sheet__link" href="aggelies.html">Αγγελίες</a></li>
+      <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
+      <li><a class="nav-sheet__link" href="supporters.html">Πιστεύουν σε εμάς</a></li>
+      <li><a class="nav-sheet__link" href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
+    </ul>
+    <div class="nav-sheet__footer">
+      <a class="btn btn--primary" href="directory.html">Χρειάζομαι Υποστήριξη</a>
+      <a class="btn btn--secondary" href="professional-signup.html">Εγγραφή Επαγγελματία</a>
+      <a class="btn btn--primary" href="support.html">Στηρίζω τον κόσμο του Πάρη</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Πληροφορίες</span>
+        <h1>Σεμινάρια</h1>
+        <p>Η συνεχής εκπαίδευση είναι η βάση της επιτυχίας. Εδώ θα βρείτε πληροφορίες για τρέχοντα σεμινάρια και εκπαιδευτικά προγράμματα που αφορούν την ειδική αγωγή.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ΤΡΕΧΟΥΣΕΣ ΠΡΟΤΑΣΕΙΣ
+         ============================================================ -->
+    <section class="section" id="current-proposals">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <span class="eyebrow">Τρέχουσες Προτάσεις</span>
+            <h2>Επιλεγμένα Σεμινάρια</h2>
+          </div>
+        </div>
+
+        <div class="resource-grid">
+      <article class="resource-card">
+        <h3 class="resource-card__title">AUTISM MOVEMENT THERAPY® TRAINING</h3>
+        <p class="resource-card__desc">The initial 10 hour minimum training takes place over two days, normally a weekend. Due to the practical and interactive components, it can only be taken in person. The objective is to teach you the scientific background plus the tools and techniques used in an Autism Movement Therapy® programme. The methodology will be explained and practised. During the training participants will experience two full sessions of Autism Movement Therapy® and learn how to differentiate for the level of need of groups and individuals.</p>
+        <a class="resource-card__link" href="https://movementworks.org/amt-training-workshops/" target="_blank" rel="noopener">Περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+      <article class="resource-card">
+        <h3 class="resource-card__title">Μουσικοκινητική Αγωγή</h3>
+        <p class="resource-card__desc">Το Εκπαιδευτικό Πρόγραμμα «Μουσικοκινητική Αγωγή» στοχεύει στην επίλυση των προβλημάτων που αντιμετωπίζουν οι παιδαγωγοί σχετικά με τη μετάδοση μουσικών γνώσεων στα παιδιά γενικά, αλλά και με την εφαρμογή μουσικοκινητικών μεθόδων ειδικότερα. Αποβλέπει τόσο στη θεωρητική κατάρτιση των εκπαιδευομένων σχετικά με τη μουσικοκινητική αγωγή όσο και στην ανάπτυξη πρακτικών δεξιοτήτων σχεδιασμού και εφαρμογής αντίστοιχων δραστηριοτήτων. Αναπτύσσονται ενότητες σχετικά με τις βασικές αρχές της μουσικοκινητικής και την ιστορική της εξέλιξη.</p>
+        <a class="resource-card__link" href="https://elearningekpa.gr/courses/mousikokinhtikh-agwgh?gad_source=1&amp;gad_campaignid=2031940935&amp;gbraid=0AAAAADnCPHzCj2kOHvcqqKT7v5iTln_86&amp;gclid=CjwKCAjw1ozEBhAdEiwAn9qbzYloRweQPWkK3hOhnFd5tNlD90lQYplEiLrVLqoW4PGo9qAR4I2KtBoCBxYQAvD_BwE" target="_blank" rel="noopener">Περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+      <article class="resource-card">
+        <h3 class="resource-card__title">Ειδική Αγωγή και Διαταραχή Αυτιστικού Φάσματος, Ψυχοεκπαιδευτικές Παρεμβάσεις</h3>
+        <p class="resource-card__desc">Το πρόγραμμα του σεμιναρίου αποσκοπεί στην παροχή των απαραίτητων εκπαιδευτικών, γνωστικών και επαγγελματικών ικανοτήτων στους/στις σπουδαστές/στριες. Αναλυτικότερα συνίσταται:</p>
+        <ul class="resource-card__list">
+          <li>Στην παροχή γνώσεων αναφορικά με τις θεωρητικές προσεγγίσεις και τα εμπειρικά δεδομένα της ειδικότητας της ειδικής αγωγής.</li>
+        </ul>
+        <a class="resource-card__link" href="https://ekpaseminars.gr/courses/eidiki-agogi-diatarachi-aytistikoy-fasmatos-psychoekpaideytikes-paremvaseis/" target="_blank" rel="noopener">Περισσότερα <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ΦΟΡΕΙΣ & ΣΧΟΛΕΣ ΕΚΠΑΙΔΕΥΣΗΣ
+         ============================================================ -->
+    <section class="section section--tint" id="institutions">
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <span class="eyebrow">Κατάλογος</span>
+            <h2>Φορείς &amp; Σχολές Εκπαίδευσης</h2>
+            <p>Εξωτερικοί φορείς και σχολές που προσφέρουν σεμινάρια και επιμορφωτικά προγράμματα σχετικά με την ειδική αγωγή.</p>
+          </div>
+        </div>
+
+        <div class="directory-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <label class="sr-only" for="institutionsSearchInput">Αναζήτηση φορέα</label>
+          <input type="text" id="institutionsSearchInput" placeholder="Αναζήτηση φορέα…" autocomplete="off">
+        </div>
+        <p class="directory-results" id="institutionsResultsCount" aria-live="polite"></p>
+
+        <div class="institutions-grid" id="institutionsGrid">
+        <a class="institution-item" href="https://ekek.gr/epikoinonia/" target="_blank" rel="noopener" data-name="πανεπιστημιο πατρων-εκεκ">
+          <span class="institution-item__name">ΠΑΝΕΠΙΣΤΗΜΙΟ ΠΑΤΡΩΝ-ΕΚΕΚ</span>
+          <span class="institution-item__url">ekek.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.diepistimoniko.gr/" target="_blank" rel="noopener" data-name="διεπιστημονικο κεντρο κερκυρας">
+          <span class="institution-item__name">ΔΙΕΠΙΣΤΗΜΟΝΙΚΟ ΚΕΝΤΡΟ ΚΕΡΚΥΡΑΣ</span>
+          <span class="institution-item__url">diepistimoniko.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.edu-enosi.gr/" target="_blank" rel="noopener" data-name="εκπαιδευτικη ενωση">
+          <span class="institution-item__name">ΕΚΠΑΙΔΕΥΤΙΚΗ ΕΝΩΣΗ</span>
+          <span class="institution-item__url">edu-enosi.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.golearn.gr/contact" target="_blank" rel="noopener" data-name="go learn">
+          <span class="institution-item__name">GO LEARN</span>
+          <span class="institution-item__url">golearn.gr</span>
+        </a>
+        <a class="institution-item" href="https://synodoiparallilisstirixis.gr/" target="_blank" rel="noopener" data-name="πανελληνια σχολη εκπαιδευσης συνοδων παραλληλης στηριξης">
+          <span class="institution-item__name">ΠΑΝΕΛΛΗΝΙΑ ΣΧΟΛΗ ΕΚΠΑΙΔΕΥΣΗΣ ΣΥΝΟΔΩΝ ΠΑΡΑΛΛΗΛΗΣ ΣΤΗΡΙΞΗΣ</span>
+          <span class="institution-item__url">synodoiparallilisstirixis.gr</span>
+        </a>
+        <a class="institution-item" href="https://cears.edu.gr/" target="_blank" rel="noopener" data-name="ce.ar.r.s">
+          <span class="institution-item__name">CE.AR.R.S</span>
+          <span class="institution-item__url">cears.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.akadimos.gr/" target="_blank" rel="noopener" data-name="ακαδημοσ">
+          <span class="institution-item__name">ΑΚΑΔΗΜΟΣ</span>
+          <span class="institution-item__url">akadimos.gr</span>
+        </a>
+        <a class="institution-item" href="https://ianap.gr/" target="_blank" rel="noopener" data-name="ινστιτουτο αναπτυξησ απασχολησησ">
+          <span class="institution-item__name">ΙΝΣΤΙΤΟΥΤΟ ΑΝΑΠΤΥΞΗΣ ΑΠΑΣΧΟΛΗΣΗΣ</span>
+          <span class="institution-item__url">ianap.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.semifind.gr/seminaria/home" target="_blank" rel="noopener" data-name="semifind-εκπαιδευση">
+          <span class="institution-item__name">SEMIFIND-ΕΚΠΑΙΔΕΥΣΗ</span>
+          <span class="institution-item__url">semifind.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.protasis.edu.gr/tag/%CF%83%CE%B5%CE%BC%CE%B9%CE%BD%CE%AC%CF%81%CE%B9%CE%B1/" target="_blank" rel="noopener" data-name="protasis">
+          <span class="institution-item__name">PROTASIS</span>
+          <span class="institution-item__url">protasis.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://ecs.edu.gr/" target="_blank" rel="noopener" data-name="e.c.s edu">
+          <span class="institution-item__name">E.C.S EDU</span>
+          <span class="institution-item__url">ecs.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://learninn.cce.uoa.gr/epimorfotika-programmata/" target="_blank" rel="noopener" data-name="learn inn">
+          <span class="institution-item__name">LEARN INN</span>
+          <span class="institution-item__url">learninn.cce.uoa.gr</span>
+        </a>
+        <a class="institution-item" href="https://kethesy.gr/" target="_blank" rel="noopener" data-name="κε.θε.συ">
+          <span class="institution-item__name">ΚΕ.ΘΕ.ΣΥ</span>
+          <span class="institution-item__url">kethesy.gr</span>
+        </a>
+        <a class="institution-item" href="http://www.online-seminaria.gr/" target="_blank" rel="noopener" data-name="online seminaria">
+          <span class="institution-item__name">ONLINE SEMINARIA</span>
+          <span class="institution-item__url">online-seminaria.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.webinar.edu.gr/" target="_blank" rel="noopener" data-name="webinar.edu.gr">
+          <span class="institution-item__name">WEBINAR.EDU.GR</span>
+          <span class="institution-item__url">webinar.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.spell.gr/" target="_blank" rel="noopener" data-name="spell">
+          <span class="institution-item__name">SPELL</span>
+          <span class="institution-item__url">spell.gr</span>
+        </a>
+        <a class="institution-item" href="https://speechvoice.gr/" target="_blank" rel="noopener" data-name="speechvoice-επιστημονικοσ και θεραπευτικοσ ομιλοσ">
+          <span class="institution-item__name">SPEECHVOICE-ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΚΑΙ ΘΕΡΑΠΕΥΤΙΚΟΣ ΟΜΙΛΟΣ</span>
+          <span class="institution-item__url">speechvoice.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.semigo.gr/lista-seminarion/" target="_blank" rel="noopener" data-name="κεντρο δια βιου μαθησησ-λιστα σεμιναριων">
+          <span class="institution-item__name">ΚΕΝΤΡΟ ΔΙΑ ΒΙΟΥ ΜΑΘΗΣΗΣ-ΛΙΣΤΑ ΣΕΜΙΝΑΡΙΩΝ</span>
+          <span class="institution-item__url">semigo.gr</span>
+        </a>
+        <a class="institution-item" href="https://psychomotor-athens.gr/" target="_blank" rel="noopener" data-name="psychomotor">
+          <span class="institution-item__name">PSYCHOMOTOR</span>
+          <span class="institution-item__url">psychomotor-athens.gr</span>
+        </a>
+        <a class="institution-item" href="https://merimna.org.gr/" target="_blank" rel="noopener" data-name="μεριμνα">
+          <span class="institution-item__name">ΜΕΡΙΜΝΑ</span>
+          <span class="institution-item__url">merimna.org.gr</span>
+        </a>
+        <a class="institution-item" href="https://starkandwatson.com/" target="_blank" rel="noopener" data-name="stark and watson">
+          <span class="institution-item__name">STARK AND WATSON</span>
+          <span class="institution-item__url">starkandwatson.com</span>
+        </a>
+        <a class="institution-item" href="https://easy-education.gr/" target="_blank" rel="noopener" data-name="easy education">
+          <span class="institution-item__name">EASY EDUCATION</span>
+          <span class="institution-item__url">easy-education.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.epimorfosis.gr/shop/" target="_blank" rel="noopener" data-name="epimorfosis">
+          <span class="institution-item__name">EPIMORFOSIS</span>
+          <span class="institution-item__url">epimorfosis.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.ieel.edu.gr/seminaria-ekpaideuseis/" target="_blank" rel="noopener" data-name="ινστιτουτο ερευνασ και εκπαιδευσησ λογοθεραπειασ-ιεελ">
+          <span class="institution-item__name">ΙΝΣΤΙΤΟΥΤΟ ΕΡΕΥΝΑΣ ΚΑΙ ΕΚΠΑΙΔΕΥΣΗΣ ΛΟΓΟΘΕΡΑΠΕΙΑΣ-ΙΕΕΛ</span>
+          <span class="institution-item__url">ieel.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://evdokimos.edu.gr/" target="_blank" rel="noopener" data-name="ευδοκιμοσ">
+          <span class="institution-item__name">ΕΥΔΟΚΙΜΟΣ</span>
+          <span class="institution-item__url">evdokimos.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://travlismos.gr/ekpaideusi-therapeutwn/seminaria/" target="_blank" rel="noopener" data-name="κεντρο ερευνασ και θεραπειασ τραυλισμου">
+          <span class="institution-item__name">ΚΕΝΤΡΟ ΕΡΕΥΝΑΣ ΚΑΙ ΘΕΡΑΠΕΙΑΣ ΤΡΑΥΛΙΣΜΟΥ</span>
+          <span class="institution-item__url">travlismos.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.psf.org.gr/psf-news-4203.htm" target="_blank" rel="noopener" data-name="πανελληνιοσ συλλογοσ φυσικοθεραπευτων">
+          <span class="institution-item__name">ΠΑΝΕΛΛΗΝΙΟΣ ΣΥΛΛΟΓΟΣ ΦΥΣΙΚΟΘΕΡΑΠΕΥΤΩΝ</span>
+          <span class="institution-item__url">psf.org.gr</span>
+        </a>
+        <a class="institution-item" href="https://cps-arts.gr/" target="_blank" rel="noopener" data-name="ελληνικο κεντρο επιμορφωσησ ψυχοθεραπεια μεσω τεχνων">
+          <span class="institution-item__name">ΕΛΛΗΝΙΚΟ ΚΕΝΤΡΟ ΕΠΙΜΟΡΦΩΣΗΣ ΨΥΧΟΘΕΡΑΠΕΙΑ ΜΕΣΩ ΤΕΧΝΩΝ</span>
+          <span class="institution-item__url">cps-arts.gr</span>
+        </a>
+        <a class="institution-item" href="https://gadt.gr/" target="_blank" rel="noopener" data-name="ενωση χοροθεραπευτων ελλαδοσ">
+          <span class="institution-item__name">ΕΝΩΣΗ ΧΟΡΟΘΕΡΑΠΕΥΤΩΝ ΕΛΛΑΔΟΣ</span>
+          <span class="institution-item__url">gadt.gr</span>
+        </a>
+        <a class="institution-item" href="https://kinetiks.gr/%CF%83%CE%B5%CE%BC%CE%B9%CE%BD%CE%AC%CF%81%CE%B9%CE%B1/%CF%86%CF%85%CF%83%CE%B9%CE%BA%CE%BF%CE%B8%CE%B5%CF%81%CE%B1%CF%80%CE%B5%CE%AF%CE%B1/" target="_blank" rel="noopener" data-name="kinetiks">
+          <span class="institution-item__name">KINETIKS</span>
+          <span class="institution-item__url">kinetiks.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.mikropolytexneio.gr/art-seminars" target="_blank" rel="noopener" data-name="μουσικο πολυτεχνειο">
+          <span class="institution-item__name">ΜΟΥΣΙΚΟ ΠΟΛΥΤΕΧΝΕΙΟ</span>
+          <span class="institution-item__url">mikropolytexneio.gr</span>
+        </a>
+        <a class="institution-item" href="https://teamrodakino.com/seminars/" target="_blank" rel="noopener" data-name="ροδακινο-εργαστηριο συστημικησ ψυχολογιασ και παιδαγωγικησ">
+          <span class="institution-item__name">ΡΟΔΑΚΙΝΟ-ΕΡΓΑΣΤΗΡΙΟ ΣΥΣΤΗΜΙΚΗΣ ΨΥΧΟΛΟΓΙΑΣ ΚΑΙ ΠΑΙΔΑΓΩΓΙΚΗΣ</span>
+          <span class="institution-item__url">teamrodakino.com</span>
+        </a>
+        <a class="institution-item" href="https://frezyland.gr/frezycare/" target="_blank" rel="noopener" data-name="frezyland">
+          <span class="institution-item__name">FrezyLand</span>
+          <span class="institution-item__url">frezyland.gr</span>
+        </a>
+        <a class="institution-item" href="https://pecs-greece.com/%cf%83%ce%b5%ce%bc%ce%b9%ce%bd%ce%b1%cf%81%ce%b9%ce%b1/" target="_blank" rel="noopener" data-name="pyramid educational consultants">
+          <span class="institution-item__name">PYRAMID EDUCATIONAL CONSULTANTS</span>
+          <span class="institution-item__url">pecs-greece.com</span>
+        </a>
+        <a class="institution-item" href="https://ekisyp.gr/stm_lms_course_category/%cf%83%ce%b5%ce%bc%ce%b9%ce%bd%ce%ac%cf%81%ce%b9%ce%b1/" target="_blank" rel="noopener" data-name="εκ.ι.συ.π">
+          <span class="institution-item__name">ΕΚ.Ι.ΣΥ.Π</span>
+          <span class="institution-item__url">ekisyp.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.diepistimoniko.gr/p/blog-page_23.html" target="_blank" rel="noopener" data-name="διεπιστημονικο κεντρο ηπειρου">
+          <span class="institution-item__name">ΔΙΕΠΙΣΤΗΜΟΝΙΚΟ ΚΕΝΤΡΟ ΗΠΕΙΡΟΥ</span>
+          <span class="institution-item__url">diepistimoniko.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.medcollege.edu.gr/mps/koinonikes-anthropistikes-epistimes-ygeias/athlitiki-psyxologia/" target="_blank" rel="noopener" data-name="mediterranean college">
+          <span class="institution-item__name">MEDITERRANEAN COLLEGE</span>
+          <span class="institution-item__url">medcollege.edu.gr</span>
+        </a>
+        <a class="institution-item" href="https://www.skillbox.gr/seminaria/list/GR/Katigories/17/Psyxologia" target="_blank" rel="noopener" data-name="skill box">
+          <span class="institution-item__name">SKILL BOX</span>
+          <span class="institution-item__url">skillbox.gr</span>
+        </a>
+        <a class="institution-item" href="https://psychoscope.gr/blog/" target="_blank" rel="noopener" data-name="ψυχοσκοπιο">
+          <span class="institution-item__name">ΨΥΧΟΣΚΟΠΙΟ</span>
+          <span class="institution-item__url">psychoscope.gr</span>
+        </a>
+        <a class="institution-item" href="https://computer-start.gr/seminaria/" target="_blank" rel="noopener" data-name="start learn">
+          <span class="institution-item__name">START LEARN</span>
+          <span class="institution-item__url">computer-start.gr</span>
+        </a>
+        <a class="institution-item" href="https://skillshub.gr/home#section_1675862747944_515" target="_blank" rel="noopener" data-name="skills hub">
+          <span class="institution-item__name">SKILLS HUB</span>
+          <span class="institution-item__url">skillshub.gr</span>
+        </a>
+        <a class="institution-item" href="https://kentro-prolipsis.com/%CF%83%CE%B5%CE%BC%CE%B9%CE%BD%CE%AC%CF%81%CE%B9%CE%B1" target="_blank" rel="noopener" data-name="κεντρο προληψησ και συμβουλευτικησ">
+          <span class="institution-item__name">ΚΕΝΤΡΟ ΠΡΟΛΗΨΗΣ ΚΑΙ ΣΥΜΒΟΥΛΕΥΤΙΚΗΣ</span>
+          <span class="institution-item__url">kentro-prolipsis.com</span>
+        </a>
+        <a class="institution-item" href="https://dikepsy.gr/etn_category/ekpaidefsi/" target="_blank" rel="noopener" data-name="δι.κε.ψυ">
+          <span class="institution-item__name">ΔΙ.ΚΕ.ΨΥ</span>
+          <span class="institution-item__url">dikepsy.gr</span>
+        </a>
+        <a class="institution-item" href="https://topolytexno.gr/event-category/seminaria-paidagogikon/" target="_blank" rel="noopener" data-name="το πολυτεχνο">
+          <span class="institution-item__name">ΤΟ ΠΟΛΥΤΕΧΝΟ</span>
+          <span class="institution-item__url">topolytexno.gr</span>
+        </a>
+        <a class="institution-item" href="https://m-learn.gr/" target="_blank" rel="noopener" data-name="m-learn">
+          <span class="institution-item__name">m-Learn</span>
+          <span class="institution-item__url">m-learn.gr</span>
+        </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand__logo-chip">
+              <img src="logo.png" alt="Ο Κόσμος του Πάρη" width="91" height="64" class="brand__logo-img">
+            </span>
+          </a>
+          <p>Κόμβος στήριξης οικογενειών, νευροδιαφορετικών ατόμων και ειδικών επαγγελματιών σε όλη την Ελλάδα.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Πλοήγηση υποσέλιδου">
+          <h3>Πλοήγηση</h3>
+          <ul>
+            <li><a href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
+            <li><a href="news.html">Νέα</a></li>
+            <li><a href="articles.html">Άρθρα</a></li>
+            <li><a href="community.html">Η Κοινότητά Μας</a></li>
+            <li><a href="about.html">Ποιοι Είμαστε</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h3>Για Επαγγελματίες</h3>
+          <ul>
+            <li><a href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
+            <li><a href="#">Θέσεις Εργασίας</a></li>
+            <li><a href="support.html">Γίνετε Υποστηρικτής</a></li>
+            <li><a href="#">Εθελοντισμός</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Επικοινωνία</h3>
+          <ul>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              <a href="mailto:info@okosmostoupari.gr">info@okosmostoupari.gr</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L7.9 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.8 2.1z"/></svg>
+              <span>+30 6974386513 (10:00-13:00), +30 6948989770 (17:00–19:00)</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Αθήνα, Ελλάδα</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Ο Κόσμος του Πάρη. Με επιφύλαξη παντός δικαιώματος.</span>
+
+        <div class="theme-switch" role="radiogroup" aria-label="Θέμα εμφάνισης">
+          <button class="theme-switch__option" type="button" data-theme-choice="light" role="radio" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <span>Φωτεινό</span>
+          </button>
+          <button class="theme-switch__option" type="button" data-theme-choice="system" role="radio" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Σύστημα</span>
+          </button>
+          <button class="theme-switch__option" type="button" data-theme-choice="dark" role="radio" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+            <span>Σκοτεινό</span>
+          </button>
+        </div>
+
+        <span class="footer-bottom__proto">Πρωτότυπο σχεδιασμού — μη επίσημη σελίδα</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       ACCESSIBILITY WIDGET
+       ============================================================ -->
+  <div class="a11y-widget">
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-labelledby="a11yPanelTitle">
+      <div class="a11y-panel__head">
+        <h2 id="a11yPanelTitle">Ρυθμίσεις Προσβασιμότητας</h2>
+        <button class="a11y-close" id="a11yClose" type="button" aria-label="Κλείσιμο ρυθμίσεων προσβασιμότητας">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group__label" id="fontSizeLabel">Μέγεθος Κειμένου</span>
+        <div class="a11y-steps" role="group" aria-labelledby="fontSizeLabel">
+          <button class="a11y-step" type="button" data-font-step="1" aria-pressed="true">100%</button>
+          <button class="a11y-step" type="button" data-font-step="2" aria-pressed="false">125%</button>
+          <button class="a11y-step" type="button" data-font-step="3" aria-pressed="false">150%</button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <div class="a11y-switch-row">
+          <span id="contrastLabel">Υψηλή Αντίθεση (Ασπρόμαυρο)</span>
+          <button class="a11y-switch" id="contrastSwitch" type="button" role="switch" aria-checked="false" aria-labelledby="contrastLabel"></button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <div class="a11y-switch-row">
+          <span id="dyslexicLabel">Γραμματοσειρά για Δυσλεξία</span>
+          <button class="a11y-switch" id="dyslexicSwitch" type="button" role="switch" aria-checked="false" aria-labelledby="dyslexicLabel"></button>
+        </div>
+      </div>
+
+      <button class="a11y-reset" id="a11yReset" type="button">Επαναφορά προεπιλογών</button>
+    </div>
+
+    <button class="a11y-toggle" id="a11yToggle" type="button" aria-expanded="false" aria-controls="a11yPanel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.6"/><path d="M5 8.5c3.2 1 9.8 1 14 0"/><path d="M12 10v5"/><path d="M8 21l4-6 4 6"/><path d="M9 13l-3 2M15 13l3 2"/></svg>
+      <span class="a11y-toggle__label">Προσβασιμότητα</span>
+    </button>
+  </div>
+
+  <script src="assets/js/main.js?v=20" defer></script>
+</body>
+</html>

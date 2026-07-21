@@ -1262,6 +1262,113 @@
   initAggeliaPage();
 
   /* ----------------------------------------------------------
+     Institution directory search (seminaria.html) — plain
+     client-side filtering over the hand-authored .institution-item
+     list; no fetch involved, the list is static page content.
+     ---------------------------------------------------------- */
+  function initInstitutionsFilter() {
+    var grid = document.getElementById("institutionsGrid");
+    if (!grid) return;
+    var searchInput = document.getElementById("institutionsSearchInput");
+    var countEl = document.getElementById("institutionsResultsCount");
+    var items = Array.prototype.slice.call(grid.querySelectorAll(".institution-item"));
+    var total = items.length;
+
+    function updateCount(visible) {
+      if (!countEl) return;
+      countEl.textContent = visible === total
+        ? "Εμφανίζονται και οι " + total + " φορείς"
+        : visible + " από " + total + " φορείς ταιριάζουν με την αναζήτησή σας";
+    }
+
+    function applyFilter() {
+      var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+      var visible = 0;
+      items.forEach(function (item) {
+        var match = !query || (item.getAttribute("data-name") || "").indexOf(query) !== -1;
+        item.hidden = !match;
+        if (match) visible += 1;
+      });
+      updateCount(visible);
+    }
+
+    updateCount(total);
+    if (searchInput) searchInput.addEventListener("input", applyFilter);
+  }
+  initInstitutionsFilter();
+
+  /* ----------------------------------------------------------
+     Video grid (videos.html) — renders YouTube-embed cards from a
+     local placeholder list (assets/data/videos.json). Entries ship
+     with an empty youtubeId until the real links are added; those
+     render as a dashed placeholder slot instead of a player, same
+     idea as the professional-card placeholder cell, so the page
+     already has the right look while waiting on the real links.
+     ---------------------------------------------------------- */
+  var ICON_VIDEO_PLACEHOLDER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>';
+
+  function buildVideoCard(item) {
+    var card = document.createElement("article");
+    card.className = "video-card";
+
+    var embed = document.createElement("div");
+    embed.className = "video-card__embed";
+    if (item.youtubeId) {
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(item.youtubeId);
+      iframe.title = item.title || "Video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      embed.appendChild(iframe);
+    } else {
+      embed.classList.add("video-card__embed--placeholder");
+      embed.innerHTML = ICON_VIDEO_PLACEHOLDER + "<span>Το βίντεο θα προστεθεί σύντομα</span>";
+    }
+    card.appendChild(embed);
+
+    if (item.title) {
+      var title = document.createElement("h3");
+      title.className = "video-card__title";
+      title.textContent = item.title;
+      card.appendChild(title);
+    }
+    if (item.description) {
+      var desc = document.createElement("p");
+      desc.className = "video-card__desc";
+      desc.textContent = item.description;
+      card.appendChild(desc);
+    }
+
+    return card;
+  }
+
+  function initVideosGrid() {
+    var grid = document.getElementById("videosGrid");
+    if (!grid) return;
+
+    fetch("assets/data/videos.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("videos-fetch-failed");
+        return res.json();
+      })
+      .then(function (items) {
+        grid.innerHTML = "";
+        if (!items.length) {
+          grid.innerHTML = '<p class="editorial-status" role="status">Δεν υπάρχουν διαθέσιμα video αυτή τη στιγμή.</p>';
+          return;
+        }
+        items.forEach(function (item) {
+          grid.appendChild(buildVideoCard(item));
+        });
+      })
+      .catch(function () {
+        grid.innerHTML = '<p class="editorial-status" role="status">Δεν ήταν δυνατή η φόρτωση των video αυτή τη στιγμή.</p>';
+      });
+  }
+  initVideosGrid();
+
+  /* ----------------------------------------------------------
      Schools map (category-schools.html) — renders a Leaflet map
      and matching list from a local snapshot of the "Ειδικά
      Σχολεία – ΚΕΔΑΣΥ" locations (assets/data/schools.json). The
