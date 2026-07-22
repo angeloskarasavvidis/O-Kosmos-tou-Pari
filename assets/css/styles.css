@@ -1015,6 +1015,40 @@ html.a11y-contrast .hero__blob { display: none; }
   .founders { grid-template-columns: 1fr; gap: 2rem; }
   .founders__photo { max-width: 360px; margin: 0 auto; }
 }
+
+/* Testimonial cards — stacked, full-width community stories (used on
+   Μοιράσου την Εμπειρία σου). One column: these are personal
+   narratives, not short pull-quotes, so a multi-column grid would
+   force uneven, hard-to-read columns. */
+.testimonial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.testimonial-card {
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2rem;
+}
+.testimonial-card__quote {
+  color: var(--ink-soft);
+  line-height: 1.75;
+  max-width: 72ch;
+}
+.testimonial-card__quote p + p { margin-top: 1rem; }
+.testimonial-card__author {
+  margin-top: 1.2rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+}
+.testimonial-card__author::before {
+  content: "— ";
+  color: var(--accent);
+}
+
 .section__head {
   display: flex;
   justify-content: space-between;
