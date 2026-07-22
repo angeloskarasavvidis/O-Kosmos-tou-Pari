@@ -318,6 +318,10 @@ p { text-wrap: pretty; }
   transform: translateY(-100%);
 }
 .site-header__bar {
+  /* Wider than the standard .container: with 7 top-level nav tabs
+     (including "Διάδραση") the header needs more horizontal room
+     than page content does to stay on a single line. */
+  width: min(1340px, 100% - 3rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -372,15 +376,15 @@ p { text-wrap: pretty; }
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.2rem 0.3rem;
+  gap: 0.2rem 0.15rem;
 }
 .primary-nav__link {
   display: inline-block;
-  padding: 0.6rem 0.95rem;
+  padding: 0.6rem 0.7rem;
   border-radius: var(--radius-pill);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.94rem;
+  font-size: 0.89rem;
   color: var(--ink-soft);
   transition: background var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft);
 }
@@ -398,15 +402,15 @@ p { text-wrap: pretty; }
 .primary-nav__trigger {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.25rem;
   background: none;
   border: none;
   cursor: pointer;
   font: inherit;
 }
 .primary-nav__chevron {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   transition: transform var(--dur-fast) var(--ease-soft);
 }
 .primary-nav__trigger[aria-expanded="true"] .primary-nav__chevron {

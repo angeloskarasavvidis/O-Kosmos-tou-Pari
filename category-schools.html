@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="">
-  <link rel="stylesheet" href="assets/css/styles.css?v=24">
+  <link rel="stylesheet" href="assets/css/styles.css?v=25">
   <script src="assets/js/a11y-init.js?v=2"></script>
 </head>
 <body>
@@ -59,6 +59,17 @@
             </div>
           </li>
           <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="diadrasiDropdownTrigger" aria-expanded="false" aria-controls="diadrasiDropdown">
+              Διάδραση
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="diadrasiDropdown">
+        <a class="nav-dropdown__item" href="#">Kid's Art</a>
+        <a class="nav-dropdown__item" href="#">Μοιράσου την Εμπειρία σου</a>
+        <a class="nav-dropdown__item" href="#">Τα Σχόλια σας</a>
+            </div>
+          </li>
+          <li class="primary-nav__item--dropdown">
             <button class="primary-nav__link primary-nav__trigger" type="button" id="infoDropdownTrigger" aria-expanded="false" aria-controls="infoDropdown">
               Πληροφορίες
               <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
@@ -80,7 +91,6 @@
               <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="nav-dropdown" id="communityDropdown">
-        <a class="nav-dropdown__item" href="#">Διάδραση</a>
         <a class="nav-dropdown__item" href="ask-expert.html">Ρώτα τον Ειδικό</a>
         <a class="nav-dropdown__item" href="aggelies.html">Αγγελίες</a>
         <a class="nav-dropdown__item" href="about.html">Ποιοι Είμαστε</a>
@@ -115,6 +125,9 @@
       <li><a class="nav-sheet__link" href="draseis.html">Οι Δράσεις μας</a></li>
       <li><a class="nav-sheet__link" href="draseis-triton.html">Δράσεις τρίτων</a></li>
       <li><a class="nav-sheet__link" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a></li>
+      <li><a class="nav-sheet__link" href="#">Kid's Art</a></li>
+      <li><a class="nav-sheet__link" href="#">Μοιράσου την Εμπειρία σου</a></li>
+      <li><a class="nav-sheet__link" href="#">Τα Σχόλια σας</a></li>
       <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
       <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
       <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
@@ -123,7 +136,6 @@
       <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
       <li><a class="nav-sheet__link" href="eksoplismos.html">Εξοπλισμός</a></li>
       <li><a class="nav-sheet__link" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a></li>
-      <li><a class="nav-sheet__link" href="#">Διάδραση</a></li>
       <li><a class="nav-sheet__link" href="ask-expert.html">Ρώτα τον Ειδικό</a></li>
       <li><a class="nav-sheet__link" href="aggelies.html">Αγγελίες</a></li>
       <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
