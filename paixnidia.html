@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=25">
+  <link rel="stylesheet" href="assets/css/styles.css?v=26">
   <script src="assets/js/a11y-init.js?v=2"></script>
 </head>
 <body>
@@ -109,40 +109,97 @@
 
   <!-- Mobile navigation sheet -->
   <div class="nav-sheet" id="navSheet" role="dialog" aria-modal="true" aria-label="Μενού πλοήγησης">
-    <div class="nav-sheet__top">
-      <span class="brand__name">Μενού</span>
-      <button class="icon-btn" id="navSheetClose" type="button" aria-label="Κλείσιμο μενού">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
-      </button>
-    </div>
-    <ul class="nav-sheet__list">
-      <li><a class="nav-sheet__link" href="directory.html">Υπηρεσίες</a></li>
-      <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
-      <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
-      <li><a class="nav-sheet__link" href="draseis.html">Οι Δράσεις μας</a></li>
-      <li><a class="nav-sheet__link" href="draseis-triton.html">Δράσεις τρίτων</a></li>
-      <li><a class="nav-sheet__link" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a></li>
-      <li><a class="nav-sheet__link" href="#">Kid's Art</a></li>
-      <li><a class="nav-sheet__link" href="#">Μοιράσου την Εμπειρία σου</a></li>
-      <li><a class="nav-sheet__link" href="#">Τα Σχόλια σας</a></li>
-      <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
-      <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
-      <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
-      <li><a class="nav-sheet__link" href="diakopes.html">Διακοπές με αναπηρία</a></li>
-      <li><a class="nav-sheet__link" href="paixnidia.html" aria-current="page">Παιχνίδια για δημιουργική απασχόληση</a></li>
-      <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
-      <li><a class="nav-sheet__link" href="eksoplismos.html">Εξοπλισμός</a></li>
-      <li><a class="nav-sheet__link" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a></li>
-      <li><a class="nav-sheet__link" href="ask-expert.html">Ρώτα τον Ειδικό</a></li>
-      <li><a class="nav-sheet__link" href="aggelies.html">Αγγελίες</a></li>
-      <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
-      <li><a class="nav-sheet__link" href="supporters.html">Πιστεύουν σε εμάς</a></li>
-      <li><a class="nav-sheet__link" href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
-    </ul>
-    <div class="nav-sheet__footer">
-      <a class="btn btn--primary" href="directory.html">Χρειάζομαι Υποστήριξη</a>
-      <a class="btn btn--secondary" href="professional-signup.html">Εγγραφή Επαγγελματία</a>
-      <a class="btn btn--primary" href="support.html">Στηρίζω τον κόσμο του Πάρη</a>
+    <div class="nav-sheet__viewport">
+      <div class="nav-sheet__panel nav-sheet__panel--root" data-panel="root">
+        <div class="nav-sheet__top">
+          <span class="brand__name">Μενού</span>
+          <button class="icon-btn" id="navSheetClose" type="button" aria-label="Κλείσιμο μενού">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+          </button>
+        </div>
+        <ul class="nav-sheet__list">
+          <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="services" aria-haspopup="true">Υπηρεσίες<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+          <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
+          <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
+          <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="draseis" aria-haspopup="true">Δράσεις<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+          <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="diadrasi" aria-haspopup="true">Διάδραση<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+          <li><button class="nav-sheet__link nav-sheet__trigger is-current-section" type="button" data-target="info" aria-haspopup="true">Πληροφορίες<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+          <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="community" aria-haspopup="true">Η Κοινότητά μας<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+        </ul>
+        <div class="nav-sheet__footer">
+          <a class="btn btn--primary" href="directory.html">Χρειάζομαι Υποστήριξη</a>
+          <a class="btn btn--secondary" href="professional-signup.html">Εγγραφή Επαγγελματία</a>
+          <a class="btn btn--primary" href="support.html">Στηρίζω τον κόσμο του Πάρη</a>
+        </div>
+      </div>
+      <div class="nav-sheet__panel nav-sheet__panel--sub" data-panel="services" aria-hidden="true">
+        <div class="nav-sheet__top">
+          <button class="nav-sheet__back" type="button" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg> Πίσω</button>
+        </div>
+        <h2 class="nav-sheet__panel-title">Υπηρεσίες</h2>
+        <ul class="nav-sheet__list">
+          <li><a class="nav-sheet__link" href="category-doctors.html">Εξειδικευμένοι Ιατροί</a></li>
+          <li><a class="nav-sheet__link" href="category-filoxenia.html">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</a></li>
+          <li><a class="nav-sheet__link" href="category-therapeutes.html">Θεραπευτές – Σύμβουλοι</a></li>
+          <li><a class="nav-sheet__link" href="category-drastiriotites.html">Δραστηριότητες &amp; Κοινωνικοποίηση</a></li>
+          <li><a class="nav-sheet__link" href="category-ekpaideutes.html">Εκπαιδευτές – Φύλαξη</a></li>
+          <li><a class="nav-sheet__link" href="category-kentra.html">Εξειδικευμένα Κέντρα Θεραπειών</a></li>
+          <li><a class="nav-sheet__link" href="category-syllogoi.html">Σύλλογοι &amp; Σωματεία</a></li>
+          <li><a class="nav-sheet__link" href="category-schools.html">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a></li>
+          <li><a class="nav-sheet__link" href="directory.html">Όλοι οι επαγγελματίες</a></li>
+        </ul>
+      </div>
+      <div class="nav-sheet__panel nav-sheet__panel--sub" data-panel="draseis" aria-hidden="true">
+        <div class="nav-sheet__top">
+          <button class="nav-sheet__back" type="button" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg> Πίσω</button>
+        </div>
+        <h2 class="nav-sheet__panel-title">Δράσεις</h2>
+        <ul class="nav-sheet__list">
+          <li><a class="nav-sheet__link" href="draseis.html">Οι Δράσεις μας</a></li>
+          <li><a class="nav-sheet__link" href="draseis-triton.html">Δράσεις τρίτων</a></li>
+          <li><a class="nav-sheet__link" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a></li>
+        </ul>
+      </div>
+      <div class="nav-sheet__panel nav-sheet__panel--sub" data-panel="diadrasi" aria-hidden="true">
+        <div class="nav-sheet__top">
+          <button class="nav-sheet__back" type="button" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg> Πίσω</button>
+        </div>
+        <h2 class="nav-sheet__panel-title">Διάδραση</h2>
+        <ul class="nav-sheet__list">
+          <li><a class="nav-sheet__link" href="#">Kid's Art</a></li>
+          <li><a class="nav-sheet__link" href="#">Μοιράσου την Εμπειρία σου</a></li>
+          <li><a class="nav-sheet__link" href="#">Τα Σχόλια σας</a></li>
+        </ul>
+      </div>
+      <div class="nav-sheet__panel nav-sheet__panel--sub" data-panel="info" aria-hidden="true">
+        <div class="nav-sheet__top">
+          <button class="nav-sheet__back" type="button" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg> Πίσω</button>
+        </div>
+        <h2 class="nav-sheet__panel-title">Πληροφορίες</h2>
+        <ul class="nav-sheet__list">
+          <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
+          <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
+          <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
+          <li><a class="nav-sheet__link" href="diakopes.html">Διακοπές με αναπηρία</a></li>
+          <li><a class="nav-sheet__link" href="paixnidia.html" aria-current="page">Παιχνίδια για δημιουργική απασχόληση</a></li>
+          <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
+          <li><a class="nav-sheet__link" href="eksoplismos.html">Εξοπλισμός</a></li>
+          <li><a class="nav-sheet__link" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a></li>
+        </ul>
+      </div>
+      <div class="nav-sheet__panel nav-sheet__panel--sub" data-panel="community" aria-hidden="true">
+        <div class="nav-sheet__top">
+          <button class="nav-sheet__back" type="button" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg> Πίσω</button>
+        </div>
+        <h2 class="nav-sheet__panel-title">Η Κοινότητά μας</h2>
+        <ul class="nav-sheet__list">
+          <li><a class="nav-sheet__link" href="ask-expert.html">Ρώτα τον Ειδικό</a></li>
+          <li><a class="nav-sheet__link" href="aggelies.html">Αγγελίες</a></li>
+          <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
+          <li><a class="nav-sheet__link" href="supporters.html">Πιστεύουν σε εμάς</a></li>
+          <li><a class="nav-sheet__link" href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -404,6 +461,6 @@
     </button>
   </div>
 
-  <script src="assets/js/main.js?v=22" defer></script>
+  <script src="assets/js/main.js?v=23" defer></script>
 </body>
 </html>

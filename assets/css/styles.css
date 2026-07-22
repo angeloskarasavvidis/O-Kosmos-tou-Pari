@@ -499,7 +499,11 @@ p { text-wrap: pretty; }
 
 .hamburger { display: none; }
 
-/* Mobile navigation sheet */
+/* Mobile navigation sheet — a root panel of top-level categories,
+   each opening onto its own full-screen "drill-in" panel of
+   sub-links (instead of dumping every category flat in one long
+   list). .nav-sheet__viewport clips the panels; only one of
+   root/sub is ever the active, interactive one at a time. */
 .nav-sheet {
   position: fixed;
   inset: 0;
@@ -507,9 +511,7 @@ p { text-wrap: pretty; }
   background: var(--bg);
   display: flex;
   flex-direction: column;
-  padding: 1.4rem;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
   transform: translateX(100%);
   visibility: hidden;
   transition: transform var(--dur-slow) var(--ease-soft), visibility 0s linear var(--dur-slow);
@@ -519,11 +521,66 @@ p { text-wrap: pretty; }
   visibility: visible;
   transition: transform var(--dur-slow) var(--ease-soft), visibility 0s;
 }
+.nav-sheet__viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+.nav-sheet__panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg);
+  transition: transform var(--dur-med) var(--ease-soft);
+}
+.nav-sheet__panel--root {
+  transform: translateX(0);
+  z-index: 1;
+}
+.nav-sheet__panel--sub {
+  transform: translateX(100%);
+  z-index: 2;
+}
+.nav-sheet__panel--sub.is-active {
+  transform: translateX(0);
+}
+.nav-sheet__viewport.has-open-panel .nav-sheet__panel--root {
+  pointer-events: none;
+}
 .nav-sheet__top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2.5rem;
+  min-height: 44px;
+}
+.nav-sheet__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  padding: 0.5rem 0.3rem 0.5rem 0;
+  margin-left: -0.3rem;
+}
+.nav-sheet__back:hover { color: var(--ink); }
+.nav-sheet__back svg { width: 20px; height: 20px; }
+.nav-sheet__panel-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 1rem;
 }
 .nav-sheet__list {
   display: flex;
@@ -540,8 +597,30 @@ p { text-wrap: pretty; }
   color: var(--ink);
   border-bottom: 1px solid var(--border);
 }
+.nav-sheet__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+}
+.nav-sheet__trigger-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--ink-faint);
+}
+.nav-sheet__trigger.is-current-section {
+  color: var(--accent-deep);
+}
 .nav-sheet__footer {
   margin-top: auto;
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
