@@ -111,6 +111,52 @@
   });
 
   /* ----------------------------------------------------------
+     Lightbox — shared photo preview opened by clicking any
+     [data-lightbox-src] trigger (e.g. the Kid's Art gallery).
+     No-op on pages without a #lightbox element.
+     ---------------------------------------------------------- */
+  var lightbox = document.getElementById("lightbox");
+  if (lightbox) {
+    var lightboxImg = document.getElementById("lightboxImg");
+    var lightboxCaption = document.getElementById("lightboxCaption");
+    var lightboxClose = document.getElementById("lightboxClose");
+    var lightboxCleanup = null;
+    var lightboxLastTrigger = null;
+
+    function openLightbox(trigger) {
+      var src = trigger.getAttribute("data-lightbox-src");
+      var caption = trigger.getAttribute("data-lightbox-caption") || "";
+      if (!src) return;
+      lightboxLastTrigger = trigger;
+      lightboxImg.src = src;
+      lightboxImg.alt = caption;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.add("is-open");
+      lightbox.removeAttribute("aria-hidden");
+      document.body.style.overflow = "hidden";
+      lightboxCleanup = trapFocus(lightbox, closeLightbox);
+      lightboxClose.focus({ preventScroll: true });
+    }
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lightboxCleanup) lightboxCleanup();
+      lightboxImg.src = "";
+      if (lightboxLastTrigger) lightboxLastTrigger.focus({ preventScroll: true });
+    }
+    document.querySelectorAll("[data-lightbox-src]").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        openLightbox(trigger);
+      });
+    });
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  /* ----------------------------------------------------------
      Primary nav dropdowns ("Υπηρεσίες", "Η Κοινότητά μας") —
      desktop only (neither exists in the mobile sheet, which lists
      their destinations as flat links instead).

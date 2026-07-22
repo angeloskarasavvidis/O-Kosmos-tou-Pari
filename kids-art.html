@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Αναζήτηση Υπηρεσιών — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Αναζητήστε επαγγελματίες, δομές και υπηρεσίες υποστήριξης ανά κατηγορία στον Κόσμο του Πάρη.">
+  <title>Kid's Art — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Ζωγραφιές, κατασκευές και δημιουργίες παιδιών από την κοινότητα του Κόσμου του Πάρη.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
       <nav class="primary-nav" aria-label="Κύρια πλοήγηση">
         <ul class="primary-nav__list">
           <li class="primary-nav__item--dropdown">
-            <button class="primary-nav__link primary-nav__trigger" type="button" id="servicesDropdownTrigger" aria-expanded="false" aria-controls="servicesDropdown" aria-current="page">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="servicesDropdownTrigger" aria-expanded="false" aria-controls="servicesDropdown">
               Υπηρεσίες
               <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
@@ -61,7 +61,7 @@
               <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="nav-dropdown" id="diadrasiDropdown">
-        <a class="nav-dropdown__item" href="kids-art.html">Kid's Art</a>
+        <a class="nav-dropdown__item" href="kids-art.html" aria-current="page">Kid's Art</a>
         <a class="nav-dropdown__item" href="#">Μοιράσου την Εμπειρία σου</a>
         <a class="nav-dropdown__item" href="#">Τα Σχόλια σας</a>
             </div>
@@ -118,11 +118,11 @@
           </button>
         </div>
         <ul class="nav-sheet__list">
-          <li><button class="nav-sheet__link nav-sheet__trigger is-current-section" type="button" data-target="services" aria-haspopup="true">Υπηρεσίες<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+          <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="services" aria-haspopup="true">Υπηρεσίες<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
           <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
           <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
           <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="draseis" aria-haspopup="true">Δράσεις<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
-          <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="diadrasi" aria-haspopup="true">Διάδραση<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
+          <li><button class="nav-sheet__link nav-sheet__trigger is-current-section" type="button" data-target="diadrasi" aria-haspopup="true">Διάδραση<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
           <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="info" aria-haspopup="true">Πληροφορίες<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
           <li><button class="nav-sheet__link nav-sheet__trigger" type="button" data-target="community" aria-haspopup="true">Η Κοινότητά μας<svg class="nav-sheet__trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></button></li>
         </ul>
@@ -146,7 +146,7 @@
           <li><a class="nav-sheet__link" href="category-kentra.html">Εξειδικευμένα Κέντρα Θεραπειών</a></li>
           <li><a class="nav-sheet__link" href="category-syllogoi.html">Σύλλογοι &amp; Σωματεία</a></li>
           <li><a class="nav-sheet__link" href="category-schools.html">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a></li>
-          <li><a class="nav-sheet__link" href="directory.html" aria-current="page">Όλοι οι επαγγελματίες</a></li>
+          <li><a class="nav-sheet__link" href="directory.html">Όλοι οι επαγγελματίες</a></li>
         </ul>
       </div>
       <div class="nav-sheet__panel nav-sheet__panel--sub" data-panel="draseis" aria-hidden="true">
@@ -166,7 +166,7 @@
         </div>
         <h2 class="nav-sheet__panel-title">Διάδραση</h2>
         <ul class="nav-sheet__list">
-          <li><a class="nav-sheet__link" href="kids-art.html">Kid's Art</a></li>
+          <li><a class="nav-sheet__link" href="kids-art.html" aria-current="page">Kid's Art</a></li>
           <li><a class="nav-sheet__link" href="#">Μοιράσου την Εμπειρία σου</a></li>
           <li><a class="nav-sheet__link" href="#">Τα Σχόλια σας</a></li>
         </ul>
@@ -207,98 +207,84 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Αναζήτηση Υπηρεσιών</span>
-        <h1>Βρείτε την κατηγορία που χρειάζεστε</h1>
-        <p>Οκτώ σαφείς κατηγορίες, μία αναζήτηση. Καμία σελίδα δεν κρύβει αυτό που ψάχνετε.</p>
+        <span class="eyebrow">Διάδραση</span>
+        <h1>Kid's Art</h1>
+        <p>Ζωγραφιές, κατασκευές και δημιουργίες παιδιών από την κοινότητά μας — μικρά έργα τέχνης γεμάτα φαντασία.</p>
       </div>
     </section>
 
     <!-- ============================================================
-         DIRECTORY
+         KID'S ART
          ============================================================ -->
-    <section class="section" id="directory">
+    <section class="section" id="kids-art">
       <div class="container">
 
-        <div class="directory-search reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg>
-          <label for="directorySearchInput" class="sr-only">Αναζήτηση στον κατάλογο επαγγελματιών</label>
-          <input type="search" id="directorySearchInput" placeholder="Αναζητήστε π.χ. «λογοθεραπευτής», «σχολείο», «σύλλογος»…" autocomplete="off">
+        <div class="founders__quote" style="max-width: 60ch; margin: 0 0 2.6rem;">Το πραγματικό σημάδι ευφυΐας δεν είναι η γνώση αλλά η φαντασία.</div>
+        <p style="max-width: 62ch; color: var(--ink-soft); margin-bottom: 2.6rem;">Έχετε ζωγραφιές ή κατασκευές που θέλετε να μοιραστείτε μαζί μας; Θα χαρούμε να τις δούμε και να τις παρουσιάσουμε στην κοινότητά μας.</p>
+
+        <div class="activity-grid">
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_5009-9ba7ef53ec20f2721942ff1abf806f8e.jpeg" data-lightbox-caption="Χριστουγεννιάτικες Κατασκευές"><img src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_5009-9ba7ef53ec20f2721942ff1abf806f8e.jpeg" alt="Χριστουγεννιάτικες Κατασκευές" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Χριστουγεννιάτικες Κατασκευές</h3>
         </div>
-        <p class="directory-results reveal" id="directoryResults" aria-live="polite">Εμφανίζονται και οι 8 κατηγορίες</p>
-
-        <div class="directory-grid reveal" id="directoryGrid">
-
-          <a href="category-doctors.html" class="directory-card" id="cat-iatroi" data-search="εξειδικευμένοι ιατροί παιδίατρος παιδονευρολόγος ψυχίατρος γιατρός">
-            <span class="directory-card__icon directory-card__icon--accent" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/></svg>
-            </span>
-            <span class="directory-card__title">Εξειδικευμένοι Ιατροί</span>
-            <span class="directory-card__desc">Παιδίατροι αναπτυξιακής, παιδονευρολόγοι, παιδοψυχίατροι.</span>
-          </a>
-
-          <a href="category-filoxenia.html" class="directory-card" id="cat-filoxenia" data-search="χώροι φιλοξενίας παιδιών ενηλίκων ημερήσια φροντίδα ξενώνες">
-            <span class="directory-card__icon directory-card__icon--sage" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/></svg>
-            </span>
-            <span class="directory-card__title">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</span>
-            <span class="directory-card__desc">Ημερήσια φροντίδα και ξενώνες με εξειδικευμένο προσωπικό.</span>
-          </a>
-
-          <a href="category-therapeutes.html" class="directory-card" id="cat-therapeutes" data-search="θεραπευτές σύμβουλοι εργοθεραπευτής λογοθεραπευτής ψυχολόγος οικογένεια">
-            <span class="directory-card__icon directory-card__icon--peri" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19.5s-7-4.2-7-9.3a4.2 4.2 0 0 1 7-3.2 4.2 4.2 0 0 1 7 3.2c0 5.1-7 9.3-7 9.3z"/></svg>
-            </span>
-            <span class="directory-card__title">Θεραπευτές – Σύμβουλοι</span>
-            <span class="directory-card__desc">Εργοθεραπευτές, λογοθεραπευτές, ψυχολόγοι, σύμβουλοι οικογένειας.</span>
-          </a>
-
-          <a href="category-drastiriotites.html" class="directory-card" id="cat-drastiriotites" data-search="δραστηριότητες κοινωνικοποίηση αθλητικά καλλιτεχνικά ομάδες δεξιότητες">
-            <span class="directory-card__icon directory-card__icon--accent" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>
-            </span>
-            <span class="directory-card__title">Δραστηριότητες &amp; Κοινωνικοποίηση</span>
-            <span class="directory-card__desc">Αθλητικά, καλλιτεχνικά και ομάδες κοινωνικών δεξιοτήτων.</span>
-          </a>
-
-          <a href="category-ekpaideutes.html" class="directory-card" id="cat-ekpaideutes" data-search="εκπαιδευτές φύλαξη παράλληλη στήριξη ιδιαίτερα μαθήματα babysitting">
-            <span class="directory-card__icon directory-card__icon--sage" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2.5 0 5.5.8 8 2.5 2.5-1.7 5.5-2.5 8-2.5v12c-2.5 0-5.5.8-8 2.5-2.5-1.7-5.5-2.5-8-2.5z"/><path d="M12 8v12"/></svg>
-            </span>
-            <span class="directory-card__title">Εκπαιδευτές – Φύλαξη</span>
-            <span class="directory-card__desc">Παράλληλη στήριξη, ιδιαίτερα μαθήματα, φύλαξη με εμπειρία.</span>
-          </a>
-
-          <a href="category-kentra.html" class="directory-card" id="cat-kentra" data-search="εξειδικευμένα κέντρα θεραπειών πολυθεσιακά προγράμματα παρέμβασης">
-            <span class="directory-card__icon directory-card__icon--peri" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M12 9v6M9 12h6"/></svg>
-            </span>
-            <span class="directory-card__title">Εξειδικευμένα Κέντρα Θεραπειών</span>
-            <span class="directory-card__desc">Πολυθεσιακά κέντρα με ολοκληρωμένα προγράμματα παρέμβασης.</span>
-          </a>
-
-          <a href="category-syllogoi.html" class="directory-card" id="cat-syllogoi" data-search="σύλλογοι σωματεία φορείς γονέων οργανώσεις υποστήριξης">
-            <span class="directory-card__icon directory-card__icon--accent" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="9" r="3"/><circle cx="16" cy="10" r="2.4"/><path d="M2.5 19c0-3.2 2.6-5.4 6-5.4 2 0 3.7.8 4.8 2.1"/><path d="M13.8 15c2.7 0 4.9 1.8 4.9 4"/></svg>
-            </span>
-            <span class="directory-card__title">Σύλλογοι &amp; Σωματεία</span>
-            <span class="directory-card__desc">Φορείς γονέων και οργανώσεις υποστήριξης ανά περιοχή.</span>
-          </a>
-
-          <a href="category-schools.html" class="directory-card" id="cat-sxoleia" data-search="ειδικά σχολεία κεδασυ δομές ειδικής αγωγής διάγνωση">
-            <span class="directory-card__icon directory-card__icon--sage" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 5l9 4-9 4-9-4z"/><path d="M7 11v5c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5"/></svg>
-            </span>
-            <span class="directory-card__title">Ειδικά Σχολεία – ΚΕΔΑΣΥ</span>
-            <span class="directory-card__desc">Δομές ειδικής αγωγής και κέντρα διάγνωσης.</span>
-          </a>
-
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_9179-91443271854b5593cbe9efea728aff8a-scaled.jpeg" data-lightbox-caption="Γνωρίζοντας την αναπηρία – Ζωγραφίζοντας πέτρες"><img src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_9179-91443271854b5593cbe9efea728aff8a-scaled.jpeg" alt="Γνωρίζοντας την αναπηρία – Ζωγραφίζοντας πέτρες" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Γνωρίζοντας την αναπηρία – Ζωγραφίζοντας πέτρες</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_9418-cff7fdd53f14805c894e06a37c4a1678-scaled.jpeg" data-lightbox-caption="Πανό Αγάπης"><img src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_9418-cff7fdd53f14805c894e06a37c4a1678-scaled.jpeg" alt="Πανό Αγάπης" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Πανό Αγάπης</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_0357-c220e9c728ac90a27dce15125638858b.jpeg" data-lightbox-caption="Δέσποινα"><img src="https://okosmostoupari.gr/wp-content/uploads/2024/07/IMG_0357-c220e9c728ac90a27dce15125638858b.jpeg" alt="Δέσποινα" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Δέσποινα</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2023/06/lampades.jpg" data-lightbox-caption="Λαμπάδες – Δημιουργίες ειδικό Γυμνάσιο Λύκειο Αθηνών Ηλιούπολη"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/lampades.jpg" alt="Λαμπάδες – Δημιουργίες ειδικό Γυμνάσιο Λύκειο Αθηνών Ηλιούπολη" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Λαμπάδες – Δημιουργίες ειδικό Γυμνάσιο Λύκειο Αθηνών Ηλιούπολη</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2023/06/karabaki.jpg" data-lightbox-caption="Παναγιώτης"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/karabaki.jpg" alt="Παναγιώτης" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Παναγιώτης</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2023/06/paris.jpg" data-lightbox-caption="Πάρης"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/paris.jpg" alt="Πάρης" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Πάρης</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2023/06/ppontikaki.jpg" data-lightbox-caption="Κατερίνα"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/ppontikaki.jpg" alt="Κατερίνα" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Κατερίνα</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2023/06/auto.jpg" data-lightbox-caption="Σωτήρης"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/auto.jpg" alt="Σωτήρης" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Σωτήρης</h3>
+        </div>
+      </article>
+      <article class="activity-card">
+        <button type="button" class="activity-card__media activity-card__media--clickable" data-lightbox-src="https://okosmostoupari.gr/wp-content/uploads/2023/06/spiti.jpg" data-lightbox-caption="Νίκος"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/spiti.jpg" alt="Νίκος" loading="lazy"></button>
+        <div class="activity-card__body">
+          <h3 class="activity-card__title">Νίκος</h3>
+        </div>
+      </article>
         </div>
 
-        <p class="directory-results" id="directoryEmpty" hidden aria-live="polite">Δεν βρέθηκαν κατηγορίες που να ταιριάζουν με την αναζήτησή σας.</p>
-
-        <div class="directory-viewall reveal">
-          <a href="#" class="btn btn--secondary">Όλοι οι επαγγελματίες <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
       </div>
     </section>
 
@@ -322,7 +308,7 @@
         <nav class="footer-col" aria-label="Πλοήγηση υποσέλιδου">
           <h3>Πλοήγηση</h3>
           <ul>
-            <li><a href="directory.html" aria-current="page">Αναζήτηση Υπηρεσιών</a></li>
+            <li><a href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
             <li><a href="news.html">Νέα</a></li>
             <li><a href="articles.html">Άρθρα</a></li>
             <li><a href="community.html">Η Κοινότητά Μας</a></li>
@@ -424,6 +410,18 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.6"/><path d="M5 8.5c3.2 1 9.8 1 14 0"/><path d="M12 10v5"/><path d="M8 21l4-6 4 6"/><path d="M9 13l-3 2M15 13l3 2"/></svg>
       <span class="a11y-toggle__label">Προσβασιμότητα</span>
     </button>
+  </div>
+
+  <!-- ============================================================
+       LIGHTBOX — shared photo preview, opened by any
+       [data-lightbox-src] trigger on this page
+       ============================================================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Προεπισκόπηση φωτογραφίας" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Κλείσιμο προεπισκόπησης">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <p class="lightbox__caption" id="lightboxCaption"></p>
   </div>
 
   <script src="assets/js/main.js?v=24" defer></script>
