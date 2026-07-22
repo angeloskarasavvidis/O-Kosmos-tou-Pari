@@ -644,6 +644,7 @@
   }
 
   initWpFeed("homeNewsGrid", null, WP_CATEGORY_NEWS, true, "Νέα", false, 3);
+  initWpFeed("homeDraseisGrid", null, WP_CATEGORY_DRASEIS, true, "Δράση", false, 3);
   initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
   initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
   initWpFeed("communityDrasseisGrid", "communityDrasseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true, 3);
