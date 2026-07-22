@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="">
-  <link rel="stylesheet" href="assets/css/styles.css?v=22">
+  <link rel="stylesheet" href="assets/css/styles.css?v=23">
   <script src="assets/js/a11y-init.js?v=2"></script>
 </head>
 <body>
@@ -47,7 +47,17 @@
           </li>
           <li><a class="primary-nav__link" href="news.html">Νέα</a></li>
           <li><a class="primary-nav__link" href="articles.html">Άρθρα</a></li>
-          <li><a class="primary-nav__link" href="draseis.html">Δράσεις</a></li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="draseisDropdownTrigger" aria-expanded="false" aria-controls="draseisDropdown">
+              Δράσεις
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="draseisDropdown">
+        <a class="nav-dropdown__item" href="draseis.html">Οι Δράσεις μας</a>
+        <a class="nav-dropdown__item" href="draseis-triton.html">Δράσεις τρίτων</a>
+        <a class="nav-dropdown__item" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a>
+            </div>
+          </li>
           <li class="primary-nav__item--dropdown">
             <button class="primary-nav__link primary-nav__trigger" type="button" id="infoDropdownTrigger" aria-expanded="false" aria-controls="infoDropdown">
               Πληροφορίες
@@ -102,7 +112,9 @@
       <li><a class="nav-sheet__link" href="directory.html">Υπηρεσίες</a></li>
       <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
       <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
-      <li><a class="nav-sheet__link" href="draseis.html">Δράσεις</a></li>
+      <li><a class="nav-sheet__link" href="draseis.html">Οι Δράσεις μας</a></li>
+      <li><a class="nav-sheet__link" href="draseis-triton.html">Δράσεις τρίτων</a></li>
+      <li><a class="nav-sheet__link" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a></li>
       <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
       <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
       <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
@@ -279,6 +291,6 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="" defer></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr" crossorigin="" defer></script>
-  <script src="assets/js/main.js?v=20" defer></script>
+  <script src="assets/js/main.js?v=21" defer></script>
 </body>
 </html>

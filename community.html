@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=22">
+  <link rel="stylesheet" href="assets/css/styles.css?v=23">
   <script src="assets/js/a11y-init.js?v=2"></script>
 </head>
 <body>
@@ -44,7 +44,17 @@
           </li>
           <li><a class="primary-nav__link" href="news.html">Νέα</a></li>
           <li><a class="primary-nav__link" href="articles.html">Άρθρα</a></li>
-          <li><a class="primary-nav__link" href="draseis.html">Δράσεις</a></li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="draseisDropdownTrigger" aria-expanded="false" aria-controls="draseisDropdown">
+              Δράσεις
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="draseisDropdown">
+        <a class="nav-dropdown__item" href="draseis.html">Οι Δράσεις μας</a>
+        <a class="nav-dropdown__item" href="draseis-triton.html">Δράσεις τρίτων</a>
+        <a class="nav-dropdown__item" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a>
+            </div>
+          </li>
           <li class="primary-nav__item--dropdown">
             <button class="primary-nav__link primary-nav__trigger" type="button" id="infoDropdownTrigger" aria-expanded="false" aria-controls="infoDropdown">
               Πληροφορίες
@@ -99,7 +109,9 @@
       <li><a class="nav-sheet__link" href="directory.html">Υπηρεσίες</a></li>
       <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
       <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
-      <li><a class="nav-sheet__link" href="draseis.html">Δράσεις</a></li>
+      <li><a class="nav-sheet__link" href="draseis.html">Οι Δράσεις μας</a></li>
+      <li><a class="nav-sheet__link" href="draseis-triton.html">Δράσεις τρίτων</a></li>
+      <li><a class="nav-sheet__link" href="katachorisi-drasis.html">Καταχώρηση Δράσης</a></li>
       <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
       <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
       <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
@@ -304,6 +316,6 @@
     </button>
   </div>
 
-  <script src="assets/js/main.js?v=20" defer></script>
+  <script src="assets/js/main.js?v=21" defer></script>
 </body>
 </html>

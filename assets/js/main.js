@@ -1025,33 +1025,24 @@
   initProfessionalProfilePage();
 
   /* ----------------------------------------------------------
-     Αγγελίες (community.html preview + aggelies.html full list +
-     aggelia.html single viewer) — the "diafimisi" post type's
-     wp/v2 REST content is real, but the fields that actually
-     matter for an ad (contact name, role, location, phone, email,
-     expiry date) are template-only, same gap as professional
-     profiles. Only 14 posts exist under the "aggelia" adtype term
-     though, so a single small static snapshot (assets/data/
-     aggelies.json) covers grid cards and the detail view alike —
-     no per-id files or index needed at this size.
+     "diafimisi" post-type features (community.html preview +
+     aggelies.html/draseis-triton.html full lists + aggelia.html/
+     drasi-triti.html single viewers) — the CPT's wp/v2 REST
+     content is real, but the fields that actually matter (contact
+     name, role, location, phone, email, expiry date) are
+     template-only, same gap as professional profiles. Both the
+     "aggelia" and "drasi" adtype terms are small (14 and 33 posts)
+     though, so a single static snapshot per term covers grid cards
+     and the detail view alike — no per-id files or index needed at
+     this size. createDiafimisiFeature() factors out the grid +
+     detail-page logic shared by both terms; only the data file,
+     detail-page filename, element ids and Greek copy differ.
      ---------------------------------------------------------- */
   var ICON_CALENDAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
   var ICON_PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
   var ICON_MEGAPHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l3 5h2l-2-5h5l6 4V6l-6 4H6a2 2 0 0 0-2 2z"/></svg>';
 
-  var aggeliesDataPromise = null;
-  function getAggeliesData() {
-    if (!aggeliesDataPromise) {
-      aggeliesDataPromise = fetch("assets/data/aggelies.json")
-        .then(function (res) {
-          if (!res.ok) throw new Error("aggelies-fetch-failed");
-          return res.json();
-        });
-    }
-    return aggeliesDataPromise;
-  }
-
-  function buildAggeliaCard(item) {
+  function buildDiafimisiCard(item, detailPage) {
     var card = document.createElement("article");
     card.className = "professional-card";
 
@@ -1094,7 +1085,7 @@
 
     var link = document.createElement("a");
     link.className = "professional-card__link";
-    link.href = "aggelia.html?slug=" + encodeURIComponent(item.slug);
+    link.href = detailPage + "?slug=" + encodeURIComponent(item.slug);
     link.appendChild(document.createTextNode("Προβολή "));
     var arrow = document.createElement("span");
     arrow.className = "arrow";
@@ -1108,158 +1099,209 @@
     return card;
   }
 
-  function initAggeliesGrid(gridId, pageSize, loadMoreId) {
-    var grid = document.getElementById(gridId);
-    if (!grid) return;
-    var loadMoreBtn = loadMoreId ? document.getElementById(loadMoreId) : null;
-    var shown = 0;
-    grid.innerHTML = '<p class="editorial-status" role="status">Φόρτωση αγγελιών…</p>';
-
-    function renderMore(items) {
-      var next = pageSize ? items.slice(shown, shown + pageSize) : items;
-      next.forEach(function (item) {
-        grid.appendChild(buildAggeliaCard(item));
-      });
-      shown += next.length;
-      if (loadMoreBtn) loadMoreBtn.hidden = shown >= items.length;
+  function createDiafimisiFeature(config) {
+    var dataPromise = null;
+    function getData() {
+      if (!dataPromise) {
+        dataPromise = fetch(config.dataUrl).then(function (res) {
+          if (!res.ok) throw new Error("diafimisi-fetch-failed");
+          return res.json();
+        });
+      }
+      return dataPromise;
     }
 
-    getAggeliesData()
-      .then(function (items) {
-        grid.innerHTML = "";
-        if (!items.length) {
-          grid.innerHTML = '<p class="editorial-status" role="status">Δεν υπάρχουν διαθέσιμες αγγελίες αυτή τη στιγμή.</p>';
-          return;
-        }
-        renderMore(items);
-        if (loadMoreBtn) {
-          loadMoreBtn.addEventListener("click", function () {
-            renderMore(items);
-          });
-        }
-      })
-      .catch(function () {
-        grid.innerHTML = "";
-        var status = document.createElement("p");
-        status.className = "editorial-status";
-        status.setAttribute("role", "status");
-        status.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση των αγγελιών αυτή τη στιγμή. Δείτε τις απευθείας στο "));
-        var siteLink = document.createElement("a");
-        siteLink.href = "https://okosmostoupari.gr";
-        siteLink.target = "_blank";
-        siteLink.rel = "noopener";
-        siteLink.textContent = "okosmostoupari.gr";
-        status.appendChild(siteLink);
-        status.appendChild(document.createTextNode("."));
-        grid.appendChild(status);
-        if (loadMoreBtn) loadMoreBtn.hidden = true;
-      });
-  }
-  initAggeliesGrid("communityAggeliesGrid", 3, "communityAggeliesLoadMore");
-  initAggeliesGrid("aggeliesGrid", null);
+    function initGrid(gridId, pageSize, loadMoreId) {
+      var grid = document.getElementById(gridId);
+      if (!grid) return;
+      var loadMoreBtn = loadMoreId ? document.getElementById(loadMoreId) : null;
+      var shown = 0;
+      grid.innerHTML = '<p class="editorial-status" role="status">' + config.text.loadingGrid + '</p>';
 
-  function initAggeliaPage() {
-    var body = document.getElementById("aggBody");
-    if (!body) return;
-    var titleEl = document.getElementById("aggTitle");
-    var metaEl = document.getElementById("aggMeta");
-    var sideEl = document.getElementById("aggSide");
-    var contactCard = document.getElementById("aggContactCard");
+      function renderMore(items) {
+        var next = pageSize ? items.slice(shown, shown + pageSize) : items;
+        next.forEach(function (item) {
+          grid.appendChild(buildDiafimisiCard(item, config.detailPage));
+        });
+        shown += next.length;
+        if (loadMoreBtn) loadMoreBtn.hidden = shown >= items.length;
+      }
 
-    var slug = new URLSearchParams(window.location.search).get("slug");
-    if (!slug) {
-      titleEl.textContent = "Δεν βρέθηκε αγγελία";
-      body.innerHTML = "";
-      var noSlugMsg = document.createElement("p");
-      noSlugMsg.className = "editorial-status";
-      noSlugMsg.textContent = "Δεν ορίστηκε αγγελία προς εμφάνιση.";
-      body.appendChild(noSlugMsg);
-      return;
+      getData()
+        .then(function (items) {
+          grid.innerHTML = "";
+          if (!items.length) {
+            grid.innerHTML = '<p class="editorial-status" role="status">' + config.text.emptyGrid + '</p>';
+            return;
+          }
+          renderMore(items);
+          if (loadMoreBtn) {
+            loadMoreBtn.addEventListener("click", function () {
+              renderMore(items);
+            });
+          }
+        })
+        .catch(function () {
+          grid.innerHTML = "";
+          var status = document.createElement("p");
+          status.className = "editorial-status";
+          status.setAttribute("role", "status");
+          status.appendChild(document.createTextNode(config.text.gridErrorPrefix));
+          var siteLink = document.createElement("a");
+          siteLink.href = "https://okosmostoupari.gr";
+          siteLink.target = "_blank";
+          siteLink.rel = "noopener";
+          siteLink.textContent = "okosmostoupari.gr";
+          status.appendChild(siteLink);
+          status.appendChild(document.createTextNode("."));
+          grid.appendChild(status);
+          if (loadMoreBtn) loadMoreBtn.hidden = true;
+        });
     }
 
-    getAggeliesData()
-      .then(function (items) {
-        var item = null;
-        for (var i = 0; i < items.length; i++) {
-          if (items[i].slug === slug) { item = items[i]; break; }
-        }
-        if (!item) throw new Error("aggelia-not-found");
+    function initDetailPage() {
+      var body = document.getElementById(config.ids.body);
+      if (!body) return;
+      var titleEl = document.getElementById(config.ids.title);
+      var metaEl = document.getElementById(config.ids.meta);
+      var sideEl = document.getElementById(config.ids.side);
+      var contactCard = document.getElementById(config.ids.contactCard);
 
-        document.title = item.title + " — Ο Κόσμος του Πάρη";
-        titleEl.textContent = item.title;
-        var metaParts = [];
-        if (item.expiry) metaParts.push("Ισχύει έως " + item.expiry);
-        if (item.location) metaParts.push(item.location);
-        metaEl.textContent = metaParts.join(" · ");
-
-        if (item.contentHtml) {
-          body.innerHTML = wpSanitizeContent(item.contentHtml);
-        } else {
-          body.innerHTML = "";
-          var noContent = document.createElement("p");
-          noContent.className = "editorial-status";
-          noContent.textContent = "Δείτε τα στοιχεία επικοινωνίας για περισσότερες πληροφορίες.";
-          body.appendChild(noContent);
-        }
-
-        var hasSide = item.role || item.expiry || item.contactName || item.phone || item.email;
-        if (hasSide) {
-          sideEl.hidden = false;
-
-          if (item.role || item.expiry) {
-            var adBlock = document.createElement("div");
-            adBlock.className = "professional-contact-card__section";
-            var adTitle = document.createElement("h3");
-            adTitle.textContent = "Στοιχεία Αγγελίας";
-            adBlock.appendChild(adTitle);
-            if (item.role) {
-              var roleP = document.createElement("p");
-              roleP.textContent = "Ιδιότητα: " + item.role;
-              adBlock.appendChild(roleP);
-            }
-            if (item.expiry) {
-              var expiryP = document.createElement("p");
-              expiryP.textContent = "Ισχύει έως: " + item.expiry;
-              adBlock.appendChild(expiryP);
-            }
-            contactCard.appendChild(adBlock);
-          }
-
-          if (item.contactName || item.phone || item.email) {
-            var contactBlock = document.createElement("div");
-            contactBlock.className = "professional-contact-card__section";
-            var contactTitle = document.createElement("h3");
-            contactTitle.textContent = "Στοιχεία Επικοινωνίας";
-            contactBlock.appendChild(contactTitle);
-            if (item.contactName) {
-              var nameP = document.createElement("p");
-              nameP.textContent = item.contactName;
-              contactBlock.appendChild(nameP);
-            }
-            if (item.phone) contactBlock.appendChild(buildProfessionalContactRow(ICON_PHONE, "tel:" + item.phone.replace(/\s+/g, ""), item.phone, false));
-            if (item.email) contactBlock.appendChild(buildProfessionalContactRow(ICON_MAIL, "mailto:" + item.email, item.email, false));
-            contactCard.appendChild(contactBlock);
-          }
-        }
-      })
-      .catch(function () {
-        titleEl.textContent = "Δεν ήταν δυνατή η φόρτωση της αγγελίας";
-        metaEl.textContent = "";
+      var slug = new URLSearchParams(window.location.search).get("slug");
+      if (!slug) {
+        titleEl.textContent = config.text.notFoundTitle;
         body.innerHTML = "";
-        var errStatus = document.createElement("p");
-        errStatus.className = "editorial-status";
-        errStatus.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση αυτής της αγγελίας αυτή τη στιγμή. Δείτε την απευθείας στο "));
-        var siteLink = document.createElement("a");
-        siteLink.href = "https://okosmostoupari.gr";
-        siteLink.target = "_blank";
-        siteLink.rel = "noopener";
-        siteLink.textContent = "okosmostoupari.gr";
-        errStatus.appendChild(siteLink);
-        errStatus.appendChild(document.createTextNode("."));
-        body.appendChild(errStatus);
-      });
+        var noSlugMsg = document.createElement("p");
+        noSlugMsg.className = "editorial-status";
+        noSlugMsg.textContent = config.text.notSetMsg;
+        body.appendChild(noSlugMsg);
+        return;
+      }
+
+      getData()
+        .then(function (items) {
+          var item = null;
+          for (var i = 0; i < items.length; i++) {
+            if (items[i].slug === slug) { item = items[i]; break; }
+          }
+          if (!item) throw new Error("diafimisi-item-not-found");
+
+          document.title = item.title + " — Ο Κόσμος του Πάρη";
+          titleEl.textContent = item.title;
+          var metaParts = [];
+          if (item.expiry) metaParts.push("Ισχύει έως " + item.expiry);
+          if (item.location) metaParts.push(item.location);
+          metaEl.textContent = metaParts.join(" · ");
+
+          if (item.contentHtml) {
+            body.innerHTML = wpSanitizeContent(item.contentHtml);
+          } else {
+            body.innerHTML = "";
+            var noContent = document.createElement("p");
+            noContent.className = "editorial-status";
+            noContent.textContent = config.text.noContentMsg;
+            body.appendChild(noContent);
+          }
+
+          var hasSide = item.role || item.expiry || item.contactName || item.phone || item.email;
+          if (hasSide) {
+            sideEl.hidden = false;
+
+            if (item.role || item.expiry) {
+              var adBlock = document.createElement("div");
+              adBlock.className = "professional-contact-card__section";
+              var adTitle = document.createElement("h3");
+              adTitle.textContent = config.text.detailsSectionTitle;
+              adBlock.appendChild(adTitle);
+              if (item.role) {
+                var roleP = document.createElement("p");
+                roleP.textContent = "Ιδιότητα: " + item.role;
+                adBlock.appendChild(roleP);
+              }
+              if (item.expiry) {
+                var expiryP = document.createElement("p");
+                expiryP.textContent = "Ισχύει έως: " + item.expiry;
+                adBlock.appendChild(expiryP);
+              }
+              contactCard.appendChild(adBlock);
+            }
+
+            if (item.contactName || item.phone || item.email) {
+              var contactBlock = document.createElement("div");
+              contactBlock.className = "professional-contact-card__section";
+              var contactTitle = document.createElement("h3");
+              contactTitle.textContent = "Στοιχεία Επικοινωνίας";
+              contactBlock.appendChild(contactTitle);
+              if (item.contactName) {
+                var nameP = document.createElement("p");
+                nameP.textContent = item.contactName;
+                contactBlock.appendChild(nameP);
+              }
+              if (item.phone) contactBlock.appendChild(buildProfessionalContactRow(ICON_PHONE, "tel:" + item.phone.replace(/\s+/g, ""), item.phone, false));
+              if (item.email) contactBlock.appendChild(buildProfessionalContactRow(ICON_MAIL, "mailto:" + item.email, item.email, false));
+              contactCard.appendChild(contactBlock);
+            }
+          }
+        })
+        .catch(function () {
+          titleEl.textContent = config.text.detailErrorTitle;
+          metaEl.textContent = "";
+          body.innerHTML = "";
+          var errStatus = document.createElement("p");
+          errStatus.className = "editorial-status";
+          errStatus.appendChild(document.createTextNode(config.text.detailErrorPrefix));
+          var siteLink = document.createElement("a");
+          siteLink.href = "https://okosmostoupari.gr";
+          siteLink.target = "_blank";
+          siteLink.rel = "noopener";
+          siteLink.textContent = "okosmostoupari.gr";
+          errStatus.appendChild(siteLink);
+          errStatus.appendChild(document.createTextNode("."));
+          body.appendChild(errStatus);
+        });
+    }
+
+    return { getData: getData, initGrid: initGrid, initDetailPage: initDetailPage };
   }
-  initAggeliaPage();
+
+  var aggeliesFeature = createDiafimisiFeature({
+    dataUrl: "assets/data/aggelies.json",
+    detailPage: "aggelia.html",
+    ids: { title: "aggTitle", meta: "aggMeta", body: "aggBody", side: "aggSide", contactCard: "aggContactCard" },
+    text: {
+      loadingGrid: "Φόρτωση αγγελιών…",
+      emptyGrid: "Δεν υπάρχουν διαθέσιμες αγγελίες αυτή τη στιγμή.",
+      gridErrorPrefix: "Δεν ήταν δυνατή η φόρτωση των αγγελιών αυτή τη στιγμή. Δείτε τις απευθείας στο ",
+      notFoundTitle: "Δεν βρέθηκε αγγελία",
+      notSetMsg: "Δεν ορίστηκε αγγελία προς εμφάνιση.",
+      noContentMsg: "Δείτε τα στοιχεία επικοινωνίας για περισσότερες πληροφορίες.",
+      detailsSectionTitle: "Στοιχεία Αγγελίας",
+      detailErrorTitle: "Δεν ήταν δυνατή η φόρτωση της αγγελίας",
+      detailErrorPrefix: "Δεν ήταν δυνατή η φόρτωση αυτής της αγγελίας αυτή τη στιγμή. Δείτε την απευθείας στο "
+    }
+  });
+  aggeliesFeature.initGrid("communityAggeliesGrid", 3, "communityAggeliesLoadMore");
+  aggeliesFeature.initGrid("aggeliesGrid", null);
+  aggeliesFeature.initDetailPage();
+
+  var draseisTritonFeature = createDiafimisiFeature({
+    dataUrl: "assets/data/draseis-triton.json",
+    detailPage: "drasi-triti.html",
+    ids: { title: "drtTitle", meta: "drtMeta", body: "drtBody", side: "drtSide", contactCard: "drtContactCard" },
+    text: {
+      loadingGrid: "Φόρτωση δράσεων…",
+      emptyGrid: "Δεν υπάρχουν διαθέσιμες δράσεις αυτή τη στιγμή.",
+      gridErrorPrefix: "Δεν ήταν δυνατή η φόρτωση των δράσεων αυτή τη στιγμή. Δείτε τις απευθείας στο ",
+      notFoundTitle: "Δεν βρέθηκε δράση",
+      notSetMsg: "Δεν ορίστηκε δράση προς εμφάνιση.",
+      noContentMsg: "Δείτε τα στοιχεία επικοινωνίας για περισσότερες πληροφορίες.",
+      detailsSectionTitle: "Στοιχεία Δράσης",
+      detailErrorTitle: "Δεν ήταν δυνατή η φόρτωση της δράσης",
+      detailErrorPrefix: "Δεν ήταν δυνατή η φόρτωση αυτής της δράσης αυτή τη στιγμή. Δείτε την απευθείας στο "
+    }
+  });
+  draseisTritonFeature.initGrid("draseisTritonGrid", null);
+  draseisTritonFeature.initDetailPage();
 
   /* ----------------------------------------------------------
      Institution directory search (seminaria.html) — plain

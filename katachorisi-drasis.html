@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Καταχώρηση Δράσης — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Καταχωρήστε μια δράση ή μια αγγελία στο δίκτυο του Κόσμου του Πάρη.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=23">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/css/fields/layout.min.css?ver=1.10.0.5">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/css/fields/layout-screen-big.min.css?ver=1.10.0.5">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/css/fields/layout-screen-small.min.css?ver=1.10.0.5">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/css/dropzone.min.css?ver=5.9.3">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms-save-resume/assets/css/wpforms-save-resume.min.css?ver=1.13.0">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/flatpickr/flatpickr.min.css?ver=4.6.9">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/jquery.timepicker/jquery.timepicker.min.css?ver=1.11.5">
+  <link rel="stylesheet" href="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/css/frontend/classic/wpforms-full.min.css?ver=1.10.0.5">
+  <style>
+    /* Matches the live site's own WPForms button override on
+       okosmostoupari.gr, kept for visual parity with the real form. */
+    .wpforms-form input[type=submit],
+    .wpforms-form button[type=submit] {
+      padding: 5px !important;
+      width: 100% !important;
+      font-size: 1.2em !important;
+      background-color: #32a9f5 !important;
+      color: #fff !important;
+    }
+    .wpforms-form input[type=submit]:hover,
+    .wpforms-form input[type=submit]:active,
+    .wpforms-form button[type=submit]:hover,
+    .wpforms-form button[type=submit]:active {
+      background-color: #087ec8 !important;
+    }
+    .wpforms-form input[type=submit]:focus,
+    .wpforms-form button[type=submit]:focus {
+      background-color: #32a9f5 !important;
+    }
+    .wpforms-form button:after {
+      content: none !important;
+    }
+    #drasiSubmitForm { margin-top: 1.5rem; }
+  </style>
+  <script src="assets/js/a11y-init.js?v=2"></script>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Πλοήγηση στο περιεχόμενο</a>
+
+  <header class="site-header">
+    <div class="container site-header__bar">
+      <a href="index.html" class="brand">
+        <span class="brand__logo-chip">
+          <img src="logo.png" alt="Ο Κόσμος του Πάρη" width="119" height="84" class="brand__logo-img">
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Κύρια πλοήγηση">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="servicesDropdownTrigger" aria-expanded="false" aria-controls="servicesDropdown">
+              Υπηρεσίες
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="servicesDropdown">
+        <a class="nav-dropdown__item" href="category-doctors.html">Εξειδικευμένοι Ιατροί</a>
+        <a class="nav-dropdown__item" href="category-filoxenia.html">Χώροι Φιλοξενίας Παιδιών &amp; Ενηλίκων</a>
+        <a class="nav-dropdown__item" href="category-therapeutes.html">Θεραπευτές – Σύμβουλοι</a>
+        <a class="nav-dropdown__item" href="category-drastiriotites.html">Δραστηριότητες &amp; Κοινωνικοποίηση</a>
+        <a class="nav-dropdown__item" href="category-ekpaideutes.html">Εκπαιδευτές – Φύλαξη</a>
+        <a class="nav-dropdown__item" href="category-kentra.html">Εξειδικευμένα Κέντρα Θεραπειών</a>
+        <a class="nav-dropdown__item" href="category-syllogoi.html">Σύλλογοι &amp; Σωματεία</a>
+        <a class="nav-dropdown__item" href="category-schools.html">Ειδικά Σχολεία – ΚΕΔΑΣΥ</a>
+        <a class="nav-dropdown__viewall" href="directory.html">Όλοι οι επαγγελματίες <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </li>
+          <li><a class="primary-nav__link" href="news.html">Νέα</a></li>
+          <li><a class="primary-nav__link" href="articles.html">Άρθρα</a></li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="draseisDropdownTrigger" aria-expanded="false" aria-controls="draseisDropdown">
+              Δράσεις
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="draseisDropdown">
+        <a class="nav-dropdown__item" href="draseis.html">Οι Δράσεις μας</a>
+        <a class="nav-dropdown__item" href="draseis-triton.html">Δράσεις τρίτων</a>
+        <a class="nav-dropdown__item" href="katachorisi-drasis.html" aria-current="page">Καταχώρηση Δράσης</a>
+            </div>
+          </li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="infoDropdownTrigger" aria-expanded="false" aria-controls="infoDropdown">
+              Πληροφορίες
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="infoDropdown">
+        <a class="nav-dropdown__item" href="books.html">Βιβλία</a>
+        <a class="nav-dropdown__item" href="seminaria.html">Σεμινάρια</a>
+        <a class="nav-dropdown__item" href="videos.html">Videos</a>
+        <a class="nav-dropdown__item" href="diakopes.html">Διακοπές με αναπηρία</a>
+        <a class="nav-dropdown__item" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a>
+        <a class="nav-dropdown__item" href="xrisimes-piges.html">Χρήσιμες πηγές</a>
+        <a class="nav-dropdown__item" href="eksoplismos.html">Εξοπλισμός</a>
+        <a class="nav-dropdown__item" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a>
+            </div>
+          </li>
+          <li class="primary-nav__item--dropdown">
+            <button class="primary-nav__link primary-nav__trigger" type="button" id="communityDropdownTrigger" aria-expanded="false" aria-controls="communityDropdown">
+              Η Κοινότητά μας
+              <svg class="primary-nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="nav-dropdown" id="communityDropdown">
+        <a class="nav-dropdown__item" href="#">Διάδραση</a>
+        <a class="nav-dropdown__item" href="ask-expert.html">Ρώτα τον Ειδικό</a>
+        <a class="nav-dropdown__item" href="aggelies.html">Αγγελίες</a>
+        <a class="nav-dropdown__item" href="about.html">Ποιοι Είμαστε</a>
+        <a class="nav-dropdown__item" href="supporters.html">Πιστεύουν σε εμάς</a>
+        <a class="nav-dropdown__item" href="professional-signup.html">Εγγραφή στον Κατάλογο</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn--primary header-support-btn" href="support.html">Στηρίζω τον κόσμο του Πάρη</a>
+        <button class="icon-btn hamburger" id="menuToggle" type="button" aria-expanded="false" aria-controls="navSheet" aria-label="Άνοιγμα μενού πλοήγησης">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile navigation sheet -->
+  <div class="nav-sheet" id="navSheet" role="dialog" aria-modal="true" aria-label="Μενού πλοήγησης">
+    <div class="nav-sheet__top">
+      <span class="brand__name">Μενού</span>
+      <button class="icon-btn" id="navSheetClose" type="button" aria-label="Κλείσιμο μενού">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+    </div>
+    <ul class="nav-sheet__list">
+      <li><a class="nav-sheet__link" href="directory.html">Υπηρεσίες</a></li>
+      <li><a class="nav-sheet__link" href="news.html">Νέα</a></li>
+      <li><a class="nav-sheet__link" href="articles.html">Άρθρα</a></li>
+      <li><a class="nav-sheet__link" href="draseis.html">Οι Δράσεις μας</a></li>
+      <li><a class="nav-sheet__link" href="draseis-triton.html">Δράσεις τρίτων</a></li>
+      <li><a class="nav-sheet__link" href="katachorisi-drasis.html" aria-current="page">Καταχώρηση Δράσης</a></li>
+      <li><a class="nav-sheet__link" href="books.html">Βιβλία</a></li>
+      <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
+      <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
+      <li><a class="nav-sheet__link" href="diakopes.html">Διακοπές με αναπηρία</a></li>
+      <li><a class="nav-sheet__link" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a></li>
+      <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
+      <li><a class="nav-sheet__link" href="eksoplismos.html">Εξοπλισμός</a></li>
+      <li><a class="nav-sheet__link" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a></li>
+      <li><a class="nav-sheet__link" href="#">Διάδραση</a></li>
+      <li><a class="nav-sheet__link" href="ask-expert.html">Ρώτα τον Ειδικό</a></li>
+      <li><a class="nav-sheet__link" href="aggelies.html">Αγγελίες</a></li>
+      <li><a class="nav-sheet__link" href="about.html">Ποιοι Είμαστε</a></li>
+      <li><a class="nav-sheet__link" href="supporters.html">Πιστεύουν σε εμάς</a></li>
+      <li><a class="nav-sheet__link" href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
+    </ul>
+    <div class="nav-sheet__footer">
+      <a class="btn btn--primary" href="directory.html">Χρειάζομαι Υποστήριξη</a>
+      <a class="btn btn--secondary" href="professional-signup.html">Εγγραφή Επαγγελματία</a>
+      <a class="btn btn--primary" href="support.html">Στηρίζω τον κόσμο του Πάρη</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Δράσεις</span>
+        <h1>Καταχώρηση Δράσης</h1>
+        <p>Η σωστή ευκαιρία περιμένει πάντα τη σωστή αγγελία. Είτε είστε φορέας που θέλει να ανακοινώσει μια δράση, είτε επαγγελματίας ή γονέας που αναζητά ή προσφέρει συνεργασία, καταχωρήστε την εδώ — δημοσιεύεται απευθείας στο δίκτυο του Κόσμου του Πάρη.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ΦΟΡΜΑ ΚΑΤΑΧΩΡΗΣΗΣ (live WPForms, form id 4160)
+         ============================================================ -->
+    <section class="section" id="katachorisi-drasis">
+      <div class="container container--article" id="drasiSubmitForm">
+
+        <div class="wpforms-container wpforms-container-full wpforms-container-save-resume" id="wpforms-4160">
+<form id="wpforms-form-4160" class="wpforms-validate wpforms-form wpforms-ajax-form" data-formid="4160" method="post" enctype="multipart/form-data" action="/%ce%b1%ce%b3%ce%b3%ce%b5%ce%bb%ce%af%ce%b5%cf%82-%ce%b4%cf%81%ce%ac%cf%83%ce%b5%ce%b9%cf%82-%cf%85%cf%80%ce%bf%ce%b2%ce%bf%ce%bb%ce%ae/?wpforms_form_id=4160" data-token="41381601f4267eec4fb330ca95ba0255" data-token-time="1784708866"><noscript class="wpforms-error-noscript">Please enable JavaScript in your browser to complete this form.</noscript><div class="wpforms-field-container">		<div id="wpforms-4160-field_1-container"
+			class="wpforms-field wpforms-field-text"
+			data-field-type="text"
+			data-field-id="1"
+			>
+			<label class="wpforms-field-label" for="wpforms-4160-field_1" >της Το τον</label>
+			<input type="text" id="wpforms-4160-field_1" class="wpforms-field-medium" name="wpforms[fields][1]" >
+		</div>
+		<div id="wpforms-4160-field_4-container" class="wpforms-field wpforms-field-layout" data-field-id="4"><h3 class="wpforms-field-label">
+				Προσωπικά στοιχεία
+			</h3><div class="wpforms-field-layout-columns wpforms-field-layout-preset-50-50"><div class="wpforms-layout-column wpforms-layout-column-50" ><div id="wpforms-4160-field_19-container" class="wpforms-field wpforms-field-text" data-field-id="19"><label class="wpforms-field-label" for="wpforms-4160-field_19">Ονοματεπώνυμο <span class="wpforms-required-label">*</span></label><input type="text" id="wpforms-4160-field_19" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][19]" required></div><div id="wpforms-4160-field_21-container" class="wpforms-field wpforms-field-radio" data-field-id="21"><label class="wpforms-field-label">Ιδιότητα <span class="wpforms-required-label">*</span></label><ul id="wpforms-4160-field_21" class="wpforms-field-required"><li class="choice-1 depth-1"><input type="radio" id="wpforms-4160-field_21_1" name="wpforms[fields][21]" value="Επαγγελματίας" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_21_1">Επαγγελματίας</label></li><li class="choice-2 depth-1"><input type="radio" id="wpforms-4160-field_21_2" name="wpforms[fields][21]" value="Ιδιώτης" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_21_2">Ιδιώτης</label></li><li class="choice-3 depth-1"><input type="radio" id="wpforms-4160-field_21_3" name="wpforms[fields][21]" value="Γονέας" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_21_3">Γονέας</label></li></ul></div></div><div class="wpforms-layout-column wpforms-layout-column-50" ><div id="wpforms-4160-field_20-container" class="wpforms-field wpforms-field-text" data-field-id="20"><label class="wpforms-field-label" for="wpforms-4160-field_20">Περιοχή <span class="wpforms-required-label">*</span></label><input type="text" id="wpforms-4160-field_20" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][20]" required></div></div></div></div><div id="wpforms-4160-field_14-container" class="wpforms-field wpforms-field-layout" data-field-id="14"><div class="wpforms-field-layout-columns wpforms-field-layout-preset-50-50"><div class="wpforms-layout-column wpforms-layout-column-50" ><div id="wpforms-4160-field_15-container" class="wpforms-field wpforms-field-email" data-field-id="15"><label class="wpforms-field-label" for="wpforms-4160-field_15">Email <span class="wpforms-required-label">*</span></label><input type="email" id="wpforms-4160-field_15" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][15]" spellcheck="false" required></div><div id="wpforms-4160-field_17-container" class="wpforms-field wpforms-field-phone" data-field-id="17"><label class="wpforms-field-label" for="wpforms-4160-field_17">Τηλέφωνο Επικοινωνίας <span class="wpforms-required-label">*</span></label><input type="tel" id="wpforms-4160-field_17" class="wpforms-field-medium wpforms-field-required" data-rule-int-phone-field="true" name="wpforms[fields][17]" aria-label="Τηλέφωνο Επικοινωνίας" required></div></div><div class="wpforms-layout-column wpforms-layout-column-50" ><div id="wpforms-4160-field_16-container" class="wpforms-field wpforms-field-radio" data-field-id="16"><label class="wpforms-field-label">Θέλω επικοινωνία με email <span class="wpforms-required-label">*</span></label><ul id="wpforms-4160-field_16" class="wpforms-field-required"><li class="choice-1 depth-1"><input type="radio" id="wpforms-4160-field_16_1" name="wpforms[fields][16]" value="Ναι" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_16_1">Ναι</label></li><li class="choice-2 depth-1"><input type="radio" id="wpforms-4160-field_16_2" name="wpforms[fields][16]" value="Όχι" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_16_2">Όχι</label></li></ul></div><div id="wpforms-4160-field_18-container" class="wpforms-field wpforms-field-radio" data-field-id="18"><label class="wpforms-field-label">Θέλω επικοινωνία με τηλέφωνο <span class="wpforms-required-label">*</span></label><ul id="wpforms-4160-field_18" class="wpforms-field-required"><li class="choice-1 depth-1"><input type="radio" id="wpforms-4160-field_18_1" name="wpforms[fields][18]" value="Ναι" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_18_1">Ναι</label></li><li class="choice-2 depth-1"><input type="radio" id="wpforms-4160-field_18_2" name="wpforms[fields][18]" value="Όχι" required ><label class="wpforms-field-label-inline" for="wpforms-4160-field_18_2">Όχι</label></li></ul></div></div></div></div><div id="wpforms-4160-field_9-container" class="wpforms-field wpforms-field-layout" data-field-id="9"><h3 class="wpforms-field-label">
+				Τα στοιχεία της αγγελίας
+			</h3><div class="wpforms-field-layout-columns wpforms-field-layout-preset-50-50"><div class="wpforms-layout-column wpforms-layout-column-50" ><div id="wpforms-4160-field_24-container" class="wpforms-field wpforms-field-text" data-field-id="24"><label class="wpforms-field-label" for="wpforms-4160-field_24">Τίτλος Αγγελίας <span class="wpforms-required-label">*</span></label><input type="text" id="wpforms-4160-field_24" class="wpforms-field-medium wpforms-field-required" name="wpforms[fields][24]" required></div><div id="wpforms-4160-field_30-container" class="wpforms-field wpforms-field-radio wpforms-list-inline wpforms-conditional-trigger" data-field-id="30"><label class="wpforms-field-label">Επιλέξτε τον τύπο της δημοσίευσης <span class="wpforms-required-label">*</span></label><ul id="wpforms-4160-field_30" class="wpforms-field-required wpforms-icon-choices wpforms-icon-choices-default wpforms-icon-choices-large" style="--wpforms-icon-choices-color: #0399ed;"><li class="choice-1 depth-1 wpforms-icon-choices-item"><label class="wpforms-field-label-inline" for="wpforms-4160-field_30_1">
+				<span class="wpforms-icon-choices-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="80" height="64" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M480 32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9L381.7 53c-48 48-113.1 75-181 75H192 160 64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64l0 128c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V352l8.7 0c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7V240 371.3C357.2 317.8 280.5 288 200.7 288H192V192h8.7c79.8 0 156.5-29.8 215.3-83.3z"/></svg>
+					<span class="wpforms-icon-choices-icon-bg"></span>
+				</span>
+				<input type="radio" id="wpforms-4160-field_30_1" class="wpforms-screen-reader-element" name="wpforms[fields][30]" value="Δράση" required >
+				<span class="wpforms-icon-choices-label">Δράση</span>
+			</label></li><li class="choice-2 depth-1 wpforms-icon-choices-item"><label class="wpforms-field-label-inline" for="wpforms-4160-field_30_2">
+				<span class="wpforms-icon-choices-icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="80" height="64" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM229.5 173.3l72 144c5.9 11.9 1.1 26.3-10.7 32.2s-26.3 1.1-32.2-10.7L253.2 328H162.8l-5.4 10.7c-5.9 11.9-20.3 16.7-32.2 10.7s-16.7-20.3-10.7-32.2l72-144c4.1-8.1 12.4-13.3 21.5-13.3s17.4 5.1 21.5 13.3zM208 237.7L186.8 280h42.3L208 237.7zM392 256a24 24 0 1 0 0 48 24 24 0 1 0 0-48zm24-43.9V184c0-13.3 10.7-24 24-24s24 10.7 24 24v96 48c0 13.3-10.7 24-24 24c-6.6 0-12.6-2.7-17-7c-9.4 4.5-19.9 7-31 7c-39.8 0-72-32.2-72-72s32.2-72 72-72c8.4 0 16.5 1.4 24 4.1z"/></svg>
+					<span class="wpforms-icon-choices-icon-bg"></span>
+				</span>
+				<input type="radio" id="wpforms-4160-field_30_2" class="wpforms-screen-reader-element" name="wpforms[fields][30]" value="Αγγελία" required >
+				<span class="wpforms-icon-choices-label">Αγγελία</span>
+			</label></li></ul></div></div><div class="wpforms-layout-column wpforms-layout-column-50" ><div id="wpforms-4160-field_6-container" class="wpforms-field wpforms-field-date-time" data-field-id="6"><label class="wpforms-field-label" for="wpforms-4160-field_6">Ισχύει έως: <span class="wpforms-required-label">*</span></label><div class="wpforms-datepicker-wrap"><input type="text" id="wpforms-4160-field_6" class="wpforms-field-date-time-date wpforms-datepicker wpforms-field-required wpforms-field-medium" data-date-format="F j, Y" data-disable-past-dates="1" data-disable-todays-date="1" data-input="true" name="wpforms[fields][6][date]" required><a title="Clear Date" data-clear role="button" tabindex="0" class="wpforms-datepicker-clear" aria-label="Clear Date" style="display:none;"></a></div></div><div id="wpforms-4160-field_32-container" class="wpforms-field wpforms-field-file-upload wpforms-conditional-field wpforms-conditional-show" data-field-id="32" style="display:none;"><label class="wpforms-field-label" for="wpforms-4160-field_32">Αφίσα - Εικαστικό Δράσης </label><div
+		class="wpforms-uploader "
+		data-field-id="32"
+		data-form-id="4160"
+		data-input-name="wpforms_4160_32"
+		data-extensions="jpg,jpeg,png,gif,webp"
+		data-max-size="10485760"
+		data-max-file-number="1"
+		data-post-max-size="16777216"
+		data-max-parallel-uploads="4"
+		data-parallel-uploads="true"
+		data-file-chunk-size="2097152">
+	<div class="dz-message">
+		<svg  viewBox="0 0 640 640" focusable="false" data-icon="inbox" width="50px" height="50px" fill="currentColor" aria-hidden="true">
+			<path d="M352 173.3L352 384C352 401.7 337.7 416 320 416C302.3 416 288 401.7 288 384L288 173.3L246.6 214.7C234.1 227.2 213.8 227.2 201.3 214.7C188.8 202.2 188.8 181.9 201.3 169.4L297.3 73.4C309.8 60.9 330.1 60.9 342.6 73.4L438.6 169.4C451.1 181.9 451.1 202.2 438.6 214.7C426.1 227.2 405.8 227.2 393.3 214.7L352 173.3zM320 464C364.2 464 400 428.2 400 384L480 384C515.3 384 544 412.7 544 448L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 448C96 412.7 124.7 384 160 384L240 384C240 428.2 275.8 464 320 464zM464 488C477.3 488 488 477.3 488 464C488 450.7 477.3 440 464 440C450.7 440 440 450.7 440 464C440 477.3 450.7 488 464 488z"/>
+		</svg>
+
+		<span class="modern-title">
+							Drag &amp; Drop Files, 				<span>Choose Files to Upload</span>
+					</span>
+
+			</div>
+</div>
+
+<input
+		type="text"
+		autocomplete="off"
+		readonly
+		class="dropzone-input"
+		style="position:absolute!important;clip:rect(0,0,0,0)!important;height:1px!important;width:1px!important;border:0!important;overflow:hidden!important;padding:0!important;margin:0!important;"
+		id="wpforms-4160-field_32"
+		name="wpforms_4160_32" 		value="">
+<div class="wpforms-field-description">Είκονες png, gif, jpg έως 10 Mbytes</div></div></div></div></div><div id="wpforms-4160-field_28-container" class="wpforms-field wpforms-field-textarea" data-field-id="28"><label class="wpforms-field-label" for="wpforms-4160-field_28">Το κείμενο της δημοσίευσής σας <span class="wpforms-required-label">*</span></label><textarea id="wpforms-4160-field_28" class="wpforms-field-large wpforms-field-required" name="wpforms[fields][28]" required></textarea></div><script>
+				( function() {
+					const style = document.createElement( 'style' );
+					style.appendChild( document.createTextNode( '#wpforms-4160-field_1-container { position: absolute !important; overflow: hidden !important; display: inline !important; height: 1px !important; width: 1px !important; z-index: -1000 !important; padding: 0 !important; } #wpforms-4160-field_1-container input { visibility: hidden; } #wpforms-conversational-form-page #wpforms-4160-field_1-container label { counter-increment: none; }' ) );
+					document.head.appendChild( style );
+					document.currentScript?.remove();
+				} )();
+			</script></div><!-- .wpforms-field-container --><div class="wpforms-submit-container" ><input type="hidden" name="wpforms[id]" value="4160"><input type="hidden" name="page_title" value="Αγγελίες &#8211; Δράσεις υποβολή"><input type="hidden" name="page_url" value="https://okosmostoupari.gr/αγγελίες-δράσεις-υποβολή/"><input type="hidden" name="url_referer" value=""><input type="hidden" name="page_id" value="4232"><input type="hidden" name="wpforms[post_id]" value="4232"><button type="submit" name="wpforms[submit]" id="wpforms-submit-4160" class="wpforms-submit" data-alt-text="Καταχώρηση..." data-submit-text="Ανάρτηση" aria-live="assertive" value="wpforms-submit">Ανάρτηση</button><img decoding="async" src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/images/submit-spin.svg" class="wpforms-submit-spinner" style="display: none;" width="26" height="26" alt="Loading"></div></form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <span class="brand__logo-chip">
+              <img src="logo.png" alt="Ο Κόσμος του Πάρη" width="91" height="64" class="brand__logo-img">
+            </span>
+          </a>
+          <p>Κόμβος στήριξης οικογενειών, νευροδιαφορετικών ατόμων και ειδικών επαγγελματιών σε όλη την Ελλάδα.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Πλοήγηση υποσέλιδου">
+          <h3>Πλοήγηση</h3>
+          <ul>
+            <li><a href="directory.html">Αναζήτηση Υπηρεσιών</a></li>
+            <li><a href="news.html">Νέα</a></li>
+            <li><a href="articles.html">Άρθρα</a></li>
+            <li><a href="community.html">Η Κοινότητά Μας</a></li>
+            <li><a href="about.html">Ποιοι Είμαστε</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h3>Για Επαγγελματίες</h3>
+          <ul>
+            <li><a href="professional-signup.html">Εγγραφή στον Κατάλογο</a></li>
+            <li><a href="#">Θέσεις Εργασίας</a></li>
+            <li><a href="support.html">Γίνετε Υποστηρικτής</a></li>
+            <li><a href="#">Εθελοντισμός</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Επικοινωνία</h3>
+          <ul>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              <a href="mailto:info@okosmostoupari.gr">info@okosmostoupari.gr</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L7.9 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.8 2.1z"/></svg>
+              <span>+30 6974386513 (10:00-13:00), +30 6948989770 (17:00–19:00)</span>
+            </li>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Αθήνα, Ελλάδα</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Ο Κόσμος του Πάρη. Με επιφύλαξη παντός δικαιώματος.</span>
+
+        <div class="theme-switch" role="radiogroup" aria-label="Θέμα εμφάνισης">
+          <button class="theme-switch__option" type="button" data-theme-choice="light" role="radio" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <span>Φωτεινό</span>
+          </button>
+          <button class="theme-switch__option" type="button" data-theme-choice="system" role="radio" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Σύστημα</span>
+          </button>
+          <button class="theme-switch__option" type="button" data-theme-choice="dark" role="radio" aria-checked="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+            <span>Σκοτεινό</span>
+          </button>
+        </div>
+
+        <span class="footer-bottom__proto">Πρωτότυπο σχεδιασμού — μη επίσημη σελίδα</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       ACCESSIBILITY WIDGET
+       ============================================================ -->
+  <div class="a11y-widget">
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-labelledby="a11yPanelTitle">
+      <div class="a11y-panel__head">
+        <h2 id="a11yPanelTitle">Ρυθμίσεις Προσβασιμότητας</h2>
+        <button class="a11y-close" id="a11yClose" type="button" aria-label="Κλείσιμο ρυθμίσεων προσβασιμότητας">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group__label" id="fontSizeLabel">Μέγεθος Κειμένου</span>
+        <div class="a11y-steps" role="group" aria-labelledby="fontSizeLabel">
+          <button class="a11y-step" type="button" data-font-step="1" aria-pressed="true">100%</button>
+          <button class="a11y-step" type="button" data-font-step="2" aria-pressed="false">125%</button>
+          <button class="a11y-step" type="button" data-font-step="3" aria-pressed="false">150%</button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <div class="a11y-switch-row">
+          <span id="contrastLabel">Υψηλή Αντίθεση (Ασπρόμαυρο)</span>
+          <button class="a11y-switch" id="contrastSwitch" type="button" role="switch" aria-checked="false" aria-labelledby="contrastLabel"></button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <div class="a11y-switch-row">
+          <span id="dyslexicLabel">Γραμματοσειρά για Δυσλεξία</span>
+          <button class="a11y-switch" id="dyslexicSwitch" type="button" role="switch" aria-checked="false" aria-labelledby="dyslexicLabel"></button>
+        </div>
+      </div>
+
+      <button class="a11y-reset" id="a11yReset" type="button">Επαναφορά προεπιλογών</button>
+    </div>
+
+    <button class="a11y-toggle" id="a11yToggle" type="button" aria-expanded="false" aria-controls="a11yPanel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.6"/><path d="M5 8.5c3.2 1 9.8 1 14 0"/><path d="M12 10v5"/><path d="M8 21l4-6 4 6"/><path d="M9 13l-3 2M15 13l3 2"/></svg>
+      <span class="a11y-toggle__label">Προσβασιμότητα</span>
+    </button>
+  </div>
+
+  <script src="assets/js/main.js?v=21" defer></script>
+
+  <!-- ============================================================
+       Live WPForms assets (form id 4160, "Αγγελίες – Δράσεις
+       υποβολή") loaded straight from okosmostoupari.gr so this
+       submission form behaves identically to the real WordPress
+       page: conditional file-upload field, date picker, phone
+       formatting, save-resume. Same-origin-only, like the other
+       WPForms bridges on this site.
+       ============================================================ -->
+  <script src="https://okosmostoupari.gr/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+  <script src="https://okosmostoupari.gr/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+  <script src="https://okosmostoupari.gr/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3"></script>
+  <script src="https://okosmostoupari.gr/wp-includes/js/underscore.min.js?ver=1.13.8"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/js/frontend/wpforms.min.js?ver=1.10.0.5"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/js/frontend/conditional-logic-fields.min.js?ver=1.10.0.5"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/jquery.validate.min.js?ver=1.21.0"></script>
+  <script>
+var wpforms_save_resume = {"ajaxurl":"https://okosmostoupari.gr/wp-admin/admin-ajax.php"};
+//# sourceURL=wpforms-save-resume-js-extra
+  </script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms-save-resume/assets/js/wpforms-save-resume.min.js?ver=1.13.0"></script>
+  <script>
+var wpforms_file_upload = {"url":"https://okosmostoupari.gr/wp-admin/admin-ajax.php","errors":{"default_error":"Something went wrong, please try again.","file_not_uploaded":"This file was not uploaded.","file_limit":"\u039f\u03b9 \u03bc\u03b5\u03c4\u03b1\u03c6\u03bf\u03c1\u03c4\u03ce\u03c3\u03b5\u03b9\u03c2 \u03b1\u03c1\u03c7\u03b5\u03af\u03c9\u03bd \u03c5\u03c0\u03b5\u03c1\u03b2\u03b1\u03af\u03bd\u03bf\u03c5\u03bd \u03c4\u03bf\u03bd \u03bc\u03ad\u03b3\u03b9\u03c3\u03c4\u03bf \u03b5\u03c0\u03b9\u03c4\u03c1\u03b5\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf \u03b1\u03c1\u03b9\u03b8\u03bc\u03cc ({fileLimit}).","file_extension":"\u039f \u03c4\u03cd\u03c0\u03bf\u03c2 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf\u03c5 \u03b4\u03b5\u03bd \u03b5\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9.","file_size":"\u03a4\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03c5\u03c0\u03b5\u03c1\u03b2\u03b1\u03af\u03bd\u03b5\u03b9 \u03c4\u03bf \u03bc\u03ad\u03b3\u03b9\u03c3\u03c4\u03bf \u03b5\u03c0\u03b9\u03c4\u03c1\u03b5\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf \u03bc\u03ad\u03b3\u03b5\u03b8\u03bf\u03c2. \u03a4\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b4\u03b5\u03bd \u03bc\u03b5\u03c4\u03b1\u03c6\u03bf\u03c1\u03c4\u03ce\u03b8\u03b7\u03ba\u03b5.","post_max_size":"File exceeds the upload limit allowed (16 MB)."},"loading_message":"File upload is in progress. Please submit the form once uploading is completed."};
+//# sourceURL=wpforms-dropzone-js-extra
+  </script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/lib/dropzone.min.js?ver=5.9.3"></script>
+  <script>
+var _wpUtilSettings = {"ajax":{"url":"/wp-admin/admin-ajax.php"}};
+//# sourceURL=wp-util-js-extra
+  </script>
+  <script src="https://okosmostoupari.gr/wp-includes/js/wp-util.min.js?ver=7.0.2"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/js/frontend/fields/file-upload.es5.min.js?ver=1.10.0.5"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/pro/js/frontend/fields/phone.min.js?ver=1.10.0.5"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/flatpickr/flatpickr.min.js?ver=4.6.9"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/jquery.timepicker/jquery.timepicker.min.js?ver=1.11.5"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/jquery.inputmask.min.js?ver=5.0.9"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/mailcheck.min.js?ver=1.1.2"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/lib/punycode.min.js?ver=1.0.0"></script>
+  <script src="https://okosmostoupari.gr/wp-content/plugins/wpforms/assets/js/share/utils.min.js?ver=1.10.0.5"></script>
+  <script>
+var wpforms_settings = {"val_required":"\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c0\u03b5\u03b4\u03af\u03bf \u03b5\u03af\u03bd\u03b1\u03b9 \u03c5\u03c0\u03bf\u03c7\u03c1\u03b5\u03c9\u03c4\u03b9\u03ba\u03cc.","val_email":"\u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03bc\u03b9\u03b1 \u03ad\u03b3\u03ba\u03c5\u03c1\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u03b7\u03bb\u03b5\u03ba\u03c4\u03c1\u03bf\u03bd\u03b9\u03ba\u03bf\u03cd \u03c4\u03b1\u03c7\u03c5\u03b4\u03c1\u03bf\u03bc\u03b5\u03af\u03bf\u03c5.","val_email_suggestion":"Did you mean {suggestion}?","val_email_suggestion_title":"Click to accept this suggestion.","val_email_restricted":"\u0391\u03c5\u03c4\u03ae \u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 email \u03b4\u03b5\u03bd \u03b5\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9.","val_number":"\u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03ad\u03bd\u03b1\u03bd \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03b1\u03c1\u03b9\u03b8\u03bc\u03cc.","val_number_positive":"\u0395\u03b9\u03c3\u03b1\u03b3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03ad\u03bd\u03b1\u03bd \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03b8\u03b5\u03c4\u03b9\u03ba\u03cc \u03b1\u03c1\u03b9\u03b8\u03bc\u03cc.","val_minimum_price":"Amount entered is less than the required minimum.","val_confirm":"\u039f\u03b9 \u03c4\u03b9\u03bc\u03ad\u03c2 \u03c4\u03c9\u03bd \u03c0\u03b5\u03b4\u03af\u03c9\u03bd \u03b4\u03b5\u03bd \u03c4\u03b1\u03b9\u03c1\u03b9\u03ac\u03b6\u03bf\u03c5\u03bd.","val_checklimit":"You have exceeded the number of allowed selections: {#}.","val_limit_characters":"Limit is {limit} characters. Characters remaining: {remaining}.","val_limit_words":"Limit is {limit} words. Words remaining: {remaining}.","val_min":"Please enter a value greater than or equal to {0}.","val_max":"Please enter a value less than or equal to {0}.","val_recaptcha_fail_msg":"Google reCAPTCHA verification failed, please try again later.","val_turnstile_fail_msg":"Cloudflare Turnstile verification failed, please try again later.","val_inputmask_incomplete":"\u03a3\u03c5\u03bc\u03c0\u03bb\u03b7\u03c1\u03ce\u03c3\u03c4\u03b5 \u03c4\u03bf \u03c0\u03b5\u03b4\u03af\u03bf \u03c3\u03c4\u03b7\u03bd \u03b1\u03c0\u03b1\u03b9\u03c4\u03bf\u03cd\u03bc\u03b5\u03bd\u03b7 \u03bc\u03bf\u03c1\u03c6\u03ae.","uuid_cookie":"1","locale":"el","country":"","country_list_label":"Country list","wpforms_plugin_url":"https:\/\/okosmostoupari.gr\/wp-content\/plugins\/wpforms\/","gdpr":"1","ajaxurl":"https:\/\/okosmostoupari.gr\/wp-admin\/admin-ajax.php","mailcheck_enabled":"1","mailcheck_domains":[],"mailcheck_toplevel_domains":["dev"],"is_ssl":"1","currency_code":"USD","currency_thousands":",","currency_decimals":"2","currency_decimal":".","currency_symbol":"$","currency_symbol_pos":"left","val_requiredpayment":"Payment is required.","val_creditcard":"Please enter a valid credit card number.","val_post_max_size":"\u03a4\u03bf \u03c3\u03c5\u03bd\u03bf\u03bb\u03b9\u03ba\u03cc \u03bc\u03ad\u03b3\u03b5\u03b8\u03bf\u03c2 \u03c4\u03c9\u03bd \u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03c9\u03bd \u03b1\u03c1\u03c7\u03b5\u03af\u03c9\u03bd {totalSize} MB \u03c5\u03c0\u03b5\u03c1\u03b2\u03b1\u03af\u03bd\u03b5\u03b9 \u03c4\u03bf \u03b5\u03c0\u03b9\u03c4\u03c1\u03b5\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf \u03cc\u03c1\u03b9\u03bf {maxSize} MB.","val_time12h":"Please enter time in 12-hour AM\/PM format (eg 8:45 AM).","val_time24h":"Please enter time in 24-hour format (eg 22:45).","val_time_limit":"Please enter time between {minTime} and {maxTime}.","val_url":"\u0395\u03b9\u03c3\u03b1\u03b3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03bc\u03b9\u03b1 \u03ad\u03b3\u03ba\u03c5\u03c1\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 URL.","val_fileextension":"\u039f \u03c4\u03cd\u03c0\u03bf\u03c2 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf\u03c5 \u03b4\u03b5\u03bd \u03b5\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9.","val_filesize":"\u03a4\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03c5\u03c0\u03b5\u03c1\u03b2\u03b1\u03af\u03bd\u03b5\u03b9 \u03c4\u03bf \u03bc\u03ad\u03b3\u03b9\u03c3\u03c4\u03bf \u03b5\u03c0\u03b9\u03c4\u03c1\u03b5\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf \u03bc\u03ad\u03b3\u03b5\u03b8\u03bf\u03c2. \u03a4\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b4\u03b5\u03bd \u03bc\u03b5\u03c4\u03b1\u03c6\u03bf\u03c1\u03c4\u03ce\u03b8\u03b7\u03ba\u03b5.","post_max_size":"16777216","readOnlyDisallowedFields":["captcha","repeater","content","divider","hidden","html","entry-preview","pagebreak","layout","payment-total","gdpr-checkbox"],"error_updating_token":"Error updating token. Please try again or contact support if the issue persists.","network_error":"Network error or server is unreachable. Check your connection or try again later.","token_cache_lifetime":"86400","hn_data":[],"save_resume_hash_error":"Unfortunately, we couldn&#039;t save your entry. If the problem persists, please contact the site administrator.","address_field":{"list_countries_without_states":["GB","DE","CH","NL"]},"val_phone":"\u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03ad\u03bd\u03b1\u03bd \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03b1\u03c1\u03b9\u03b8\u03bc\u03cc \u03c4\u03b7\u03bb\u03b5\u03c6\u03ce\u03bd\u03bf\u03c5.","val_password_strength":"\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b9\u03c3\u03c7\u03c5\u03c1\u03cc\u03c4\u03b5\u03c1\u03bf\u03c2 \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2. \u03a3\u03ba\u03b5\u03c6\u03c4\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u03ba\u03b5\u03c6\u03b1\u03bb\u03b1\u03af\u03b1 \u03ba\u03b1\u03b9 \u03c0\u03b5\u03b6\u03ac \u03b3\u03c1\u03ac\u03bc\u03bc\u03b1\u03c4\u03b1, \u03b1\u03c1\u03b9\u03b8\u03bc\u03bf\u03cd\u03c2 \u03ba\u03b1\u03b9 \u03c3\u03cd\u03bc\u03b2\u03bf\u03bb\u03b1.","entry_preview_iframe_styles":["https:\/\/okosmostoupari.gr\/wp-includes\/js\/tinymce\/skins\/lightgray\/content.min.css?ver=7.0.2","https:\/\/okosmostoupari.gr\/wp-includes\/css\/dashicons.min.css?ver=7.0.2","https:\/\/okosmostoupari.gr\/wp-includes\/js\/tinymce\/skins\/wordpress\/wp-content.css?ver=7.0.2","https:\/\/okosmostoupari.gr\/wp-content\/plugins\/wpforms\/assets\/pro\/css\/fields\/richtext\/editor-content.min.css"]}
+//# sourceURL=wpforms-js-extra
+  </script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Παιχνίδια για Δημιουργική Απασχόληση — Ο Κόσμος του Πάρη</title>
-  <meta name="description" content="Ιδέες παιχνιδιών και δραστηριοτήτων για δημιουργική απασχόληση παιδιών με αναπηρία, από τον Κόσμο του Πάρη.">
+  <title>Δράση — Ο Κόσμος του Πάρη</title>
+  <meta name="description" content="Δράση τρίτου φορέα από το δίκτυο του Κόσμου του Πάρη.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -65,7 +65,7 @@
         <a class="nav-dropdown__item" href="seminaria.html">Σεμινάρια</a>
         <a class="nav-dropdown__item" href="videos.html">Videos</a>
         <a class="nav-dropdown__item" href="diakopes.html">Διακοπές με αναπηρία</a>
-        <a class="nav-dropdown__item" href="paixnidia.html" aria-current="page">Παιχνίδια για δημιουργική απασχόληση</a>
+        <a class="nav-dropdown__item" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a>
         <a class="nav-dropdown__item" href="xrisimes-piges.html">Χρήσιμες πηγές</a>
         <a class="nav-dropdown__item" href="eksoplismos.html">Εξοπλισμός</a>
         <a class="nav-dropdown__item" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a>
@@ -116,7 +116,7 @@
       <li><a class="nav-sheet__link" href="seminaria.html">Σεμινάρια</a></li>
       <li><a class="nav-sheet__link" href="videos.html">Videos</a></li>
       <li><a class="nav-sheet__link" href="diakopes.html">Διακοπές με αναπηρία</a></li>
-      <li><a class="nav-sheet__link" href="paixnidia.html" aria-current="page">Παιχνίδια για δημιουργική απασχόληση</a></li>
+      <li><a class="nav-sheet__link" href="paixnidia.html">Παιχνίδια για δημιουργική απασχόληση</a></li>
       <li><a class="nav-sheet__link" href="xrisimes-piges.html">Χρήσιμες πηγές</a></li>
       <li><a class="nav-sheet__link" href="eksoplismos.html">Εξοπλισμός</a></li>
       <li><a class="nav-sheet__link" href="#">Κέντρα Κοινότητας-ΟΠΕΚΑ</a></li>
@@ -138,131 +138,33 @@
 
     <section class="page-header">
       <div class="container">
-        <span class="eyebrow">Πληροφορίες</span>
-        <h1>Παιχνίδια για Δημιουργική Απασχόληση</h1>
-        <p>Η δημιουργική απασχόληση είναι η πύλη προς τον κόσμο της ατέλειωτης φαντασίας και της απεριόριστης δημιουργικότητας.</p>
+        <span class="eyebrow">Δράσεις Τρίτων</span>
+        <h1 id="drtTitle">Φόρτωση…</h1>
+        <p id="drtMeta"></p>
       </div>
     </section>
 
-    <!-- ============================================================
-         ΠΑΙΧΝΙΔΙΑ
-         ============================================================ -->
-    <section class="section" id="paixnidia">
-      <div class="container">
+    <section class="section">
+      <div class="container container--profile">
 
-        <div class="activity-grid">
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/MemoryLabel440.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Παιχνίδι μνήμης</h3>
-          <p class="activity-card__desc">Βοηθάει στη βελτίωση της παρατηρητικότητας και της μνήμης. Είναι μια απλή και διασκεδαστική δραστηριότητα! Μπορείτε να εκτυπώσετε εικόνες με διάφορα αντικείμενα και να ζητήσετε από το παιδί σας να σας δείξει την εικόνα που ακούει. Στην συνέχεια, προσθέτοντας ένα βαθμό δυσκολίας μπορείτε να ονομάσετε δυο ή περισσότερες εικόνες και εκείνο να πρέπει να σας δείξει την εικόνα που άκουσε.</p>
+        <div class="professional-profile">
+          <div class="professional-profile__main">
+
+            <div class="article-body" id="drtBody">
+              <p class="editorial-status" role="status">Φόρτωση δράσης…</p>
+            </div>
+
+          </div>
+
+          <aside class="professional-profile__side" id="drtSide" hidden>
+            <div class="professional-contact-card" id="drtContactCard"></div>
+          </aside>
         </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/hidding.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Παιχνίδι κρυφτό</h3>
-          <p class="activity-card__desc">Ένα παιχνίδι που βοηθάει στην ανάπτυξη δεξιοτήτων παρατηρητικότητας και αντίληψης του περιβάλλοντος καθώς και στην ενίσχυση της φαντασίας. Στο παιχνίδι αυτό μπορεί να συμμετέχει όλη η οικογένεια. Δείξτε στο παιδί κάποια αντικείμενα και στην συνέχεια κρύψτε τα στο χώρο ζητώντας του να ψάξει να τα βρει. Μια παραλλαγή του παιχνιδιού είναι να κρύψει εκείνο τα αντικείμενα και να ψάξτε εσείς να τα βρείτε!</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/tiflomiga.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Μάντεψε τι είναι</h3>
-          <p class="activity-card__desc">Ένα παιχνίδι που βοηθάει τα παιδιά να βελτιώσουν τις αισθητηριακές τους δεξιότητες. Μπορείτε να ζητήσετε από το παιδί σας να κλείσει τα μάτια η να βάλετε ένα μαντήλι γύρω από τα μάτια του. Στη συνέχεια να φέρετε διάφορα αντικείμενα όπως ένα χνουδωτό αρκουδάκι, ένα βιβλίο, ένα μήλο και να του ζητήσετε να το ονομάσει χρησιμοποιώντας άλλες αισθήσεις όπως την αφή και την οσμή.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/03/ο-κοσμος-του-παρη.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Puzzle</h3>
-          <p class="activity-card__desc">Bοηθάει στον συντονισμό κινήσεων και ταυτόχρονα ακονίζει την σκέψη τους. Φτιάξτε μαζί puzzle δαπέδου. Τα φωτεινά χρώματα και τα διασκεδαστικά σχήματα ενθουσιάζουν τα παιδιά.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/Boccia.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Boccia</h3>
-          <p class="activity-card__desc">Το Boccia είναι ένα αθλητικό παιχνίδι που παίζεται με μπάλες και απευθύνεται σε άτομα με κινητικές δυσκολίες. Οι παίκτες πρέπει να πετάξουν μπάλες όσο γίνετε πιο κοντά σε ένα στόχο. Μπορούμε να το παίξουμε και στο σπίτι και να συμμετέχει όλη η οικογένεια.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/bowling.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Bowling</h3>
-          <p class="activity-card__desc">Μπορείτε να στήσετε κορινες και με μια μπάλα να προσπαθήσετε να ρίξετε όσες περισσότερες κορινες γίνετε. Το παιχνίδι μπορεί να παιχτεί και με πλαστικά ποτήρια.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/sounds.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Τι ακούς;</h3>
-          <p class="activity-card__desc">Μπορεί να είναι εξαιρετικά χρήσιμο για άτομα με αναπηρίες βελτιώνοντας τις δεξιότητες τους. Βρείτε διάφορα αντικείμενα που κάνουν θόρυβο όπως ένα ξυπνητήρι, μια καμπάνα, ένα μουσικό όργανο ακόμα και ένα πλαστικό μπουκάλι. Αφήστε το παιδί να τα παρατηρήσει, ζητήστε του να κλείσει τα μάτια και να αναγνωρίσει τον ήχο που ακούει.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/uno.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Uno</h3>
-          <p class="activity-card__desc">Είναι ένα παιχνίδι που μπορεί να παιχτεί και από άτομα με αναπηρίες βοηθώντας να αναγνωρίζουν ίδια χρώματα και νούμερα. Στην περίπτωση που είναι δύσκολο να κρατήσουν τις κάρτες τους στα χέρια μπορούν να τις απλώσουν στο τραπέζι.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/lego.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Τουβλάκια</h3>
-          <p class="activity-card__desc">Βοηθά στην βελτίωση δεξιοτήτων κυρίως τις κινητικές τους δεξιότητες και την συντονιστική τους ικανότητα. Αφήστε το παιδί να παίξει με τουβλάκια και να φτιάξει τις δικές του κατασκευές! Είναι ένα από τα πιο δημοφιλή παιχνίδια στον κόσμο και μπορούν να βοηθήσουν το παιδί με πολλούς τρόπους.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/dancing.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Χορός</h3>
-          <p class="activity-card__desc">Βάλτε δυνατά μουσική και χορέψτε!</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/06/baking.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Φτιάξτε κουλουράκια</h3>
-          <p class="activity-card__desc">Βοηθά στην ανάπτυξη των κινητικών δεξιοτήτων και βελτιώνει την συντονιστική τους ικανότητα δίνοντας τους την ευκαιρία να διασκεδάσουν και να ανακαλύψουν την χαρά της δημιουργίας. Τα παιδιά αγαπούν να παίζουν με τα χέρια τους. Η διαδικασία να φτιάξεις κουλούρια είναι μια διασκεδαστική και δημιουργική δραστηριότητα, καθώς τα παιδιά μπορούν να ανακατέψουν τα υλικά, να σχηματίσουν τα κουλούρια και να νιώσουν ότι βοηθάνε.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/07/280277241_676251100341473_6158919185239662852_n.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Συμβολικό παιχνίδι</h3>
-          <p class="activity-card__desc">Παιχνίδι ρόλων με κούκλες- ενισχύεται η φαντασία και η κοινωνική συμπεριφορά. Μέσα από αυτό το παιχνίδι μπορεί ένα παιδί να μάθει τις αναμενόμενες συμπεριφορές/αντιδράσεις σε διαφορετικές καταστάσεις. Για παράδειγμα, χτυπάει το τηλέφωνο, τι πρέπει να κάνουμε;</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2023/07/pc-cartoon-smiling-Small.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Παιχνίδια στον υπολογιστή</h3>
-          <p class="activity-card__desc">Τα εκπαιδευτικά παιχνίδια στον υπολογιστή προσφέρουν μια μοναδική ευκαιρία στα άτομα με αναπηρίες να αναπτύξουν δεξιότητες, να ενεργοποιήσουν την φαντασία τους και να εξερευνήσουν τον κόσμο μέσα από μια ασφαλή και διασκεδαστική εμπειρία. Αναζητήστε παιχνίδια εκπαιδευτικά στον υπολογιστή στα οποία το παιδί πρέπει να βάλει εικόνες σε μια λογική σειρά ώστε να βγει μια ιστορία ή εμπλέξτε δραστηριότητες που πρέπει να βρει τα ίδια αντικείμενα.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2024/01/taxidiotes-640x380-1.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Ταξιδιώτες- Ηλεκτρονικό Παιχνίδι για παιδιά με αναπηρία</h3>
-          <p class="activity-card__desc">Το ηλεκτρονικό παιχνίδι «Ταξιδιώτες» είναι κατάλληλο για παιδιά με τετραπληγία, εγκεφαλική παράλυση, κινητικά προβλήματα ή/και νοητική υστέρηση ηλικίας 4 έως 9 ετών, δίνοντάς τους την ευκαιρία να επιλέξουν τόσο τον χαρακτήρα τους όσο και τον προορισμό του ταξιδιού τους, να αποκτήσουν γνώσεις, όπως ο χειρισμός ειδικού εξοπλισμού αλληλεπίδρασης με τον υπολογιστή, και φυσικά να διασκεδάσουν. Ταυτόχρονα, οι ειδικοί επαγγελματίες και φροντιστές διαθέτουν πλέον ένα πολύτιμο εκπαιδευτικό εργαλείο, το οποίο μπορούν να προσαρμόσουν βάσει των αναγκών και των δεξιοτήτων των παιδιών, ενώ παράλληλα οι γονείς έχουν έναν ακόμα τρόπο να γεμίζουν τη ζωή των παιδιών με χαρά και ευκαιρίες μάθησης.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2024/01/blind.jpg" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Memor-i</h3>
-          <p class="activity-card__desc">Το Memor-i είναι ένα εντυπωσιακό σετ ηλεκτρονικών παιχνιδιών που έχουν σχεδιαστεί με γνώμονα τις ανάγκες τυφλών παιδιών. Αυτά τα παιχνίδια αποτελούν ένα ενδιαφέρον εκπαιδευτικό εργαλείο, προσφέροντας τόσο διασκέδαση όσο και ευκαιρίες εκπαίδευσης.</p>
-        </div>
-      </article>
-      <article class="activity-card">
-        <div class="activity-card__media"><img src="https://okosmostoupari.gr/wp-content/uploads/2026/07/images.jpg#6390" alt="" loading="lazy"></div>
-        <div class="activity-card__body">
-          <h3 class="activity-card__title">Η Κυρία Αταξία</h3>
-          <p class="activity-card__desc">Βιωματικές Δραστηριότητες Ευαισθητοποίησης</p>
-        </div>
-      </article>
+
+        <div class="article-back">
+          <a href="draseis-triton.html" class="editorial-card__link" id="drtBackLink">
+            <span class="arrow" aria-hidden="true">←</span> Πίσω στις Δράσεις Τρίτων
+          </a>
         </div>
 
       </div>

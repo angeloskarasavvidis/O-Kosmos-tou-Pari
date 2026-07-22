@@ -344,9 +344,9 @@ p { text-wrap: pretty; }
   gap: 0.7rem;
   text-decoration: none;
   /* Nudge left to claw back just enough width for the primary nav
-     (now with the "Πληροφορίες" tab) to stay on a single line at
-     the container's max-width. */
-  margin-left: -1.2rem;
+     (now with the "Δράσεις" and "Πληροφορίες" tabs) to stay on a
+     single line at the container's max-width. */
+  margin-left: -1.6rem;
 }
 /* The logo asset carries its own fixed navy/multicolor palette, so it
    always sits on a light chip — guarantees legibility in dark mode and
@@ -467,6 +467,10 @@ p { text-wrap: pretty; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  /* Nudge right to match the logo's left nudge above — together
+     they claw back enough width for the primary nav to stay on a
+     single line at the container's max-width. */
+  margin-right: -0.8rem;
 }
 
 .header-support-btn {
