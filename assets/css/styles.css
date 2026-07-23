@@ -796,6 +796,46 @@ p { text-wrap: pretty; }
 }
 .a11y-reset:hover { color: var(--accent-deep); }
 
+/* Floating social buttons — pinned to the right edge, vertically
+   centered. main.js nudges them a few px against the scroll
+   direction and eases them back, so they trail the scroll with a
+   slight stall instead of snapping instantly to place. */
+.social-float {
+  position: fixed;
+  top: 50%;
+  right: 1.2rem;
+  z-index: 380;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transform: translateY(-50%);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.social-float.is-stalling {
+  transition: transform 0.15s ease-out;
+}
+.social-float__btn {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  box-shadow: 0 12px 28px -10px hsl(var(--shadow-color) / 0.45);
+  transition: background var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft), border-color var(--dur-fast) var(--ease-soft), transform var(--dur-fast) var(--ease-soft);
+}
+.social-float__btn svg { width: 21px; height: 21px; }
+.social-float__btn:hover { transform: translateX(-3px); }
+.social-float__btn--facebook:hover { background: #1877f2; border-color: #1877f2; color: #fff; }
+.social-float__btn--instagram:hover { background: #d6249f; border-color: #d6249f; color: #fff; }
+@media (max-width: 720px) {
+  .social-float { right: 0.6rem; gap: 0.5rem; }
+  .social-float__btn { width: 40px; height: 40px; }
+  .social-float__btn svg { width: 18px; height: 18px; }
+}
+
 /* ============================================================
    6. HERO
    ============================================================ */

@@ -279,6 +279,27 @@
     }
   }, { passive: true });
 
+  // Floating social buttons: nudge them against the scroll direction,
+  // then ease back to their resting spot — a small stall instead of
+  // snapping straight to place.
+  var socialFloat = document.querySelector(".social-float");
+  if (socialFloat) {
+    var socialLastY = window.scrollY;
+    var socialStallTimer = null;
+    window.addEventListener("scroll", function () {
+      var delta = window.scrollY - socialLastY;
+      socialLastY = window.scrollY;
+      var offset = Math.max(-16, Math.min(16, -delta * 1.3));
+      socialFloat.classList.add("is-stalling");
+      socialFloat.style.transform = "translateY(calc(-50% + " + offset + "px))";
+      clearTimeout(socialStallTimer);
+      socialStallTimer = setTimeout(function () {
+        socialFloat.classList.remove("is-stalling");
+        socialFloat.style.transform = "translateY(-50%)";
+      }, 100);
+    }, { passive: true });
+  }
+
   // Font-size stepper
   var fontSteps = document.querySelectorAll(".a11y-step");
   function applyFontStep(step) {
