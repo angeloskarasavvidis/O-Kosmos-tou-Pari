@@ -1423,14 +1423,30 @@
   initInstitutionsFilter();
 
   /* ----------------------------------------------------------
-     Video grid (videos.html) — renders YouTube-embed cards from a
-     local placeholder list (assets/data/videos.json). Entries ship
-     with an empty youtubeId until the real links are added; those
-     render as a dashed placeholder slot instead of a player, same
-     idea as the professional-card placeholder cell, so the page
-     already has the right look while waiting on the real links.
+     Video grid (videos.html) — renders YouTube cards from a local
+     snapshot (assets/data/videos.json, populated via YouTube's
+     oEmbed endpoint — no API key required). Each card is a
+     click-to-play facade: a thumbnail image with a play button,
+     swapped for the real iframe only on click. Loading 40+ live
+     YouTube iframes up front would be heavy and slow; a facade
+     keeps the initial page light and still looks like a real
+     player grid. Entries ship with an empty youtubeId until real
+     links are added; those render as a dashed placeholder slot
+     instead, same idea as the professional-card placeholder cell.
      ---------------------------------------------------------- */
   var ICON_VIDEO_PLACEHOLDER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>';
+  var ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+
+  function playVideoCard(embed, youtubeId, title) {
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(youtubeId) + "?autoplay=1&rel=0";
+    iframe.title = title || "Video";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    embed.innerHTML = "";
+    embed.classList.add("video-card__embed--playing");
+    embed.appendChild(iframe);
+  }
 
   function buildVideoCard(item) {
     var card = document.createElement("article");
@@ -1439,13 +1455,18 @@
     var embed = document.createElement("div");
     embed.className = "video-card__embed";
     if (item.youtubeId) {
-      var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(item.youtubeId);
-      iframe.title = item.title || "Video";
-      iframe.loading = "lazy";
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.allowFullscreen = true;
-      embed.appendChild(iframe);
+      var playBtn = document.createElement("button");
+      playBtn.type = "button";
+      playBtn.className = "video-card__play";
+      playBtn.setAttribute("aria-label", "Αναπαραγωγή: " + (item.title || "Video"));
+      if (item.thumbnail) {
+        playBtn.style.backgroundImage = "url('" + item.thumbnail + "')";
+      }
+      playBtn.innerHTML = '<span class="video-card__play-icon">' + ICON_PLAY + "</span>";
+      playBtn.addEventListener("click", function () {
+        playVideoCard(embed, item.youtubeId, item.title);
+      });
+      embed.appendChild(playBtn);
     } else {
       embed.classList.add("video-card__embed--placeholder");
       embed.innerHTML = ICON_VIDEO_PLACEHOLDER + "<span>Το βίντεο θα προστεθεί σύντομα</span>";
@@ -1457,6 +1478,12 @@
       title.className = "video-card__title";
       title.textContent = item.title;
       card.appendChild(title);
+    }
+    if (item.author) {
+      var author = document.createElement("p");
+      author.className = "video-card__author";
+      author.textContent = item.author;
+      card.appendChild(author);
     }
     if (item.description) {
       var desc = document.createElement("p");
