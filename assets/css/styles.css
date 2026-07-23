@@ -1194,6 +1194,53 @@ html.a11y-contrast .hero__blob { display: none; }
 .directory-grid--compact .directory-card__title { font-size: 0.88rem; }
 .directory-grid--compact .directory-card__desc { display: none; }
 
+/* ΟΠΕΚΑ Κέντρα Κοινότητας directory — 230+ municipal centers, so a
+   dense two-column grid of compact cards + the shared
+   .directory-search/.directory-results filter above it. */
+.kentra-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.kentra-card {
+  background: var(--surface-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.4rem;
+}
+.kentra-card[hidden] { display: none; }
+.kentra-card__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.kentra-card__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+.kentra-card__row svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: var(--ink-faint);
+}
+.kentra-card__row a {
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+.kentra-card__row a:hover { text-decoration: underline; }
+@media (max-width: 760px) {
+  .kentra-grid { grid-template-columns: 1fr; }
+}
+
 .directory-viewall {
   display: flex;
   justify-content: center;

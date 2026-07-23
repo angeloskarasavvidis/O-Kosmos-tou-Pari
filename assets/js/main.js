@@ -1886,6 +1886,111 @@
   initProfessionalGrid("syllogoi", "1740");
 
   /* ----------------------------------------------------------
+     ΟΠΕΚΑ Κέντρα Κοινότητας directory — static snapshot (232
+     municipal centers scraped from the live page's Elementor
+     columns; no REST endpoint exposes this list) with a live
+     text search across name/address/phone/email. No-op on pages
+     without #kentraList.
+     ---------------------------------------------------------- */
+  (function () {
+    var listEl = document.getElementById("kentraList");
+    if (!listEl) return;
+    var searchInput = document.getElementById("kentraSearchInput");
+    var resultsEl = document.getElementById("kentraResults");
+    var entries = [];
+
+    function iconSvg(path) {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
+    }
+    var PIN_ICON = iconSvg('<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>');
+    var PHONE_ICON = iconSvg('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L7.9 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.8 2.1z"/>');
+    var MAIL_ICON = iconSvg('<path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M22 6l-10 7L2 6"/>');
+
+    function addRow(card, icon, text, href) {
+      if (!text) return;
+      var row = document.createElement("div");
+      row.className = "kentra-card__row";
+      row.innerHTML = icon;
+      if (href) {
+        var a = document.createElement("a");
+        a.href = href;
+        a.textContent = text;
+        row.appendChild(a);
+      } else {
+        row.appendChild(document.createTextNode(text));
+      }
+      card.appendChild(row);
+    }
+
+    function buildCard(item) {
+      var card = document.createElement("article");
+      card.className = "kentra-card";
+      var name = document.createElement("h3");
+      name.className = "kentra-card__name";
+      name.textContent = item.name;
+      card.appendChild(name);
+      addRow(card, PIN_ICON, item.address);
+      addRow(card, PHONE_ICON, item.phone);
+      var firstEmail = item.email ? item.email.split(" / ")[0].trim() : "";
+      var isRealEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(firstEmail);
+      addRow(card, MAIL_ICON, item.email, isRealEmail ? "mailto:" + firstEmail : null);
+      return card;
+    }
+
+    function applyFilter() {
+      var query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+      var visible = 0;
+      entries.forEach(function (entry) {
+        var match = !query || entry.haystack.indexOf(query) !== -1;
+        entry.el.hidden = !match;
+        if (match) visible += 1;
+      });
+      if (resultsEl) {
+        resultsEl.textContent = query === ""
+          ? "Εμφανίζονται και τα " + entries.length + " κέντρα"
+          : visible + " από " + entries.length + " κέντρα ταιριάζουν με «" + searchInput.value.trim() + "»";
+      }
+    }
+
+    listEl.innerHTML = '<p class="editorial-status" role="status">Φόρτωση κέντρων…</p>';
+    fetch("assets/data/opeka-kentra.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("opeka-fetch-failed");
+        return res.json();
+      })
+      .then(function (items) {
+        listEl.innerHTML = "";
+        items.forEach(function (item) {
+          var card = buildCard(item);
+          listEl.appendChild(card);
+          entries.push({
+            el: card,
+            haystack: (item.name + " " + item.address + " " + item.phone + " " + item.email).toLowerCase()
+          });
+        });
+        applyFilter();
+      })
+      .catch(function () {
+        listEl.innerHTML = "";
+        var status = document.createElement("p");
+        status.className = "editorial-status";
+        status.setAttribute("role", "status");
+        status.appendChild(document.createTextNode("Δεν ήταν δυνατή η φόρτωση της λίστας αυτή τη στιγμή. Δείτε τη απευθείας στο "));
+        var siteLink = document.createElement("a");
+        siteLink.href = "https://okosmostoupari.gr";
+        siteLink.target = "_blank";
+        siteLink.rel = "noopener";
+        siteLink.textContent = "okosmostoupari.gr";
+        status.appendChild(siteLink);
+        status.appendChild(document.createTextNode("."));
+        listEl.appendChild(status);
+        if (resultsEl) resultsEl.textContent = "";
+      });
+
+    if (searchInput) searchInput.addEventListener("input", applyFilter);
+  })();
+
+  /* ----------------------------------------------------------
      Staggered scroll reveal (skipped entirely under
      prefers-reduced-motion, per the guardrail in styles.css)
      ---------------------------------------------------------- */
