@@ -1843,12 +1843,21 @@ html.a11y-contrast .hero__blob { display: none; }
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 64px;
+  min-height: 88px;
   width: 100%;
   padding: 0.9rem 1.3rem;
-  background: var(--surface-raised);
+  /* Fixed light tile regardless of site theme — these are third-party
+     logos/photos with their own colors (often dark text on
+     transparent), so they need a stable light background to stay
+     legible in dark mode, same reasoning as .brand__logo-chip. */
+  background: #fff;
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
+}
+.supporter-tier-badge__logo {
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
 }
 .supporter-tier-badge__name {
   font-weight: 700;
