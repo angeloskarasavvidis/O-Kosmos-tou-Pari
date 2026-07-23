@@ -1077,6 +1077,27 @@ html.a11y-contrast .hero__blob { display: none; }
   margin-top: 0.7rem;
   font-size: var(--fs-300);
 }
+.page-header__title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.page-header__title-row h1 { margin-top: 0; }
+.page-header__icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  /* Same fixed light tile as .directory-card__icon — these
+     illustrations ship with a cream background baked in, not
+     transparent, so they need a stable light backdrop in dark mode. */
+  background: #fff;
+  border: 1.5px solid var(--border);
+}
+.page-header__icon img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Current-page indicator in nav — aria-current="page" is set on
    whichever tab matches the page you're on. */
@@ -1149,12 +1170,19 @@ html.a11y-contrast .hero__blob { display: none; }
   box-shadow: 0 20px 34px -22px hsl(var(--shadow-color) / 0.4);
 }
 .directory-card__icon {
-  width: 44px; height: 44px;
-  border-radius: var(--radius-sm);
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
   display: grid;
   place-items: center;
+  overflow: hidden;
+  /* Category illustrations ship with their own cream background baked
+     in, not transparent — a fixed light tile keeps them consistent
+     regardless of site theme, same reasoning as .brand__logo-chip. */
+  background: #fff;
+  border: 1.5px solid var(--border);
 }
 .directory-card__icon svg { width: 23px; height: 23px; }
+.directory-card__icon img { width: 100%; height: 100%; object-fit: cover; }
 .directory-card__icon--sage { background: var(--sage-bg); color: var(--sage); }
 .directory-card__icon--peri { background: var(--periwinkle-bg); color: var(--periwinkle); }
 .directory-card__icon--accent { background: color-mix(in srgb, var(--accent) 20%, var(--surface-raised)); color: var(--accent-deep); }
