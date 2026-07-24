@@ -2544,9 +2544,17 @@ button.activity-card__media--clickable:focus-visible { outline: 2.5px solid var(
      title and subtitle never reach down into the portrait's face,
      no matter how narrow the screen. Phones get an even taller
      crop below, since that's where the heading wraps to the most
-     lines and needs the most extra headroom. */
+     lines and needs the most extra headroom. The text block itself
+     also moves from the top of the photo to the bottom — on a
+     mobile crop the face sits in the upper/middle of the frame, so
+     anchoring the title low keeps it clear of the face instead of
+     racing to out-shrink it. The scrim flips to match, darkening
+     the bottom of the photo instead of the top. */
   .hero__portrait { aspect-ratio: 1 / 1; }
-  .hero__portrait-content { padding-top: 2.2rem; }
+  .hero__portrait-scrim {
+    background: linear-gradient(0deg, rgba(8, 12, 24, 0.82) 0%, rgba(8, 12, 24, 0.45) 32%, rgba(8, 12, 24, 0) 62%);
+  }
+  .hero__portrait-content { top: auto; bottom: 0; padding: 0 min(6vw, 3.2rem) 1.8rem; }
   .hero__portrait-content h1 { font-size: clamp(2.352rem, 1.792rem + 3.5vw, 3.136rem); max-width: 15ch; }
   .hero__subtitle { font-size: 1.064rem; max-width: 32ch; }
   .footer-bottom { justify-content: center; text-align: center; }
