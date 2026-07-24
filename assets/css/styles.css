@@ -1682,10 +1682,12 @@ html.a11y-contrast .hero__blob { display: none; }
 /* Third-party event posters (draseis-triton.html, aggelies.html) are
    mostly tall/portrait flyers, unlike the square-ish provider logos
    the base card was built for — a 170px box left them shrunk down
-   with lots of empty padding. Give posters a taller box and less
-   padding so they render at a legible size instead. */
-.professional-card__media--poster { height: 260px; }
-.professional-card__media--poster img { padding: 0.7rem; }
+   with lots of empty padding. Give posters a taller box, no padding,
+   and a white (not tan) backing so they read as a clean poster flush
+   against the card, matching the original site instead of sitting in
+   a visibly tinted frame. */
+.professional-card__media--poster { height: 260px; background: var(--surface-raised); }
+.professional-card__media--poster img { padding: 0; }
 .professional-card__media--placeholder {
   display: grid;
   place-items: center;
