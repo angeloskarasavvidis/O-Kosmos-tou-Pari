@@ -1165,7 +1165,7 @@
     card.className = "professional-card";
 
     var media = document.createElement("div");
-    media.className = "professional-card__media";
+    media.className = "professional-card__media professional-card__media--poster";
     media.setAttribute("aria-hidden", "true");
     if (item.photo) {
       var img = document.createElement("img");
