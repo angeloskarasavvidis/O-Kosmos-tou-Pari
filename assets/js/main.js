@@ -668,14 +668,16 @@
     return article;
   }
 
-  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback, showImage, pageSize) {
+  function initWpFeed(gridId, loadMoreId, categoryId, showDate, tagFallback, showImage, pageSize, searchInputId) {
     var grid = document.getElementById(gridId);
     if (!grid) return;
     var loadMoreBtn = loadMoreId ? document.getElementById(loadMoreId) : null;
+    var searchInput = searchInputId ? document.getElementById(searchInputId) : null;
     var perPage = pageSize || WP_PAGE_SIZE;
     var page = 1;
     var totalPages = 1;
     var loading = false;
+    var searchQuery = "";
 
     function showStatus(message) {
       grid.innerHTML = "";
@@ -694,6 +696,7 @@
         loadMoreBtn.textContent = "Φόρτωση…";
       }
       var url = WP_API_POSTS + "?_embed&categories=" + categoryId + "&per_page=" + perPage + "&page=" + page;
+      if (searchQuery) url += "&search=" + encodeURIComponent(searchQuery);
       fetch(url)
         .then(function (res) {
           if (!res.ok) throw new Error("wp-fetch-failed");
@@ -703,7 +706,7 @@
         .then(function (posts) {
           if (page === 1) grid.innerHTML = "";
           if (page === 1 && !posts.length) {
-            showStatus("Δεν υπάρχουν διαθέσιμες αναρτήσεις αυτή τη στιγμή.");
+            showStatus(searchQuery ? "Δεν βρέθηκαν άρθρα για «" + searchQuery + "»." : "Δεν υπάρχουν διαθέσιμες αναρτήσεις αυτή τη στιγμή.");
           } else {
             posts.forEach(function (post) {
               grid.appendChild(wpBuildCard(post, showDate, tagFallback, showImage));
@@ -743,13 +746,24 @@
         loadPage();
       });
     }
+    if (searchInput) {
+      var searchTimer = null;
+      searchInput.addEventListener("input", function () {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(function () {
+          searchQuery = searchInput.value.trim();
+          page = 1;
+          loadPage();
+        }, 350);
+      });
+    }
     loadPage();
   }
 
   initWpFeed("homeNewsGrid", null, WP_CATEGORY_NEWS, true, "Νέα", false, 3);
   initWpFeed("homeDraseisGrid", null, WP_CATEGORY_DRASEIS, true, "Δράση", false, 3);
   initWpFeed("newsGrid", "newsLoadMore", WP_CATEGORY_NEWS, true, "Νέα", false);
-  initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true);
+  initWpFeed("articlesGrid", "articlesLoadMore", WP_CATEGORY_ARTICLES, false, "Άρθρο", true, undefined, "articlesSearchInput");
   initWpFeed("communityDrasseisGrid", "communityDrasseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true, 3);
   initWpFeed("draseisGrid", "draseisLoadMore", WP_CATEGORY_DRASEIS, true, "Δράση", true);
   initWpFeed("booksGrid", "booksLoadMore", WP_CATEGORY_BOOKS, false, "Βιβλίο", true);
